@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import CoreLocation
 
-class MainVC: UIViewController {
+class MainVC: UIViewController, CLLocationManagerDelegate {
+    
+    var locationManager: CLLocationManager!
     
     override func viewDidLoad() { super.viewDidLoad()
         
         configureDummyBackBtnAndAddItToViewHierarchy()
+        
+        requestCoreLocationAuth()
         
     }
 
@@ -41,11 +46,31 @@ class MainVC: UIViewController {
         
     }
     
+    private func requestCoreLocationAuth() {
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        //locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation() // sada dobijas data u delegate..
+        }
+        
+    }
+    
     private func suspendApp() {
         UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
         
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let userLocation:CLLocation = locations[0] as CLLocation
+        
+        print("user latitude = \(userLocation.coordinate.latitude)")
+        print("user longitude = \(userLocation.coordinate.longitude)")
+    }
+    
 }
-
-

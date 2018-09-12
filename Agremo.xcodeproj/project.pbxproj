@@ -16,6 +16,7 @@
 		AD5358DA21495D4C00E7FD96 /* MyClassesAndStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5358D921495D4C00E7FD96 /* MyClassesAndStructs.swift */; };
 		AD5358DC21495F3500E7FD96 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD5358DB21495F3500E7FD96 /* Localizable.strings */; };
 		AD5358DE2149600100E7FD96 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5358DD2149600100E7FD96 /* AlertManager.swift */; };
+		AD6A52492149684F0061E23A /* ModelTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A52482149684F0061E23A /* ModelTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		AD5358D921495D4C00E7FD96 /* MyClassesAndStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyClassesAndStructs.swift; sourceTree = "<group>"; };
 		AD5358DB21495F3500E7FD96 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		AD5358DD2149600100E7FD96 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		AD6A52482149684F0061E23A /* ModelTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		AD5358BF21494B9000E7FD96 /* Agremo */ = {
 			isa = PBXGroup;
 			children = (
+				AD6A5247214968400061E23A /* Model */,
 				AD5358D821495D3600E7FD96 /* MyClassesAndStructs */,
 				AD5358D4214950CD00E7FD96 /* appDel_assets_splash */,
 				AD5358DF214964B200E7FD96 /* VCs */,
@@ -99,6 +102,14 @@
 			);
 			name = VCs;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		AD6A5247214968400061E23A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A52482149684F0061E23A /* ModelTypes.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +189,7 @@
 				AD5358DE2149600100E7FD96 /* AlertManager.swift in Sources */,
 				AD5358C121494B9000E7FD96 /* AppDelegate.swift in Sources */,
 				AD5358DA21495D4C00E7FD96 /* MyClassesAndStructs.swift in Sources */,
+				AD6A52492149684F0061E23A /* ModelTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
