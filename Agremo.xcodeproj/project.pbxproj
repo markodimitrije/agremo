@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		AD5358C121494B9000E7FD96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5358C021494B9000E7FD96 /* AppDelegate.swift */; };
-		AD5358C321494B9000E7FD96 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5358C221494B9000E7FD96 /* ViewController.swift */; };
 		AD5358C621494B9000E7FD96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5358C421494B9000E7FD96 /* Main.storyboard */; };
 		AD5358C821494B9300E7FD96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD5358C721494B9300E7FD96 /* Assets.xcassets */; };
 		AD5358CB21494B9300E7FD96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5358C921494B9300E7FD96 /* LaunchScreen.storyboard */; };
+		AD5358D3214950C200E7FD96 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5358D2214950C200E7FD96 /* MainVC.swift */; };
+		AD5358D72149585600E7FD96 /* DummyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5358D62149585600E7FD96 /* DummyVC.swift */; };
+		AD5358DA21495D4C00E7FD96 /* MyClassesAndStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5358D921495D4C00E7FD96 /* MyClassesAndStructs.swift */; };
+		AD5358DC21495F3500E7FD96 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD5358DB21495F3500E7FD96 /* Localizable.strings */; };
+		AD5358DE2149600100E7FD96 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5358DD2149600100E7FD96 /* AlertManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AD5358BD21494B9000E7FD96 /* Agremo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agremo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD5358C021494B9000E7FD96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AD5358C221494B9000E7FD96 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AD5358C521494B9000E7FD96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD5358C721494B9300E7FD96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD5358CA21494B9300E7FD96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD5358CC21494B9300E7FD96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD5358D2214950C200E7FD96 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		AD5358D62149585600E7FD96 /* DummyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyVC.swift; sourceTree = "<group>"; };
+		AD5358D921495D4C00E7FD96 /* MyClassesAndStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyClassesAndStructs.swift; sourceTree = "<group>"; };
+		AD5358DB21495F3500E7FD96 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		AD5358DD2149600100E7FD96 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,43 @@
 		AD5358BF21494B9000E7FD96 /* Agremo */ = {
 			isa = PBXGroup;
 			children = (
-				AD5358C021494B9000E7FD96 /* AppDelegate.swift */,
-				AD5358C221494B9000E7FD96 /* ViewController.swift */,
+				AD5358D821495D3600E7FD96 /* MyClassesAndStructs */,
+				AD5358D4214950CD00E7FD96 /* appDel_assets_splash */,
+				AD5358DF214964B200E7FD96 /* VCs */,
 				AD5358C421494B9000E7FD96 /* Main.storyboard */,
-				AD5358C721494B9300E7FD96 /* Assets.xcassets */,
-				AD5358C921494B9300E7FD96 /* LaunchScreen.storyboard */,
+				AD5358DB21495F3500E7FD96 /* Localizable.strings */,
 				AD5358CC21494B9300E7FD96 /* Info.plist */,
 			);
 			path = Agremo;
+			sourceTree = "<group>";
+		};
+		AD5358D4214950CD00E7FD96 /* appDel_assets_splash */ = {
+			isa = PBXGroup;
+			children = (
+				AD5358C021494B9000E7FD96 /* AppDelegate.swift */,
+				AD5358C721494B9300E7FD96 /* Assets.xcassets */,
+				AD5358C921494B9300E7FD96 /* LaunchScreen.storyboard */,
+			);
+			path = appDel_assets_splash;
+			sourceTree = "<group>";
+		};
+		AD5358D821495D3600E7FD96 /* MyClassesAndStructs */ = {
+			isa = PBXGroup;
+			children = (
+				AD5358DD2149600100E7FD96 /* AlertManager.swift */,
+				AD5358D921495D4C00E7FD96 /* MyClassesAndStructs.swift */,
+			);
+			path = MyClassesAndStructs;
+			sourceTree = "<group>";
+		};
+		AD5358DF214964B200E7FD96 /* VCs */ = {
+			isa = PBXGroup;
+			children = (
+				AD5358D62149585600E7FD96 /* DummyVC.swift */,
+				AD5358D2214950C200E7FD96 /* MainVC.swift */,
+			);
+			name = VCs;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD5358CB21494B9300E7FD96 /* LaunchScreen.storyboard in Resources */,
+				AD5358DC21495F3500E7FD96 /* Localizable.strings in Resources */,
 				AD5358C821494B9300E7FD96 /* Assets.xcassets in Resources */,
 				AD5358C621494B9000E7FD96 /* Main.storyboard in Resources */,
 			);
@@ -135,8 +173,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD5358C321494B9000E7FD96 /* ViewController.swift in Sources */,
+				AD5358D3214950C200E7FD96 /* MainVC.swift in Sources */,
+				AD5358D72149585600E7FD96 /* DummyVC.swift in Sources */,
+				AD5358DE2149600100E7FD96 /* AlertManager.swift in Sources */,
 				AD5358C121494B9000E7FD96 /* AppDelegate.swift in Sources */,
+				AD5358DA21495D4C00E7FD96 /* MyClassesAndStructs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
