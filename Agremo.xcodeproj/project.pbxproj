@@ -17,6 +17,12 @@
 		AD5358DC21495F3500E7FD96 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD5358DB21495F3500E7FD96 /* Localizable.strings */; };
 		AD5358DE2149600100E7FD96 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5358DD2149600100E7FD96 /* AlertManager.swift */; };
 		AD6A52492149684F0061E23A /* ModelTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A52482149684F0061E23A /* ModelTypes.swift */; };
+		AD6A52CB214AB3E90061E23A /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A52CA214AB3E90061E23A /* Networking.swift */; };
+		AD6A52CD214AB3F70061E23A /* ServerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A52CC214AB3F70061E23A /* ServerRequest.swift */; };
+		AD6A52D1214AC2A80061E23A /* PingAgremoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A52D0214AC2A80061E23A /* PingAgremoManager.swift */; };
+		AD6A52D5214ACF6B0061E23A /* LogoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD6A52D4214ACF6B0061E23A /* LogoView.xib */; };
+		AD6A52D7214ACFA50061E23A /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A52D6214ACFA50061E23A /* LogoView.swift */; };
+		AD6A52DA214AD3020061E23A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A52D9214AD3020061E23A /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +38,12 @@
 		AD5358DB21495F3500E7FD96 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		AD5358DD2149600100E7FD96 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		AD6A52482149684F0061E23A /* ModelTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypes.swift; sourceTree = "<group>"; };
+		AD6A52CA214AB3E90061E23A /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		AD6A52CC214AB3F70061E23A /* ServerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerRequest.swift; sourceTree = "<group>"; };
+		AD6A52D0214AC2A80061E23A /* PingAgremoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingAgremoManager.swift; sourceTree = "<group>"; };
+		AD6A52D4214ACF6B0061E23A /* LogoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogoView.xib; sourceTree = "<group>"; };
+		AD6A52D6214ACFA50061E23A /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
+		AD6A52D9214AD3020061E23A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +76,10 @@
 		AD5358BF21494B9000E7FD96 /* Agremo */ = {
 			isa = PBXGroup;
 			children = (
+				AD6A52D8214AD2F50061E23A /* Extensions */,
+				AD6A52D3214ACF530061E23A /* Xib,Nib... */,
+				AD6A52D2214ACF470061E23A /* Views */,
+				AD6A52C9214AB3DB0061E23A /* Networking */,
 				AD6A5247214968400061E23A /* Model */,
 				AD5358D821495D3600E7FD96 /* MyClassesAndStructs */,
 				AD5358D4214950CD00E7FD96 /* appDel_assets_splash */,
@@ -90,6 +106,7 @@
 			children = (
 				AD5358DD2149600100E7FD96 /* AlertManager.swift */,
 				AD5358D921495D4C00E7FD96 /* MyClassesAndStructs.swift */,
+				AD6A52D0214AC2A80061E23A /* PingAgremoManager.swift */,
 			);
 			path = MyClassesAndStructs;
 			sourceTree = "<group>";
@@ -110,6 +127,39 @@
 				AD6A52482149684F0061E23A /* ModelTypes.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		AD6A52C9214AB3DB0061E23A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A52CA214AB3E90061E23A /* Networking.swift */,
+				AD6A52CC214AB3F70061E23A /* ServerRequest.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		AD6A52D2214ACF470061E23A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD6A52D3214ACF530061E23A /* Xib,Nib... */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A52D4214ACF6B0061E23A /* LogoView.xib */,
+				AD6A52D6214ACFA50061E23A /* LogoView.swift */,
+			);
+			path = "Xib,Nib...";
+			sourceTree = "<group>";
+		};
+		AD6A52D8214AD2F50061E23A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A52D9214AD3020061E23A /* Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,6 +224,7 @@
 				AD5358DC21495F3500E7FD96 /* Localizable.strings in Resources */,
 				AD5358C821494B9300E7FD96 /* Assets.xcassets in Resources */,
 				AD5358C621494B9000E7FD96 /* Main.storyboard in Resources */,
+				AD6A52D5214ACF6B0061E23A /* LogoView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +240,12 @@
 				AD5358DE2149600100E7FD96 /* AlertManager.swift in Sources */,
 				AD5358C121494B9000E7FD96 /* AppDelegate.swift in Sources */,
 				AD5358DA21495D4C00E7FD96 /* MyClassesAndStructs.swift in Sources */,
+				AD6A52D7214ACFA50061E23A /* LogoView.swift in Sources */,
 				AD6A52492149684F0061E23A /* ModelTypes.swift in Sources */,
+				AD6A52CD214AB3F70061E23A /* ServerRequest.swift in Sources */,
+				AD6A52CB214AB3E90061E23A /* Networking.swift in Sources */,
+				AD6A52DA214AD3020061E23A /* Extensions.swift in Sources */,
+				AD6A52D1214AC2A80061E23A /* PingAgremoManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

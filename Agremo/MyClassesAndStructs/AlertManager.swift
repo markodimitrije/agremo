@@ -16,6 +16,16 @@ struct AlertManager {
         
         switch alertType {
             case .quitAgremoApp: return getQuitAppAlertVC(handler: handler)
+        default: return nil
+        }
+        
+    }
+    
+    func getAlertFor(alertType: AlertType, message: String?) -> UIAlertController? {
+        
+        switch alertType {
+            case .pingAgremo: return getPingAgremoAlertVC(message: message)
+        default: return nil
         }
         
     }
@@ -39,5 +49,21 @@ struct AlertManager {
         return alertVC
         
     }
+    
+    private func getPingAgremoAlertVC(message: String?) -> UIAlertController {
+        
+        let title = AlertInfo.PingAgremoApp.title
+        let message = message ?? AlertInfo.PingAgremoApp.message
+        
+        let okAction = UIAlertAction.init(title: AlertInfo.ok, style: .default, handler: nil)
+        
+        let alertVC = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
+        
+        alertVC.addAction(okAction)
+        
+        return alertVC
+        
+    }
+
     
 }
