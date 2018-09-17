@@ -9,8 +9,11 @@
 import UIKit
 import CoreLocation
 import RMessage
+import WebKit
 
 class MainVC: UIViewController, CLLocationManagerDelegate {
+    
+    @IBOutlet weak var webView: WKWebView!
     
     var locationManager: CLLocationManager!
     
@@ -21,6 +24,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         requestCoreLocationAuth()
         
         checkConnectivityWithAgremoBackend()
+        
+        webView.load(URLRequest.agremo)
         
     }
 
@@ -165,5 +170,10 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     
 }
 
-
+extension URLRequest {
+    static var agremo: URLRequest {
+        let url = URL.init(string: "https://app.agremo.com/mobile/#")!
+        return URLRequest.init(url: url)
+    }
+}
 

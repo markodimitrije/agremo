@@ -13,7 +13,6 @@
         <!--DummyVC-->
         <scene sceneID="rLG-Fw-8gs">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ohC-e3-soz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="CBo-5k-Xx6" customClass="DummyVC" customModule="Agremo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0ZT-kR-fQB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -26,6 +25,7 @@
                         <segue destination="BYZ-38-t0r" kind="show" identifier="showMainVC" animates="NO" id="0yt-qp-yB2"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ohC-e3-soz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="578" y="-573"/>
         </scene>
@@ -36,7 +36,22 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOT-oX-rQE">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="HOT-oX-rQE" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ME7-P4-YLQ"/>
+                            <constraint firstItem="HOT-oX-rQE" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="XKQ-4v-w1F"/>
+                            <constraint firstItem="HOT-oX-rQE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ooo-JN-Afv"/>
+                            <constraint firstItem="HOT-oX-rQE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="uK2-nW-fhH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="AGREMO" id="Hbb-qD-0Dd">
@@ -46,6 +61,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="HOT-oX-rQE" id="obq-du-NMC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -54,7 +72,6 @@
         <!--Navigation Controller-->
         <scene sceneID="dNp-Me-Ok4">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OLz-E5-Yhb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UtI-zc-xc6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kYZ-CO-QCS">
@@ -66,6 +83,7 @@
                         <segue destination="CBo-5k-Xx6" kind="relationship" relationship="rootViewController" id="iOf-yw-XGw"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OLz-E5-Yhb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-185" y="-573"/>
         </scene>
