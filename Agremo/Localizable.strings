@@ -15,3 +15,6 @@ Strings.QuitApp.Alert.no = "NO";
 
 Strings.PingAgremo.Alert.title = "Error";
 Strings.PingAgremo.Alert.message = "Unkown error. Please try again later.";
+
+Strings.RMessageText.CoreLocationUnavailable.title = "GPS not available";
+Strings.RMessageText.CoreLocationUnavailable.msg = "You can allow access to Location in your phone Settings";

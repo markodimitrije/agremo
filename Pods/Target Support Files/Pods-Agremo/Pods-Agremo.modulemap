@@ -1,0 +1,6 @@
+framework module Pods_Agremo {
+  umbrella header "Pods-Agremo-umbrella.h"
+
+  export *
+  module * { export * }
+}

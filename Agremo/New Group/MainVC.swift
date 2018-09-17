@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import RMessage
 
 class MainVC: UIViewController, CLLocationManagerDelegate {
     
@@ -23,6 +24,23 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(MainVC.applicationDidBecomeActive),
+                                               name: .UIApplicationDidBecomeActive,
+                                               object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: .UIApplicationDidBecomeActive, object: nil)
+    }
+    
+    @objc func applicationDidBecomeActive() {
+        if CLLocationManager.authorizationStatus() != .notDetermined {
+            checkCoreLocationAvailability()
+        }
+    }
+    
     @objc func dummyBackBtnIsTapped() {
         
         let yesBtnTapHandler: (UIAlertAction) -> () = { [weak self] action in
@@ -71,13 +89,14 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         
         ServerRequest.sendPingToAgremo { (success, error) in
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
                 
                 if let alertVC = PingAgremoManager().getAlertForResponse(success: success, error: error) {
-                    self.present(alertVC, animated: true, completion: nil)
+                    self?.present(alertVC, animated: true, completion: nil)
                 } else { // all good
                     let logoView = UIApplication.view?.subviews.first(where: {$0.tag==12})
                     logoView?.removeFromSuperview()
+                    self?.logoRemovedFromScreen()
                 }
                 
             }
@@ -99,6 +118,31 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         windowView.addSubview(agremoLogoView)
     }
     
+    private func checkCoreLocationAvailability() {
+        if CLLocationManager.authorizationStatus() == .denied {
+//            RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "agrem"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "!", buttonCallback: {}, at: RMessagePosition.navBarOverlay, canBeDismissedByUser: true)
+            
+            RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "agrem"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
+                RMessage.dismissActiveNotification()
+                if let url = URL(string: UIApplicationOpenSettingsURLString) { // ovo je ok ali root
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    }
+                }
+                
+            }, at: RMessagePosition.navBarOverlay,
+               canBeDismissedByUser: true)
+        } else {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    private func logoRemovedFromScreen() {
+        //checkCoreLocationAvailability() // proveri da li mu je ukljucen GPS
+    }
+    
+    // MARK:- poziva sistem jer si delegate za CoreLocation
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let userLocation:CLLocation = locations[0] as CLLocation
@@ -107,26 +151,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         print("user longitude = \(userLocation.coordinate.longitude)")
     }
     
-    // obe se okidaju u slucaju da je promenio permission na never
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("status = \(status.rawValue)")
-        if Set.init(arrayLiteral: .authorizedAlways, .authorizedWhenInUse).contains(status) {
-            print("didChangeAuthorization.auth ok, all good")
-            manager.startUpdatingLocation()
-            return
-        }
-        
-        if status == .denied {
-            print("prikazi alert da mu je iskljucen gps")
-            manager.stopMonitoringSignificantLocationChanges()
-        }
-        
-        if status == .notDetermined {
-            requestCoreLocationAuth()
-        }
-        
-    }
 }
 
 

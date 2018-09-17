@@ -28,3 +28,8 @@ struct AlertInfo {
         static let message = NSLocalizedString("Strings.PingAgremo.Alert.message", comment: "")
     }
 }
+
+struct RMessageText {
+    static let coreLocationUnavailableTitle = NSLocalizedString("Strings.RMessageText.CoreLocationUnavailable.title", comment: "")
+    static let coreLocationUnavailableMsg = NSLocalizedString("Strings.RMessageText.CoreLocationUnavailable.msg", comment: "")
+}
