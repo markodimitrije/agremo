@@ -29,16 +29,28 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
                                                selector: #selector(MainVC.applicationDidBecomeActive),
                                                name: .UIApplicationDidBecomeActive,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(MainVC.applicationDidEnterBackground),
+                                               name: .UIApplicationDidEnterBackground,
+                                               object: nil)
+        //showLogoView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self, name: .UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .UIApplicationDidBecomeActive,
+                                                  object: nil)
     }
     
     @objc func applicationDidBecomeActive() {
+        checkConnectivityWithAgremoBackend()
         if CLLocationManager.authorizationStatus() != .notDetermined {
             checkCoreLocationAvailability()
         }
+    }
+    
+    @objc func applicationDidEnterBackground() {
+        showLogoView()
     }
     
     @objc func dummyBackBtnIsTapped() {
@@ -85,7 +97,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     
     private func checkConnectivityWithAgremoBackend() {
         
-        showLogoView()
+        //showLogoView()
         
         ServerRequest.sendPingToAgremo { (success, error) in
             
