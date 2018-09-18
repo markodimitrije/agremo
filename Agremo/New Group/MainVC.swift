@@ -15,6 +15,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var webView: WKWebView!
     
+    
+    
     var locationManager: CLLocationManager!
     
     override func viewDidLoad() { super.viewDidLoad()
@@ -30,6 +32,10 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         
         checkConnectivityWithAgremoBackend()
         
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil) // prati dokle je stigao sa loading...
+
+        showLogoView()
+        
         webView.load(URLRequest.agremo)
         
     }
@@ -43,7 +49,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
                                                selector: #selector(MainVC.applicationDidEnterBackground),
                                                name: .UIApplicationDidEnterBackground,
                                                object: nil)
-        //showLogoView()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,15 +58,33 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
                                                   object: nil)
     }
     
-    @objc func applicationDidBecomeActive() {
-        checkConnectivityWithAgremoBackend()
-        if CLLocationManager.authorizationStatus() != .notDetermined {
-            checkCoreLocationAvailability()
+    // prijavio sam se kao observer da znam dokle je stigao sa loading
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == "estimatedProgress" {
+            print("webView.estimatedProgress = \(webView.estimatedProgress)")
+            // kada je fully loaded ukloni mu logo view
+            // treba mi i timer na 1 sec koji broji do 7, i na svakih 1 sec da se proveri da li je 'estimatedProgress' == 1
+            // cim je 1 (za <= 7 sec) ukloni mu logoView
+            
+            // za sada samo ukloni kad je ceo loaded:
+            
+            if webView.estimatedProgress == 1 {
+                self.removeLogoView()
+                checkLocationAvailability()
+            }
+            
         }
     }
     
+    @objc func applicationDidBecomeActive() {
+//        showLogoView()
+        checkConnectivityWithAgremoBackend()
+        checkLocationAvailability()
+    }
+    
     @objc func applicationDidEnterBackground() {
-        showLogoView()
+//        showLogoView()
     }
     
     @objc func dummyBackBtnIsTapped() {
@@ -116,9 +140,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
                 if let alertVC = PingAgremoManager().getAlertForResponse(success: success, error: error) {
                     self?.present(alertVC, animated: true, completion: nil)
                 } else { // all good
-                    let logoView = UIApplication.view?.subviews.first(where: {$0.tag==12})
-                    logoView?.removeFromSuperview()
-                    self?.logoRemovedFromScreen()
+                    // ne radi ti nista, jer treba jos da prodje i agremoMobile (load web view request)
                 }
                 
             }
@@ -140,6 +162,17 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         windowView.addSubview(agremoLogoView)
     }
     
+    private func removeLogoView() {
+        let logoView = UIApplication.view?.subviews.first(where: {$0.tag==12})
+        logoView?.removeFromSuperview()
+    }
+    
+    private func checkLocationAvailability() {
+        if CLLocationManager.authorizationStatus() != .notDetermined {
+            checkCoreLocationAvailability()
+        }
+    }
+    
     private func checkCoreLocationAvailability() {
         if CLLocationManager.authorizationStatus() == .denied {
 //            RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "agrem"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "!", buttonCallback: {}, at: RMessagePosition.navBarOverlay, canBeDismissedByUser: true)
@@ -157,10 +190,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         } else {
             locationManager.startUpdatingLocation()
         }
-    }
-    
-    private func logoRemovedFromScreen() {
-        //checkCoreLocationAvailability() // proveri da li mu je ukljucen GPS
     }
     
     // MARK:- poziva sistem jer si delegate za CoreLocation
@@ -181,4 +210,3 @@ extension URLRequest {
         return URLRequest.init(url: url)
     }
 }
-
