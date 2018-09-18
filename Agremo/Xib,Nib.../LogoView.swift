@@ -26,4 +26,5 @@ class LogoView: UIView {
         
         self.addSubview(view)
     }
+    
 }

@@ -19,6 +19,11 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() { super.viewDidLoad()
         
+        let launchSB = UIStoryboard.init(name: "LaunchScreen", bundle: nil)
+        if let mainVC = launchSB.instantiateViewController(withIdentifier: "LaunchScreenVC") as? UIViewController {
+            print("imam launch preko SB-a!")
+        }
+        
         configureDummyBackBtnAndAddItToViewHierarchy()
         
         requestCoreLocationAuth()
