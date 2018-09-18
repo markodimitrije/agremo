@@ -15,8 +15,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var webView: WKWebView!
     
-    
-    
     var locationManager: CLLocationManager!
     
     override func viewDidLoad() { super.viewDidLoad()
@@ -175,9 +173,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     
     private func checkCoreLocationAvailability() {
         if CLLocationManager.authorizationStatus() == .denied {
-//            RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "agrem"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "!", buttonCallback: {}, at: RMessagePosition.navBarOverlay, canBeDismissedByUser: true)
             
-            RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "agrem"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
+            RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
                 RMessage.dismissActiveNotification()
                 if let url = URL(string: UIApplicationOpenSettingsURLString) { // ovo je ok ali root
                     if UIApplication.shared.canOpenURL(url) {
@@ -202,11 +199,36 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         print("user longitude = \(userLocation.coordinate.longitude)")
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    // MARK:- customize RMessage
+    
+    private func customizeRMessage() {
+//        let rControl = RMessageView.init()
+//        rControl.backgroundColor = .black
+//        
+        
+    }
+    
+    
+    
 }
 
 extension URLRequest {
     static var agremo: URLRequest {
         let url = URL.init(string: "https://app.agremo.com/mobile/#")!
-        return URLRequest.init(url: url)
+        //return URLRequest.init(url: url)
+        return URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: TimeOut.agremoMobile)
     }
 }
+
+enum TimeOut {
+    static let agremoMobile = TimeInterval.init(0.05)
+}
+
