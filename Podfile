@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
- platform :ios, '9.0'
+ platform :ios, '11.0'
 
 target 'Agremo' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -7,6 +7,7 @@ target 'Agremo' do
 
   # Pods for Agremo
 
-pod "RMessage"
+pod 'RMessage', '3.0.0'
+pod 'HexColors', '6.0.0'
 
 end

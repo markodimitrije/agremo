@@ -7,176 +7,143 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06CF3E797197F04F6B97B4C34AA64838 /* UINavigationController+PPTopMostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BE4E99B5D16F076729D6B19DA5BB499 /* UINavigationController+PPTopMostController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		0AAB673BDE309361401D662533338529 /* HexColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 759E5AA040E3B52CE34A8CFCBC7DFDF3 /* HexColors.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		109567803F29CE792E400014A6F4250B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C798C4C5AAE8DD1B18DFB22F7B88EAF1 /* Foundation.framework */; };
-		1602575DD321A227C32F5F99691FF2E4 /* RMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F998F3A6B10377F474CDC4D525786E /* RMessage.m */; };
-		1774B123DAC34FF1662746A35A1C5B22 /* RMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 5747ECE42795E1D292D28744F8011338 /* RMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		195CAC86F62D872CCB6B4479649E3764 /* Pods-Agremo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A46AF8459FF267AF019DF51507008B8E /* Pods-Agremo-dummy.m */; };
-		26846C3A0E41C2D4AD2B6458C631CF01 /* UITabBarController+PPTopMostController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DF57AD1106DB30731F5B785A6F37556 /* UITabBarController+PPTopMostController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3372946A0AF86DBD17DF58CC559595DB /* UIViewController+PPTopMostController.h in Headers */ = {isa = PBXBuildFile; fileRef = 31081A98E81C951BAFE19D3DB27FA075 /* UIViewController+PPTopMostController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		344EB9EEF6469AA1FEDBA094216A9871 /* HexColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E406E834AEA29F95280D383996F750 /* HexColors.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		34C113114010BDF0FBEE8E8E0D668E13 /* RMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EB538B319B8A5F3FACA13069D66228B /* RMessageView.xib */; };
-		45381025C39AF425033917FC9A5677AD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C798C4C5AAE8DD1B18DFB22F7B88EAF1 /* Foundation.framework */; };
-		552D11D16B3B4F014F39178328934D9B /* PPTopMostControllerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D60B3918C540ADA91220B5BA9C42972 /* PPTopMostControllerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7815C3D0ED561CDA5102AE04394E036C /* RMessage-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 140B7A65D58C76FF1791531A72C37521 /* RMessage-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8B48262EAAFCE91A13E2E6D2B9A51515 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C798C4C5AAE8DD1B18DFB22F7B88EAF1 /* Foundation.framework */; };
-		8B6B7A694CC4AA7B9B7FD49042C2F3D8 /* Pods-Agremo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 67D35DADA5D9A0E42D6AC83E58E5116F /* Pods-Agremo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8C87858FC72FF85AFFBC18B808711912 /* RMessageDefaultDesign.json in Resources */ = {isa = PBXBuildFile; fileRef = E47C81E4A3F59C9B46AC0310187A0BB8 /* RMessageDefaultDesign.json */; };
-		AE8FFA1323AD4ED3577754A723B8D465 /* HexColors-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 190E4E4968BBB1662EFB8478C63AEF9D /* HexColors-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AEF08E7ADB3D0F4CF3ACA05D891DF746 /* RMessageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BEB1751BA614AB32ABE880AC274B548 /* RMessageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B3DDB982DA3DFE78F767F8F9C07E3DC5 /* RMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EDA32E49D160369DC79C8FADCACC7B /* RMessageView.m */; };
-		B96DACA3CCC61F6E799D9FC10CC55F66 /* HexColors-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A71116415C5B81C938618694878C8283 /* HexColors-dummy.m */; };
-		C0FF51E6751369CE930C50651F716E9D /* PPTopMostController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B7AD841B6C16D302D8BAFCA1623DE7 /* PPTopMostController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C46B70215D84832BD2428F55C83E5572 /* HexColors.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A2A02A056CB7BDD4AD7103C9566DE75 /* HexColors.framework */; };
-		C8BA8D0042E0BD4A542BE0F01C84A9D9 /* PPTopMostController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746E85C0A3C017D8153CC59D074DA55A /* PPTopMostController.framework */; };
-		D2D60536B769A776ACCACE6A53F68DF5 /* PPTopMostController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B3990BD7A69ED1DDB3431259AF7EF9 /* PPTopMostController-dummy.m */; };
-		E40DBCDEAE380800624839132A732EB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C798C4C5AAE8DD1B18DFB22F7B88EAF1 /* Foundation.framework */; };
-		E6ED070D29850F000C8E768E6E01BCE3 /* UITabBarController+PPTopMostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A31D3FEC81ECEEB4B026C2C96D7B68F /* UITabBarController+PPTopMostController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EA7E1805F5785090A77B71012DBE9FA7 /* UIViewController+PPTopMostController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE7112ECC6D0F9DC19111362B586D47 /* UIViewController+PPTopMostController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EE4A5F8EE4741E6118F230DFBAB4F112 /* RMessage-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E1378E3536C2CC471394B2F93ABC55 /* RMessage-dummy.m */; };
-		EF6B1CD03F0069C931A5CDA52E11FE4C /* UINavigationController+PPTopMostController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D3D5233FC9680ED473814A11A150417 /* UINavigationController+PPTopMostController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A53FECCEF170456D1E686CB3407E2F /* RMessage-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2155A1648A32A37C6BF9137B97453AF4 /* RMessage-dummy.m */; };
+		00E3E8B52A62F1EC0D96E83316DCE41F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1EF97D43A953AB25311491F8F27C4B /* Foundation.framework */; };
+		1AECF37A73D4321F7D416A79FBDB2AB1 /* HexColors-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BBCD61E3CA00D76EE86512B566D95CA /* HexColors-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1FA9BCB681E345D65A253C7D18A82429 /* Pods-Agremo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A46AF8459FF267AF019DF51507008B8E /* Pods-Agremo-dummy.m */; };
+		304D75BD08289FF87BEE8D7D83917152 /* RMPresenter+TouchCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9665FE008D7A9A3ADEAD535CCCF2C949 /* RMPresenter+TouchCompletion.swift */; };
+		35D3EDB2A44623335D559A03D6790EFF /* RMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7551DE62C69BB5D8B3B090BC3F2B26F /* RMessage.swift */; };
+		42F4548A5F10C939F8CFD5BCBCB546E6 /* HexColors-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B54559E5D2592CB3673E842AFD46C5 /* HexColors-dummy.m */; };
+		5343250B3E8C67F6CDDCE8807697A908 /* RMControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C87B12B7B8719BD2C56D7F0FC12B1FB /* RMControllerDelegate.swift */; };
+		5B539D74C67B12FA217858947EFEE01C /* RMShowOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BC5F9BA091D2221D2BD3A4112C2A73 /* RMShowOperation.swift */; };
+		5FD7A18E2D1AB60B9648BCA8C447CEFE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1EF97D43A953AB25311491F8F27C4B /* Foundation.framework */; };
+		61B323FE8E47CE7A4075EAEB9DB45956 /* HexColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149361A31430DC0879A8EA7ED8395B09 /* HexColors.swift */; };
+		766222677BD47F0784D6E0964B5BDA93 /* RMController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20D4543A819D670BEF9015B17529E2 /* RMController.swift */; };
+		7A0384A0C8173CA78A12970F48BF7ABB /* RMAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE268867E26C1F3C0D76B9A97574F7B9 /* RMAnimator.swift */; };
+		91AD73D4951375E0BD8F8C1316E153B9 /* RMAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654AD18CEC3864FF74BC0F762DD5B80A /* RMAnimationOptions.swift */; };
+		943824F89E06050DF576376B328273BD /* RMPresenterOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F653868519D0A7451F41F03C9B9949B7 /* RMPresenterOptions.swift */; };
+		99996718524C1F2398308FDDD0FD7CBC /* RMPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347DFA1A78853F5F01299D1E2606342A /* RMPresenterDelegate.swift */; };
+		9B4FACFB8480C0056EDB569B4AA956FF /* RMessage+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FFFC42CE44DEE12ED05666651DBEC1 /* RMessage+Design.swift */; };
+		9CE52D01658A2E8CFD799CB52FF6ACA5 /* RMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EDA041EC76DE5B4509C352987A2E32 /* RMessage.xib */; };
+		A06B8ABA621024C8773963B2356B748E /* HexColors.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED95C9854C5A1E9D1863834AA6302259 /* HexColors.framework */; };
+		BBC547737BB7E7385CECF44A3B15AA28 /* RMessageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C07E52A5E74CAD55400E13E810004 /* RMessageSpec.swift */; };
+		BDA51505FE8CE9BF2D1ADEDBEECEAB79 /* RMPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B66D8542532D96EEF4CA196ADCFCE07 /* RMPresenter.swift */; };
+		C5B19375EC852421716A68649326E302 /* RMessage-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 971756E1A001C1824E471C5200A6D677 /* RMessage-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D02E7C43A01ADD36716BF8DEFA49C40C /* SlideAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD2C7B6F61D10ED70F65082476ED6E /* SlideAnimator.swift */; };
+		D5E4959656DB319FF44515363C0D1404 /* Pods-Agremo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 67D35DADA5D9A0E42D6AC83E58E5116F /* Pods-Agremo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D85BD0753C50C01799DE8CE4BF485065 /* RMessage+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0B2E21A3B540EB4B03B76D72BF130 /* RMessage+Components.swift */; };
+		DA2A43E20AB1ABAA68C5570E826614E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1EF97D43A953AB25311491F8F27C4B /* Foundation.framework */; };
+		FCCFE5865BD2335676B001D78A00433F /* UIWindow+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D313C022DD5847BB2DAC70F12897EF /* UIWindow+ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		20B5ED87591CEF9CA13B178FEE2C4841 /* PBXContainerItemProxy */ = {
+		412535775BD3CEED48E60A893C35D2C0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AB57EF7D8B23701455085EC663E5FA40;
+			remoteGlobalIDString = 2AB8FFBCE75B55A8638948CF9AC630B9;
 			remoteInfo = HexColors;
 		};
-		371B851B738506F330659DBADB29963B /* PBXContainerItemProxy */ = {
+		4B21C1DAF05AE6E8C96F9883D2552453 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AB57EF7D8B23701455085EC663E5FA40;
-			remoteInfo = HexColors;
-		};
-		9BC84DD2AE8ADC06BC294E3CD7683CE4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 06CC43FDA73E77F759B790F1823587AB;
+			remoteGlobalIDString = 1658B7AE3F85ECA3A6481C017A3D5D7F;
 			remoteInfo = RMessage;
 		};
-		AB10D5EDED4104F4052641982CE000DB /* PBXContainerItemProxy */ = {
+		CEB5EE87E5FE55A99042DDE2A839EB58 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 50CE6772C40582E172FDC040941B5897;
-			remoteInfo = PPTopMostController;
-		};
-		FA0B1AF75237B508066CBEE1B0C8E34E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 50CE6772C40582E172FDC040941B5897;
-			remoteInfo = PPTopMostController;
+			remoteGlobalIDString = 2AB8FFBCE75B55A8638948CF9AC630B9;
+			remoteInfo = HexColors;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0D60B3918C540ADA91220B5BA9C42972 /* PPTopMostControllerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PPTopMostControllerProtocol.h; path = "PPTopMostController-Files/PPTopMostControllerProtocol.h"; sourceTree = "<group>"; };
-		140B7A65D58C76FF1791531A72C37521 /* RMessage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RMessage-umbrella.h"; sourceTree = "<group>"; };
+		079052B3559F4AA5282F8EBA077A8A28 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14434E62D7D428CCA3C76CEF7EC43EFC /* Pods-Agremo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Agremo.modulemap"; sourceTree = "<group>"; };
-		14706D9F1F3C0B5041D760B6BAA31A9B /* HexColors-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HexColors-prefix.pch"; sourceTree = "<group>"; };
-		190E4E4968BBB1662EFB8478C63AEF9D /* HexColors-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HexColors-umbrella.h"; sourceTree = "<group>"; };
+		149361A31430DC0879A8EA7ED8395B09 /* HexColors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HexColors.swift; path = Sources/HexColors.swift; sourceTree = "<group>"; };
 		1F8A32CE1AF32534F7F059C53B139C62 /* Pods-Agremo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Agremo-acknowledgements.plist"; sourceTree = "<group>"; };
-		2892E7429B0F9496689BE7E00A73E9BD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2EAA8AEA135162638034E940ACC3F414 /* PPTopMostController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = PPTopMostController.modulemap; sourceTree = "<group>"; };
-		2EB538B319B8A5F3FACA13069D66228B /* RMessageView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = RMessageView.xib; path = RMessage/Resources/RMessageView.xib; sourceTree = "<group>"; };
-		2F95348E8122A8C687B3C673C7363485 /* RMessage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RMessage-prefix.pch"; sourceTree = "<group>"; };
-		31081A98E81C951BAFE19D3DB27FA075 /* UIViewController+PPTopMostController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+PPTopMostController.h"; path = "PPTopMostController-Files/UIViewController+PPTopMostController.h"; sourceTree = "<group>"; };
+		1FA99EC83B66E05919949A5689E03670 /* HexColors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HexColors.framework; path = HexColors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2155A1648A32A37C6BF9137B97453AF4 /* RMessage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RMessage-dummy.m"; sourceTree = "<group>"; };
+		241C93CD94F16D47D7E6AAF683C9CC0C /* RMessage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RMessage-prefix.pch"; sourceTree = "<group>"; };
+		2C87B12B7B8719BD2C56D7F0FC12B1FB /* RMControllerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RMControllerDelegate.swift; path = Sources/RMController/RMControllerDelegate.swift; sourceTree = "<group>"; };
+		347DFA1A78853F5F01299D1E2606342A /* RMPresenterDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RMPresenterDelegate.swift; path = Sources/RMPresenter/RMPresenterDelegate.swift; sourceTree = "<group>"; };
 		373EC60CA24A69EBF151C99A9B199A54 /* Pods-Agremo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Agremo.debug.xcconfig"; sourceTree = "<group>"; };
 		39CC7CE0F58E3979E0320FD389FD2DB8 /* Pods-Agremo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Agremo.release.xcconfig"; sourceTree = "<group>"; };
-		39F998F3A6B10377F474CDC4D525786E /* RMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RMessage.m; path = RMessage/RMessage.m; sourceTree = "<group>"; };
-		4233F5A70E60D5416BBE5A1CAD07A1F5 /* RMessage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RMessage.framework; path = RMessage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		46099D82A2E7B001A50F5B782671369A /* PPTopMostController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PPTopMostController.framework; path = PPTopMostController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4BEB1751BA614AB32ABE880AC274B548 /* RMessageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RMessageView.h; path = RMessage/RMessageView.h; sourceTree = "<group>"; };
-		4D3D5233FC9680ED473814A11A150417 /* UINavigationController+PPTopMostController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+PPTopMostController.h"; path = "PPTopMostController-Files/UINavigationController+PPTopMostController.h"; sourceTree = "<group>"; };
-		562DF1F2F1AE382A232EEF3BB7F46B83 /* HexColors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HexColors.framework; path = HexColors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5747ECE42795E1D292D28744F8011338 /* RMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RMessage.h; path = RMessage/RMessage.h; sourceTree = "<group>"; };
-		58E1378E3536C2CC471394B2F93ABC55 /* RMessage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RMessage-dummy.m"; sourceTree = "<group>"; };
-		5A31D3FEC81ECEEB4B026C2C96D7B68F /* UITabBarController+PPTopMostController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITabBarController+PPTopMostController.m"; path = "PPTopMostController-Files/UITabBarController+PPTopMostController.m"; sourceTree = "<group>"; };
-		5E9A25BF929DE7194356011736229767 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E20D4543A819D670BEF9015B17529E2 /* RMController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RMController.swift; path = Sources/RMController/RMController.swift; sourceTree = "<group>"; };
+		5E2633AE1E649DF656412DCF34A1216B /* RMessage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RMessage.framework; path = RMessage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		654AD18CEC3864FF74BC0F762DD5B80A /* RMAnimationOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RMAnimationOptions.swift; path = Sources/RMAnimator/RMAnimationOptions.swift; sourceTree = "<group>"; };
 		67D35DADA5D9A0E42D6AC83E58E5116F /* Pods-Agremo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Agremo-umbrella.h"; sourceTree = "<group>"; };
-		69E406E834AEA29F95280D383996F750 /* HexColors.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = HexColors.m; path = Classes/HexColors.m; sourceTree = "<group>"; };
+		6823A957C52584ABDDB919B747C07062 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B66D8542532D96EEF4CA196ADCFCE07 /* RMPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RMPresenter.swift; path = Sources/RMPresenter/RMPresenter.swift; sourceTree = "<group>"; };
 		73A1166B08A18784AEBD96C1702875B4 /* Pods-Agremo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Agremo-acknowledgements.markdown"; sourceTree = "<group>"; };
-		746E85C0A3C017D8153CC59D074DA55A /* PPTopMostController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PPTopMostController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		759E5AA040E3B52CE34A8CFCBC7DFDF3 /* HexColors.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = HexColors.h; path = Classes/HexColors.h; sourceTree = "<group>"; };
-		75B3990BD7A69ED1DDB3431259AF7EF9 /* PPTopMostController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PPTopMostController-dummy.m"; sourceTree = "<group>"; };
-		7BE4E99B5D16F076729D6B19DA5BB499 /* UINavigationController+PPTopMostController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+PPTopMostController.m"; path = "PPTopMostController-Files/UINavigationController+PPTopMostController.m"; sourceTree = "<group>"; };
-		7DF57AD1106DB30731F5B785A6F37556 /* UITabBarController+PPTopMostController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITabBarController+PPTopMostController.h"; path = "PPTopMostController-Files/UITabBarController+PPTopMostController.h"; sourceTree = "<group>"; };
-		86EDA32E49D160369DC79C8FADCACC7B /* RMessageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RMessageView.m; path = RMessage/RMessageView.m; sourceTree = "<group>"; };
-		88F2BE863623EBC82C2D96B1BD182D6E /* Pods_Agremo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Agremo.framework; path = "Pods-Agremo.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A2A02A056CB7BDD4AD7103C9566DE75 /* HexColors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HexColors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BBCD61E3CA00D76EE86512B566D95CA /* HexColors-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HexColors-umbrella.h"; sourceTree = "<group>"; };
+		804011F4EBC4B4CDF914FC75144634FA /* Pods_Agremo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Agremo.framework; path = "Pods-Agremo.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81BC5F9BA091D2221D2BD3A4112C2A73 /* RMShowOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RMShowOperation.swift; path = Sources/RMController/RMShowOperation.swift; sourceTree = "<group>"; };
+		84D313C022DD5847BB2DAC70F12897EF /* UIWindow+ViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIWindow+ViewController.swift"; path = "Sources/General Extensions/UIWindow+ViewController.swift"; sourceTree = "<group>"; };
 		8F34CAB90B9E8C0FB77E41F372B4DC80 /* Pods-Agremo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Agremo-frameworks.sh"; sourceTree = "<group>"; };
+		920517D3E488A0340ED076B88E66AB72 /* HexColors.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HexColors.xcconfig; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9665FE008D7A9A3ADEAD535CCCF2C949 /* RMPresenter+TouchCompletion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "RMPresenter+TouchCompletion.swift"; path = "Sources/RMPresenter/RMPresenter+TouchCompletion.swift"; sourceTree = "<group>"; };
+		971756E1A001C1824E471C5200A6D677 /* RMessage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RMessage-umbrella.h"; sourceTree = "<group>"; };
 		9A0525679D7AD82E40E944AB16D650B5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9E0EC6F523B91AE8442E704A81DDEA65 /* PPTopMostController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PPTopMostController-prefix.pch"; sourceTree = "<group>"; };
-		9F33010E7ED0C53C08B00B097F6B907A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E4C8997BFADFBC63973CC26CE3628B9 /* RMessage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RMessage.xcconfig; sourceTree = "<group>"; };
 		A46AF8459FF267AF019DF51507008B8E /* Pods-Agremo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Agremo-dummy.m"; sourceTree = "<group>"; };
-		A71116415C5B81C938618694878C8283 /* HexColors-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HexColors-dummy.m"; sourceTree = "<group>"; };
+		A59414D3C4F85688B7B2D0E18D88479D /* HexColors-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HexColors-prefix.pch"; sourceTree = "<group>"; };
 		ABC70D3CB6779BDFCFCAB6172AB909A7 /* Pods-Agremo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Agremo-resources.sh"; sourceTree = "<group>"; };
-		B63E360007A56B8147852542AAA1FAB5 /* HexColors.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HexColors.xcconfig; sourceTree = "<group>"; };
-		B87B1D35C473DAD7906757F2DA847C52 /* PPTopMostController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PPTopMostController.xcconfig; sourceTree = "<group>"; };
-		C798C4C5AAE8DD1B18DFB22F7B88EAF1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		D1B7AD841B6C16D302D8BAFCA1623DE7 /* PPTopMostController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PPTopMostController-umbrella.h"; sourceTree = "<group>"; };
-		E47C81E4A3F59C9B46AC0310187A0BB8 /* RMessageDefaultDesign.json */ = {isa = PBXFileReference; includeInIndex = 1; name = RMessageDefaultDesign.json; path = RMessage/Assets/RMessageDefaultDesign.json; sourceTree = "<group>"; };
-		EADAD91BEBCFA31698113713DC7D955F /* HexColors.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = HexColors.modulemap; sourceTree = "<group>"; };
-		ECE7112ECC6D0F9DC19111362B586D47 /* UIViewController+PPTopMostController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+PPTopMostController.m"; path = "PPTopMostController-Files/UIViewController+PPTopMostController.m"; sourceTree = "<group>"; };
-		F23942D64FA45DEF0FB0CD3455FDFF7E /* RMessage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RMessage.modulemap; sourceTree = "<group>"; };
-		F677702F5C98803C2BD34444B236A877 /* RMessage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RMessage.xcconfig; sourceTree = "<group>"; };
+		AE268867E26C1F3C0D76B9A97574F7B9 /* RMAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RMAnimator.swift; path = Sources/RMAnimator/RMAnimator.swift; sourceTree = "<group>"; };
+		B1C0B2E21A3B540EB4B03B76D72BF130 /* RMessage+Components.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "RMessage+Components.swift"; path = "Sources/RMessage/Extensions/RMessage+Components.swift"; sourceTree = "<group>"; };
+		B8B54559E5D2592CB3673E842AFD46C5 /* HexColors-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HexColors-dummy.m"; sourceTree = "<group>"; };
+		CA0FFF315EA860EE2ADA7C77886B27F6 /* RMessage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RMessage.modulemap; sourceTree = "<group>"; };
+		CDFD2C7B6F61D10ED70F65082476ED6E /* SlideAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SlideAnimator.swift; path = Sources/RMessage/Animators/SlideAnimator.swift; sourceTree = "<group>"; };
+		D1A9B98AF6F8DA68D8F8690BE39ED06F /* HexColors.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = HexColors.modulemap; sourceTree = "<group>"; };
+		D3FFFC42CE44DEE12ED05666651DBEC1 /* RMessage+Design.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "RMessage+Design.swift"; path = "Sources/RMessage/Extensions/RMessage+Design.swift"; sourceTree = "<group>"; };
+		ED95C9854C5A1E9D1863834AA6302259 /* HexColors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HexColors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F14C07E52A5E74CAD55400E13E810004 /* RMessageSpec.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RMessageSpec.swift; path = Sources/RMessage/RMessageSpec.swift; sourceTree = "<group>"; };
+		F653868519D0A7451F41F03C9B9949B7 /* RMPresenterOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RMPresenterOptions.swift; path = Sources/RMPresenter/RMPresenterOptions.swift; sourceTree = "<group>"; };
+		F7551DE62C69BB5D8B3B090BC3F2B26F /* RMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RMessage.swift; path = Sources/RMessage/RMessage.swift; sourceTree = "<group>"; };
+		F7EDA041EC76DE5B4509C352987A2E32 /* RMessage.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = RMessage.xib; path = Sources/Resources/RMessage.xib; sourceTree = "<group>"; };
+		FB1EF97D43A953AB25311491F8F27C4B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6356A3A67CE0F1DEBC24498364939A59 /* Frameworks */ = {
+		0F98C2407733028A30FF79BBC3F3BC99 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E40DBCDEAE380800624839132A732EB1 /* Foundation.framework in Frameworks */,
+				00E3E8B52A62F1EC0D96E83316DCE41F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BF8EDDB605FB9F7DE9F4F9B25C3A75A7 /* Frameworks */ = {
+		14672B4A2DD292FD66B73A48F883BAE7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B48262EAAFCE91A13E2E6D2B9A51515 /* Foundation.framework in Frameworks */,
+				DA2A43E20AB1ABAA68C5570E826614E7 /* Foundation.framework in Frameworks */,
+				A06B8ABA621024C8773963B2356B748E /* HexColors.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D61171A6CAB41483B16F0C7A60E682FE /* Frameworks */ = {
+		CA5770DDD55F47449A11020F28B23CB0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				109567803F29CE792E400014A6F4250B /* Foundation.framework in Frameworks */,
-				C46B70215D84832BD2428F55C83E5572 /* HexColors.framework in Frameworks */,
-				C8BA8D0042E0BD4A542BE0F01C84A9D9 /* PPTopMostController.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DABCADB66CBEC4DBAE16F274B81504AD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				45381025C39AF425033917FC9A5677AD /* Foundation.framework in Frameworks */,
+				5FD7A18E2D1AB60B9648BCA8C447CEFE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		067EE9C03A35FF93BDD66F768DC22655 /* HexColors */ = {
+		04DC935C3F51D0E46520DD78439CCA1B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				759E5AA040E3B52CE34A8CFCBC7DFDF3 /* HexColors.h */,
-				69E406E834AEA29F95280D383996F750 /* HexColors.m */,
-				9AB67E253C72AA05BF4394CCB07D4B27 /* Support Files */,
+				ED95C9854C5A1E9D1863834AA6302259 /* HexColors.framework */,
+				AF798967E90C1B53385BDE12D712ACAA /* iOS */,
 			);
-			name = HexColors;
-			path = HexColors;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		1EB5284F84744EE72E98C2A625B8BDCD /* Pods-Agremo */ = {
@@ -197,34 +164,28 @@
 			path = "Target Support Files/Pods-Agremo";
 			sourceTree = "<group>";
 		};
-		222931F18E85047D5366658D0437766C /* Products */ = {
+		30A4867157FADFE218C195F56563F755 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				562DF1F2F1AE382A232EEF3BB7F46B83 /* HexColors.framework */,
-				88F2BE863623EBC82C2D96B1BD182D6E /* Pods_Agremo.framework */,
-				46099D82A2E7B001A50F5B782671369A /* PPTopMostController.framework */,
-				4233F5A70E60D5416BBE5A1CAD07A1F5 /* RMessage.framework */,
+				1FA99EC83B66E05919949A5689E03670 /* HexColors.framework */,
+				804011F4EBC4B4CDF914FC75144634FA /* Pods_Agremo.framework */,
+				5E2633AE1E649DF656412DCF34A1216B /* RMessage.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		342F6713529B810E4FE813520F94D0E5 /* Resources */ = {
+		4675D67EB8B73AABE46B80C29D147793 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				E47C81E4A3F59C9B46AC0310187A0BB8 /* RMessageDefaultDesign.json */,
-				2EB538B319B8A5F3FACA13069D66228B /* RMessageView.xib */,
+				D1A9B98AF6F8DA68D8F8690BE39ED06F /* HexColors.modulemap */,
+				920517D3E488A0340ED076B88E66AB72 /* HexColors.xcconfig */,
+				B8B54559E5D2592CB3673E842AFD46C5 /* HexColors-dummy.m */,
+				A59414D3C4F85688B7B2D0E18D88479D /* HexColors-prefix.pch */,
+				7BBCD61E3CA00D76EE86512B566D95CA /* HexColors-umbrella.h */,
+				079052B3559F4AA5282F8EBA077A8A28 /* Info.plist */,
 			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		3C7B07EFF26DE3A31913EB9157364103 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8A2A02A056CB7BDD4AD7103C9566DE75 /* HexColors.framework */,
-				746E85C0A3C017D8153CC59D074DA55A /* PPTopMostController.framework */,
-				82CCBFD49B2266840E39CB812B9801A4 /* iOS */,
-			);
-			name = Frameworks;
+			name = "Support Files";
+			path = "../Target Support Files/HexColors";
 			sourceTree = "<group>";
 		};
 		68CBEAC3ACF9A273C98E9544826692E0 /* Targets Support Files */ = {
@@ -235,196 +196,147 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		794344F090E58F962E41F05C8C4C9538 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F7EDA041EC76DE5B4509C352987A2E32 /* RMessage.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		79FDCCAB4248AC80F624D8085A35BBDD /* HexColors */ = {
+			isa = PBXGroup;
+			children = (
+				149361A31430DC0879A8EA7ED8395B09 /* HexColors.swift */,
+				4675D67EB8B73AABE46B80C29D147793 /* Support Files */,
+			);
+			name = HexColors;
+			path = HexColors;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				3C7B07EFF26DE3A31913EB9157364103 /* Frameworks */,
-				91AA88AAD5715ADA563E3523FC138B03 /* Pods */,
-				222931F18E85047D5366658D0437766C /* Products */,
+				04DC935C3F51D0E46520DD78439CCA1B /* Frameworks */,
+				815B36D112BC8AE127660D68ACCB99A2 /* Pods */,
+				30A4867157FADFE218C195F56563F755 /* Products */,
 				68CBEAC3ACF9A273C98E9544826692E0 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		82CCBFD49B2266840E39CB812B9801A4 /* iOS */ = {
+		815B36D112BC8AE127660D68ACCB99A2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C798C4C5AAE8DD1B18DFB22F7B88EAF1 /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		8C3D9061790B976AF23C8520A48FB8B2 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				9F33010E7ED0C53C08B00B097F6B907A /* Info.plist */,
-				2EAA8AEA135162638034E940ACC3F414 /* PPTopMostController.modulemap */,
-				B87B1D35C473DAD7906757F2DA847C52 /* PPTopMostController.xcconfig */,
-				75B3990BD7A69ED1DDB3431259AF7EF9 /* PPTopMostController-dummy.m */,
-				9E0EC6F523B91AE8442E704A81DDEA65 /* PPTopMostController-prefix.pch */,
-				D1B7AD841B6C16D302D8BAFCA1623DE7 /* PPTopMostController-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/PPTopMostController";
-			sourceTree = "<group>";
-		};
-		905DB09A588E7D810D1FEBFBA2AB3E05 /* RMessage */ = {
-			isa = PBXGroup;
-			children = (
-				5747ECE42795E1D292D28744F8011338 /* RMessage.h */,
-				39F998F3A6B10377F474CDC4D525786E /* RMessage.m */,
-				4BEB1751BA614AB32ABE880AC274B548 /* RMessageView.h */,
-				86EDA32E49D160369DC79C8FADCACC7B /* RMessageView.m */,
-				342F6713529B810E4FE813520F94D0E5 /* Resources */,
-				FDBF233B016F6C25CC52BF8C522131EE /* Support Files */,
-			);
-			name = RMessage;
-			path = RMessage;
-			sourceTree = "<group>";
-		};
-		91AA88AAD5715ADA563E3523FC138B03 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				067EE9C03A35FF93BDD66F768DC22655 /* HexColors */,
-				C30CF5CD151AB22536975CC540191E2B /* PPTopMostController */,
-				905DB09A588E7D810D1FEBFBA2AB3E05 /* RMessage */,
+				79FDCCAB4248AC80F624D8085A35BBDD /* HexColors */,
+				C7B8203A00784CE02DEB5621909CC00B /* RMessage */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		9AB67E253C72AA05BF4394CCB07D4B27 /* Support Files */ = {
+		AF798967E90C1B53385BDE12D712ACAA /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				EADAD91BEBCFA31698113713DC7D955F /* HexColors.modulemap */,
-				B63E360007A56B8147852542AAA1FAB5 /* HexColors.xcconfig */,
-				A71116415C5B81C938618694878C8283 /* HexColors-dummy.m */,
-				14706D9F1F3C0B5041D760B6BAA31A9B /* HexColors-prefix.pch */,
-				190E4E4968BBB1662EFB8478C63AEF9D /* HexColors-umbrella.h */,
-				2892E7429B0F9496689BE7E00A73E9BD /* Info.plist */,
+				FB1EF97D43A953AB25311491F8F27C4B /* Foundation.framework */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/HexColors";
+			name = iOS;
 			sourceTree = "<group>";
 		};
-		C30CF5CD151AB22536975CC540191E2B /* PPTopMostController */ = {
+		B6891AEE5BFB1708136E2B6C349B7D6C /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				0D60B3918C540ADA91220B5BA9C42972 /* PPTopMostControllerProtocol.h */,
-				4D3D5233FC9680ED473814A11A150417 /* UINavigationController+PPTopMostController.h */,
-				7BE4E99B5D16F076729D6B19DA5BB499 /* UINavigationController+PPTopMostController.m */,
-				7DF57AD1106DB30731F5B785A6F37556 /* UITabBarController+PPTopMostController.h */,
-				5A31D3FEC81ECEEB4B026C2C96D7B68F /* UITabBarController+PPTopMostController.m */,
-				31081A98E81C951BAFE19D3DB27FA075 /* UIViewController+PPTopMostController.h */,
-				ECE7112ECC6D0F9DC19111362B586D47 /* UIViewController+PPTopMostController.m */,
-				8C3D9061790B976AF23C8520A48FB8B2 /* Support Files */,
-			);
-			name = PPTopMostController;
-			path = PPTopMostController;
-			sourceTree = "<group>";
-		};
-		FDBF233B016F6C25CC52BF8C522131EE /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				5E9A25BF929DE7194356011736229767 /* Info.plist */,
-				F23942D64FA45DEF0FB0CD3455FDFF7E /* RMessage.modulemap */,
-				F677702F5C98803C2BD34444B236A877 /* RMessage.xcconfig */,
-				58E1378E3536C2CC471394B2F93ABC55 /* RMessage-dummy.m */,
-				2F95348E8122A8C687B3C673C7363485 /* RMessage-prefix.pch */,
-				140B7A65D58C76FF1791531A72C37521 /* RMessage-umbrella.h */,
+				6823A957C52584ABDDB919B747C07062 /* Info.plist */,
+				CA0FFF315EA860EE2ADA7C77886B27F6 /* RMessage.modulemap */,
+				9E4C8997BFADFBC63973CC26CE3628B9 /* RMessage.xcconfig */,
+				2155A1648A32A37C6BF9137B97453AF4 /* RMessage-dummy.m */,
+				241C93CD94F16D47D7E6AAF683C9CC0C /* RMessage-prefix.pch */,
+				971756E1A001C1824E471C5200A6D677 /* RMessage-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/RMessage";
 			sourceTree = "<group>";
 		};
+		C7B8203A00784CE02DEB5621909CC00B /* RMessage */ = {
+			isa = PBXGroup;
+			children = (
+				654AD18CEC3864FF74BC0F762DD5B80A /* RMAnimationOptions.swift */,
+				AE268867E26C1F3C0D76B9A97574F7B9 /* RMAnimator.swift */,
+				5E20D4543A819D670BEF9015B17529E2 /* RMController.swift */,
+				2C87B12B7B8719BD2C56D7F0FC12B1FB /* RMControllerDelegate.swift */,
+				F7551DE62C69BB5D8B3B090BC3F2B26F /* RMessage.swift */,
+				B1C0B2E21A3B540EB4B03B76D72BF130 /* RMessage+Components.swift */,
+				D3FFFC42CE44DEE12ED05666651DBEC1 /* RMessage+Design.swift */,
+				F14C07E52A5E74CAD55400E13E810004 /* RMessageSpec.swift */,
+				6B66D8542532D96EEF4CA196ADCFCE07 /* RMPresenter.swift */,
+				9665FE008D7A9A3ADEAD535CCCF2C949 /* RMPresenter+TouchCompletion.swift */,
+				347DFA1A78853F5F01299D1E2606342A /* RMPresenterDelegate.swift */,
+				F653868519D0A7451F41F03C9B9949B7 /* RMPresenterOptions.swift */,
+				81BC5F9BA091D2221D2BD3A4112C2A73 /* RMShowOperation.swift */,
+				CDFD2C7B6F61D10ED70F65082476ED6E /* SlideAnimator.swift */,
+				84D313C022DD5847BB2DAC70F12897EF /* UIWindow+ViewController.swift */,
+				794344F090E58F962E41F05C8C4C9538 /* Resources */,
+				B6891AEE5BFB1708136E2B6C349B7D6C /* Support Files */,
+			);
+			name = RMessage;
+			path = RMessage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		35CE8F234DAFE45B46EBBD559EE3DB1B /* Headers */ = {
+		100B99EC090F4D474173CAEB49BA37B7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B6B7A694CC4AA7B9B7FD49042C2F3D8 /* Pods-Agremo-umbrella.h in Headers */,
+				1AECF37A73D4321F7D416A79FBDB2AB1 /* HexColors-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5543C60C9BF2F0C7446F835B98012C2A /* Headers */ = {
+		27843FAACDE7DEFDB438799B8B7C5E3F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE8FFA1323AD4ED3577754A723B8D465 /* HexColors-umbrella.h in Headers */,
-				0AAB673BDE309361401D662533338529 /* HexColors.h in Headers */,
+				D5E4959656DB319FF44515363C0D1404 /* Pods-Agremo-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6A8C7383B3F3D74CB111DF004930DDB4 /* Headers */ = {
+		F895973C04B0A6C51C912E89B9620E41 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7815C3D0ED561CDA5102AE04394E036C /* RMessage-umbrella.h in Headers */,
-				1774B123DAC34FF1662746A35A1C5B22 /* RMessage.h in Headers */,
-				AEF08E7ADB3D0F4CF3ACA05D891DF746 /* RMessageView.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D39DF4360E5E1599525283FA1DFBCC7B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C0FF51E6751369CE930C50651F716E9D /* PPTopMostController-umbrella.h in Headers */,
-				552D11D16B3B4F014F39178328934D9B /* PPTopMostControllerProtocol.h in Headers */,
-				EF6B1CD03F0069C931A5CDA52E11FE4C /* UINavigationController+PPTopMostController.h in Headers */,
-				26846C3A0E41C2D4AD2B6458C631CF01 /* UITabBarController+PPTopMostController.h in Headers */,
-				3372946A0AF86DBD17DF58CC559595DB /* UIViewController+PPTopMostController.h in Headers */,
+				C5B19375EC852421716A68649326E302 /* RMessage-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		06CC43FDA73E77F759B790F1823587AB /* RMessage */ = {
+		1658B7AE3F85ECA3A6481C017A3D5D7F /* RMessage */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B39730FC931AA025F0A91C092FFCC5C5 /* Build configuration list for PBXNativeTarget "RMessage" */;
+			buildConfigurationList = E9EA5C967978E7809B2AD18CEC3C82FF /* Build configuration list for PBXNativeTarget "RMessage" */;
 			buildPhases = (
-				23AB1799D2564A9BBAB75483AAA8F248 /* Sources */,
-				D61171A6CAB41483B16F0C7A60E682FE /* Frameworks */,
-				6A8C7383B3F3D74CB111DF004930DDB4 /* Headers */,
-				4DAD2E2E6DFBCB77931CE9EF89597422 /* Resources */,
+				5B4FC26BBD026B246A3046AB5BA89558 /* Sources */,
+				14672B4A2DD292FD66B73A48F883BAE7 /* Frameworks */,
+				90DAB3C9E0AF1A98A5BDF21F69599325 /* Resources */,
+				F895973C04B0A6C51C912E89B9620E41 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				264DA4CE7F865A3DE939870034093CA3 /* PBXTargetDependency */,
-				120879E2DE7B92BDE4177141F02D29FB /* PBXTargetDependency */,
+				7D70E0641D2A6A4366CD0065B72EE19E /* PBXTargetDependency */,
 			);
 			name = RMessage;
 			productName = RMessage;
-			productReference = 4233F5A70E60D5416BBE5A1CAD07A1F5 /* RMessage.framework */;
+			productReference = 5E2633AE1E649DF656412DCF34A1216B /* RMessage.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		50CE6772C40582E172FDC040941B5897 /* PPTopMostController */ = {
+		2AB8FFBCE75B55A8638948CF9AC630B9 /* HexColors */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F64C61556E624779EA98679C949DD435 /* Build configuration list for PBXNativeTarget "PPTopMostController" */;
+			buildConfigurationList = 41A2E99E09A8783C4F745776C123E046 /* Build configuration list for PBXNativeTarget "HexColors" */;
 			buildPhases = (
-				709DE91D0295046DA02577A766766C7C /* Sources */,
-				BF8EDDB605FB9F7DE9F4F9B25C3A75A7 /* Frameworks */,
-				D39DF4360E5E1599525283FA1DFBCC7B /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = PPTopMostController;
-			productName = PPTopMostController;
-			productReference = 46099D82A2E7B001A50F5B782671369A /* PPTopMostController.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		AB57EF7D8B23701455085EC663E5FA40 /* HexColors */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6D4EFCCB7B17044F4337738D60FE8F8F /* Build configuration list for PBXNativeTarget "HexColors" */;
-			buildPhases = (
-				FBA44F57F11E1CCA90B52EC9662AFD13 /* Sources */,
-				DABCADB66CBEC4DBAE16F274B81504AD /* Frameworks */,
-				5543C60C9BF2F0C7446F835B98012C2A /* Headers */,
+				BAC7B355EC14C0D05B63C0F0318B4156 /* Sources */,
+				0F98C2407733028A30FF79BBC3F3BC99 /* Frameworks */,
+				100B99EC090F4D474173CAEB49BA37B7 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -432,27 +344,26 @@
 			);
 			name = HexColors;
 			productName = HexColors;
-			productReference = 562DF1F2F1AE382A232EEF3BB7F46B83 /* HexColors.framework */;
+			productReference = 1FA99EC83B66E05919949A5689E03670 /* HexColors.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		BF36BF39886885BFAC20E92B35165396 /* Pods-Agremo */ = {
+		F6880F7A5B30776D1881AAFF8F7CA8C8 /* Pods-Agremo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8A806EF4551BB19F2A215FAB91932E7B /* Build configuration list for PBXNativeTarget "Pods-Agremo" */;
+			buildConfigurationList = 17A30619653A96683B422D45F1119B46 /* Build configuration list for PBXNativeTarget "Pods-Agremo" */;
 			buildPhases = (
-				15FB73250998D7BBB79D1835E41216E7 /* Sources */,
-				6356A3A67CE0F1DEBC24498364939A59 /* Frameworks */,
-				35CE8F234DAFE45B46EBBD559EE3DB1B /* Headers */,
+				5B926208F043715003166A55A2FCCD52 /* Sources */,
+				CA5770DDD55F47449A11020F28B23CB0 /* Frameworks */,
+				27843FAACDE7DEFDB438799B8B7C5E3F /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				029734DD61CA3501356341E919F3E06A /* PBXTargetDependency */,
-				08009022F7C4D93527290AB9072D0308 /* PBXTargetDependency */,
-				F6AD1A0822994D40978492660C32A427 /* PBXTargetDependency */,
+				2117096CC5D9546297D29A5FB6B4BDBD /* PBXTargetDependency */,
+				8DAB9233163A173708E03FE3EB13024C /* PBXTargetDependency */,
 			);
 			name = "Pods-Agremo";
 			productName = "Pods-Agremo";
-			productReference = 88F2BE863623EBC82C2D96B1BD182D6E /* Pods_Agremo.framework */;
+			productReference = 804011F4EBC4B4CDF914FC75144634FA /* Pods_Agremo.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -472,110 +383,268 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 222931F18E85047D5366658D0437766C /* Products */;
+			productRefGroup = 30A4867157FADFE218C195F56563F755 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AB57EF7D8B23701455085EC663E5FA40 /* HexColors */,
-				BF36BF39886885BFAC20E92B35165396 /* Pods-Agremo */,
-				50CE6772C40582E172FDC040941B5897 /* PPTopMostController */,
-				06CC43FDA73E77F759B790F1823587AB /* RMessage */,
+				2AB8FFBCE75B55A8638948CF9AC630B9 /* HexColors */,
+				F6880F7A5B30776D1881AAFF8F7CA8C8 /* Pods-Agremo */,
+				1658B7AE3F85ECA3A6481C017A3D5D7F /* RMessage */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		4DAD2E2E6DFBCB77931CE9EF89597422 /* Resources */ = {
+		90DAB3C9E0AF1A98A5BDF21F69599325 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C87858FC72FF85AFFBC18B808711912 /* RMessageDefaultDesign.json in Resources */,
-				34C113114010BDF0FBEE8E8E0D668E13 /* RMessageView.xib in Resources */,
+				9CE52D01658A2E8CFD799CB52FF6ACA5 /* RMessage.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		15FB73250998D7BBB79D1835E41216E7 /* Sources */ = {
+		5B4FC26BBD026B246A3046AB5BA89558 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				195CAC86F62D872CCB6B4479649E3764 /* Pods-Agremo-dummy.m in Sources */,
+				91AD73D4951375E0BD8F8C1316E153B9 /* RMAnimationOptions.swift in Sources */,
+				7A0384A0C8173CA78A12970F48BF7ABB /* RMAnimator.swift in Sources */,
+				766222677BD47F0784D6E0964B5BDA93 /* RMController.swift in Sources */,
+				5343250B3E8C67F6CDDCE8807697A908 /* RMControllerDelegate.swift in Sources */,
+				D85BD0753C50C01799DE8CE4BF485065 /* RMessage+Components.swift in Sources */,
+				9B4FACFB8480C0056EDB569B4AA956FF /* RMessage+Design.swift in Sources */,
+				00A53FECCEF170456D1E686CB3407E2F /* RMessage-dummy.m in Sources */,
+				35D3EDB2A44623335D559A03D6790EFF /* RMessage.swift in Sources */,
+				BBC547737BB7E7385CECF44A3B15AA28 /* RMessageSpec.swift in Sources */,
+				304D75BD08289FF87BEE8D7D83917152 /* RMPresenter+TouchCompletion.swift in Sources */,
+				BDA51505FE8CE9BF2D1ADEDBEECEAB79 /* RMPresenter.swift in Sources */,
+				99996718524C1F2398308FDDD0FD7CBC /* RMPresenterDelegate.swift in Sources */,
+				943824F89E06050DF576376B328273BD /* RMPresenterOptions.swift in Sources */,
+				5B539D74C67B12FA217858947EFEE01C /* RMShowOperation.swift in Sources */,
+				D02E7C43A01ADD36716BF8DEFA49C40C /* SlideAnimator.swift in Sources */,
+				FCCFE5865BD2335676B001D78A00433F /* UIWindow+ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		23AB1799D2564A9BBAB75483AAA8F248 /* Sources */ = {
+		5B926208F043715003166A55A2FCCD52 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE4A5F8EE4741E6118F230DFBAB4F112 /* RMessage-dummy.m in Sources */,
-				1602575DD321A227C32F5F99691FF2E4 /* RMessage.m in Sources */,
-				B3DDB982DA3DFE78F767F8F9C07E3DC5 /* RMessageView.m in Sources */,
+				1FA9BCB681E345D65A253C7D18A82429 /* Pods-Agremo-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		709DE91D0295046DA02577A766766C7C /* Sources */ = {
+		BAC7B355EC14C0D05B63C0F0318B4156 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2D60536B769A776ACCACE6A53F68DF5 /* PPTopMostController-dummy.m in Sources */,
-				06CF3E797197F04F6B97B4C34AA64838 /* UINavigationController+PPTopMostController.m in Sources */,
-				E6ED070D29850F000C8E768E6E01BCE3 /* UITabBarController+PPTopMostController.m in Sources */,
-				EA7E1805F5785090A77B71012DBE9FA7 /* UIViewController+PPTopMostController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FBA44F57F11E1CCA90B52EC9662AFD13 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B96DACA3CCC61F6E799D9FC10CC55F66 /* HexColors-dummy.m in Sources */,
-				344EB9EEF6469AA1FEDBA094216A9871 /* HexColors.m in Sources */,
+				42F4548A5F10C939F8CFD5BCBCB546E6 /* HexColors-dummy.m in Sources */,
+				61B323FE8E47CE7A4075EAEB9DB45956 /* HexColors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		029734DD61CA3501356341E919F3E06A /* PBXTargetDependency */ = {
+		2117096CC5D9546297D29A5FB6B4BDBD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = HexColors;
-			target = AB57EF7D8B23701455085EC663E5FA40 /* HexColors */;
-			targetProxy = 371B851B738506F330659DBADB29963B /* PBXContainerItemProxy */;
+			target = 2AB8FFBCE75B55A8638948CF9AC630B9 /* HexColors */;
+			targetProxy = 412535775BD3CEED48E60A893C35D2C0 /* PBXContainerItemProxy */;
 		};
-		08009022F7C4D93527290AB9072D0308 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PPTopMostController;
-			target = 50CE6772C40582E172FDC040941B5897 /* PPTopMostController */;
-			targetProxy = FA0B1AF75237B508066CBEE1B0C8E34E /* PBXContainerItemProxy */;
-		};
-		120879E2DE7B92BDE4177141F02D29FB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PPTopMostController;
-			target = 50CE6772C40582E172FDC040941B5897 /* PPTopMostController */;
-			targetProxy = AB10D5EDED4104F4052641982CE000DB /* PBXContainerItemProxy */;
-		};
-		264DA4CE7F865A3DE939870034093CA3 /* PBXTargetDependency */ = {
+		7D70E0641D2A6A4366CD0065B72EE19E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = HexColors;
-			target = AB57EF7D8B23701455085EC663E5FA40 /* HexColors */;
-			targetProxy = 20B5ED87591CEF9CA13B178FEE2C4841 /* PBXContainerItemProxy */;
+			target = 2AB8FFBCE75B55A8638948CF9AC630B9 /* HexColors */;
+			targetProxy = CEB5EE87E5FE55A99042DDE2A839EB58 /* PBXContainerItemProxy */;
 		};
-		F6AD1A0822994D40978492660C32A427 /* PBXTargetDependency */ = {
+		8DAB9233163A173708E03FE3EB13024C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RMessage;
-			target = 06CC43FDA73E77F759B790F1823587AB /* RMessage */;
-			targetProxy = 9BC84DD2AE8ADC06BC294E3CD7683CE4 /* PBXContainerItemProxy */;
+			target = 1658B7AE3F85ECA3A6481C017A3D5D7F /* RMessage */;
+			targetProxy = 4B21C1DAF05AE6E8C96F9883D2552453 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0566160727216EBB7E7D8EE1AB16BC9B /* Debug */ = {
+		08638A96A528B1EC32DE62F8A728389D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 373EC60CA24A69EBF151C99A9B199A54 /* Pods-Agremo.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		13639B50A380D1FE97E6ADCB6FC68EAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E4C8997BFADFBC63973CC26CE3628B9 /* RMessage.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/RMessage/RMessage-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RMessage/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/RMessage/RMessage.modulemap";
+				PRODUCT_MODULE_NAME = RMessage;
+				PRODUCT_NAME = RMessage;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		1F0BEF7E37E38B1C32F5749720CFE5BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 920517D3E488A0340ED076B88E66AB72 /* HexColors.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/HexColors/HexColors-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HexColors/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/HexColors/HexColors.modulemap";
+				PRODUCT_MODULE_NAME = HexColors;
+				PRODUCT_NAME = HexColors;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4182280BA73E76239679E7AE8ED7A351 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E4C8997BFADFBC63973CC26CE3628B9 /* RMessage.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/RMessage/RMessage-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RMessage/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/RMessage/RMessage.modulemap";
+				PRODUCT_MODULE_NAME = RMessage;
+				PRODUCT_NAME = RMessage;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		77025F2770E1E888BC4911637C738826 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39CC7CE0F58E3979E0320FD389FD2DB8 /* Pods-Agremo.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -587,7 +656,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-Agremo/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -602,41 +671,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		09148CDF936BC118AAA87F6EAFE977B3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F677702F5C98803C2BD34444B236A877 /* RMessage.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/RMessage/RMessage-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/RMessage/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/RMessage/RMessage.modulemap";
-				PRODUCT_MODULE_NAME = RMessage;
-				PRODUCT_NAME = RMessage;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -644,7 +679,7 @@
 			};
 			name = Release;
 		};
-		199D972A13F2B4C56847F7A89CCA83BC /* Debug */ = {
+		9DAE5233986C01ADB6E67169C53A3FD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -697,7 +732,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -707,82 +742,12 @@
 			};
 			name = Debug;
 		};
-		56FB68BA68EDC9640A24FB5AD294503E /* Debug */ = {
+		F71A55344E477043AA43A43D783BE684 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B87B1D35C473DAD7906757F2DA847C52 /* PPTopMostController.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/PPTopMostController/PPTopMostController-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PPTopMostController/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/PPTopMostController/PPTopMostController.modulemap";
-				PRODUCT_MODULE_NAME = PPTopMostController;
-				PRODUCT_NAME = PPTopMostController;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		5EE6764BD5ED6E4D970F5777B2565F1F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B87B1D35C473DAD7906757F2DA847C52 /* PPTopMostController.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/PPTopMostController/PPTopMostController-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PPTopMostController/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/PPTopMostController/PPTopMostController.modulemap";
-				PRODUCT_MODULE_NAME = PPTopMostController;
-				PRODUCT_NAME = PPTopMostController;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		667F06382FF41FED9AAAF8EBDBF8BE24 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39CC7CE0F58E3979E0320FD389FD2DB8 /* Pods-Agremo.release.xcconfig */;
+			baseConfigurationReference = 373EC60CA24A69EBF151C99A9B199A54 /* Pods-Agremo.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -794,7 +759,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-Agremo/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -809,16 +774,17 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		CEA6231625A4C6A834F19B435E29010F /* Release */ = {
+		FD2640BCE17AEF91B3AA03EF62465FA2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B63E360007A56B8147852542AAA1FAB5 /* HexColors.xcconfig */;
+			baseConfigurationReference = 920517D3E488A0340ED076B88E66AB72 /* HexColors.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -844,186 +810,50 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		D3249F0DCA628D2C8B1BD045F9DE68D9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F677702F5C98803C2BD34444B236A877 /* RMessage.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/RMessage/RMessage-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/RMessage/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/RMessage/RMessage.modulemap";
-				PRODUCT_MODULE_NAME = RMessage;
-				PRODUCT_NAME = RMessage;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		F3002385E51AA88D649D9F4B9F19E22A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B63E360007A56B8147852542AAA1FAB5 /* HexColors.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/HexColors/HexColors-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/HexColors/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/HexColors/HexColors.modulemap";
-				PRODUCT_MODULE_NAME = HexColors;
-				PRODUCT_NAME = HexColors;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		FDB2FC4A1E5891381CD9D922145497F1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		17A30619653A96683B422D45F1119B46 /* Build configuration list for PBXNativeTarget "Pods-Agremo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F71A55344E477043AA43A43D783BE684 /* Debug */,
+				77025F2770E1E888BC4911637C738826 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				199D972A13F2B4C56847F7A89CCA83BC /* Debug */,
-				FDB2FC4A1E5891381CD9D922145497F1 /* Release */,
+				9DAE5233986C01ADB6E67169C53A3FD2 /* Debug */,
+				08638A96A528B1EC32DE62F8A728389D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6D4EFCCB7B17044F4337738D60FE8F8F /* Build configuration list for PBXNativeTarget "HexColors" */ = {
+		41A2E99E09A8783C4F745776C123E046 /* Build configuration list for PBXNativeTarget "HexColors" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F3002385E51AA88D649D9F4B9F19E22A /* Debug */,
-				CEA6231625A4C6A834F19B435E29010F /* Release */,
+				1F0BEF7E37E38B1C32F5749720CFE5BA /* Debug */,
+				FD2640BCE17AEF91B3AA03EF62465FA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8A806EF4551BB19F2A215FAB91932E7B /* Build configuration list for PBXNativeTarget "Pods-Agremo" */ = {
+		E9EA5C967978E7809B2AD18CEC3C82FF /* Build configuration list for PBXNativeTarget "RMessage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0566160727216EBB7E7D8EE1AB16BC9B /* Debug */,
-				667F06382FF41FED9AAAF8EBDBF8BE24 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B39730FC931AA025F0A91C092FFCC5C5 /* Build configuration list for PBXNativeTarget "RMessage" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D3249F0DCA628D2C8B1BD045F9DE68D9 /* Debug */,
-				09148CDF936BC118AAA87F6EAFE977B3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F64C61556E624779EA98679C949DD435 /* Build configuration list for PBXNativeTarget "PPTopMostController" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				56FB68BA68EDC9640A24FB5AD294503E /* Debug */,
-				5EE6764BD5ED6E4D970F5777B2565F1F /* Release */,
+				4182280BA73E76239679E7AE8ED7A351 /* Debug */,
+				13639B50A380D1FE97E6ADCB6FC68EAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -174,6 +174,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     private func checkCoreLocationAvailability() {
         if CLLocationManager.authorizationStatus() == .denied {
             
+            customizeRMessage() // ovo izmesti u drugu neku klasu....
+            /* radi za pod na ios 9 i verzija neka 2.3.2
             RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
                 RMessage.dismissActiveNotification()
                 if let url = URL(string: UIApplicationOpenSettingsURLString) { // ovo je ok ali root
@@ -184,6 +186,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
                 
             }, at: RMessagePosition.navBarOverlay,
                canBeDismissedByUser: true)
+            */
         } else {
             locationManager.startUpdatingLocation()
         }
@@ -210,13 +213,49 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     // MARK:- customize RMessage
     
     private func customizeRMessage() {
-//        let rControl = RMessageView.init()
-//        rControl.backgroundColor = .black
-//        
+        
+        /*
+         RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
+         RMessage.dismissActiveNotification()
+         if let url = URL(string: UIApplicationOpenSettingsURLString) { // ovo je ok ali root
+         if UIApplication.shared.canOpenURL(url) {
+         UIApplication.shared.open(url, options: [:], completionHandler: nil)
+         }
+         }
+         
+         }, at: RMessagePosition.navBarOverlay,
+         canBeDismissedByUser: true)
+         */
+        
+        let rControl = RMController()
+        
+        var attributedSpec = warningSpec
+        attributedSpec.backgroundColor = .black
+        attributedSpec.iconImage = #imageLiteral(resourceName: "Agremo_icon_44x44")
+
+        attributedSpec.timeToDismiss = 5.0
+        attributedSpec.durationType = RMessageDuration.timed
+        
+        let button = UIButton(type: .custom)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        button.setTitle("SETTINGS", for: .normal) // localize-implement me !
+        
+        button.setTitleColor(.black, for: .normal)
+        button.sizeToFit()
+        button.addTarget(self, action: #selector(tossMsgSettingsPressed(_: )), for: .touchUpInside)
+        
+        rControl.showMessage(withSpec: attributedSpec, atPosition: .navBarOverlay, title: RMessageText.coreLocationUnavailableTitle, body: RMessageText.coreLocationUnavailableMsg, rightView: button)
         
     }
     
-    
+    @objc func tossMsgSettingsPressed(_ rControl: RMController) {
+        if let url = URL(string: UIApplicationOpenSettingsURLString) { // ovo je ok ali root
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        let _ = rControl.dismissOnScreenMessage()
+    }
     
 }
 
