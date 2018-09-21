@@ -1,12 +1,13 @@
-/* 
-  Localizable.strings
-  Agremo
-
-  Created by Marko Dimitrijevic on 12/09/2018.
-  Copyright © 2018 Marko Dimitrijevic. All rights reserved.
-*/
+/*
+ Localizable.strings
+ Agremo
+ 
+ Created by Marko Dimitrijevic on 12/09/2018.
+ Copyright © 2018 Marko Dimitrijevic. All rights reserved.
+ */
 
 Strings.Alert.ok = "OK";
+Strings.Settings = "SETTINGS";
 
 Strings.QuitApp.Alert.title = "Agremo";
 Strings.QuitApp.Alert.message = "Are you sure you want to quit Agremo?";

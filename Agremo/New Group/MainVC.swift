@@ -17,12 +17,9 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager!
     
+    let rControl: RMController = RMController()
+    
     override func viewDidLoad() { super.viewDidLoad()
-        
-        let launchSB = UIStoryboard.init(name: "LaunchScreen", bundle: nil)
-        if let mainVC = launchSB.instantiateViewController(withIdentifier: "LaunchScreenVC") as? UIViewController {
-            print("imam launch preko SB-a!")
-        }
         
         configureDummyBackBtnAndAddItToViewHierarchy()
         
@@ -30,14 +27,18 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         
         checkConnectivityWithAgremoBackend()
         
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+        
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil) // prati dokle je stigao sa loading...
-
+        
         showLogoView()
         
-        webView.load(URLRequest.agremo)
+        //webView.load(URLRequest.agremo)
+        webView.load(URLRequest.agremoTest)
         
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(MainVC.applicationDidBecomeActive),
@@ -47,7 +48,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
                                                selector: #selector(MainVC.applicationDidEnterBackground),
                                                name: .UIApplicationDidEnterBackground,
                                                object: nil)
-
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,6 +59,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     
     // prijavio sam se kao observer da znam dokle je stigao sa loading
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        print("change = \(change)")
         
         if keyPath == "estimatedProgress" {
             print("webView.estimatedProgress = \(webView.estimatedProgress)")
@@ -76,13 +79,13 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     }
     
     @objc func applicationDidBecomeActive() {
-//        showLogoView()
+        //        showLogoView()
         checkConnectivityWithAgremoBackend()
         checkLocationAvailability()
     }
     
     @objc func applicationDidEnterBackground() {
-//        showLogoView()
+        //        showLogoView()
     }
     
     @objc func dummyBackBtnIsTapped() {
@@ -174,19 +177,10 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     private func checkCoreLocationAvailability() {
         if CLLocationManager.authorizationStatus() == .denied {
             
-            customizeRMessage() // ovo izmesti u drugu neku klasu....
-            /* radi za pod na ios 9 i verzija neka 2.3.2
-            RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
-                RMessage.dismissActiveNotification()
-                if let url = URL(string: UIApplicationOpenSettingsURLString) { // ovo je ok ali root
-                    if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
-                }
-                
-            }, at: RMessagePosition.navBarOverlay,
-               canBeDismissedByUser: true)
-            */
+            //rControl.showAgremoTossMessage() // ovo izmesti u drugu neku klasu....
+            
+            customizeRMessage()
+            
         } else {
             locationManager.startUpdatingLocation()
         }
@@ -203,61 +197,92 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
     // MARK:- customize RMessage
     
     private func customizeRMessage() {
         
-        /*
-         RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
-         RMessage.dismissActiveNotification()
-         if let url = URL(string: UIApplicationOpenSettingsURLString) { // ovo je ok ali root
-         if UIApplication.shared.canOpenURL(url) {
-         UIApplication.shared.open(url, options: [:], completionHandler: nil)
-         }
-         }
-         
-         }, at: RMessagePosition.navBarOverlay,
-         canBeDismissedByUser: true)
-         */
-        
-        let rControl = RMController()
-        
         var attributedSpec = warningSpec
-        attributedSpec.backgroundColor = .black
+        attributedSpec.backgroundColor = UIColor.agremoTossMessage ?? .black
+        
+        attributedSpec.titleColor = .black
+        attributedSpec.bodyColor = .black
+        
         attributedSpec.iconImage = #imageLiteral(resourceName: "Agremo_icon_44x44")
-
+        
         attributedSpec.timeToDismiss = 5.0
         attributedSpec.durationType = RMessageDuration.timed
         
         let button = UIButton(type: .custom)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-        button.setTitle("SETTINGS", for: .normal) // localize-implement me !
         
-        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.sizeToFit()
-        button.addTarget(self, action: #selector(tossMsgSettingsPressed(_: )), for: .touchUpInside)
+        button.setTitle(NSLocalizedString("Strings.Settings", comment: ""), for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        
+        button.addTarget(self, action: #selector(MainVC.tossMsgSettingsPressed), for: .touchUpInside)
         
         rControl.showMessage(withSpec: attributedSpec, atPosition: .navBarOverlay, title: RMessageText.coreLocationUnavailableTitle, body: RMessageText.coreLocationUnavailableMsg, rightView: button)
         
     }
     
-    @objc func tossMsgSettingsPressed(_ rControl: RMController) {
+    @objc func tossMsgSettingsPressed() {
         if let url = URL(string: UIApplicationOpenSettingsURLString) { // ovo je ok ali root
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
         let _ = rControl.dismissOnScreenMessage()
+        
+        //let _ = rControl?.dismissOnScreenMessage() zasto puca ovo ? - u preth podu je radilo...
     }
     
 }
+
+
+extension MainVC: WKUIDelegate, WKNavigationDelegate {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        print("webView.shouldStartLoadWith is called")
+        return true
+    }
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        print("webView.didCommit is called")
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print("webView.didFinish is called")
+    }
+    
+    func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
+        print("navigation = \(navigation)")
+        print("webView.didReceiveServerRedirectForProvisionalNavigation is called")
+    }
+    func webView(_ webView: WKWebView, shouldPreviewElement elementInfo: WKPreviewElementInfo) -> Bool {
+        print("webView.v is called")
+        return true
+    }
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 extension URLRequest {
     static var agremo: URLRequest {
@@ -265,9 +290,45 @@ extension URLRequest {
         //return URLRequest.init(url: url)
         return URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: TimeOut.agremoMobile)
     }
+    static var agremoTest: URLRequest {
+        let url = URL.init(string: "https://daliznas.com/ios_test")!
+        return URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: TimeOut.agremoMobile)
+    }
 }
 
 enum TimeOut {
-    static let agremoMobile = TimeInterval.init(0.05)
+    //static let agremoMobile = TimeInterval.init(0.05)
+    static let agremoMobile = TimeInterval.init(7.0)
 }
 
+extension UIColor {
+    static let agremoTossMessage = UIColor.init("#f7931d")
+}
+
+extension RMController {
+    
+    func showAgremoTossMessage() {
+        
+        var attributedSpec = warningSpec
+        attributedSpec.backgroundColor = UIColor.agremoTossMessage ?? .black
+        
+        attributedSpec.titleColor = .black
+        attributedSpec.bodyColor = .black
+        
+        attributedSpec.iconImage = #imageLiteral(resourceName: "Agremo_icon_44x44")
+        
+        attributedSpec.timeToDismiss = 5.0
+        attributedSpec.durationType = RMessageDuration.timed
+        
+        let button = UIButton(type: .custom)
+        
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.sizeToFit()
+        button.setTitle(NSLocalizedString("Strings.Settings", comment: ""), for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        
+        button.addTarget(self, action: #selector(MainVC.tossMsgSettingsPressed), for: .touchUpInside)
+        
+        self.showMessage(withSpec: attributedSpec, atPosition: .navBarOverlay, title: RMessageText.coreLocationUnavailableTitle, body: RMessageText.coreLocationUnavailableMsg, rightView: button)
+    }
+}
