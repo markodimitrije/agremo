@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "HexColors.h"
 
 FOUNDATION_EXPORT double HexColorsVersionNumber;
 FOUNDATION_EXPORT const unsigned char HexColorsVersionString[];

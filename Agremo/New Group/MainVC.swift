@@ -17,8 +17,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager!
     
-    let rControl: RMController = RMController()
-    
     override func viewDidLoad() { super.viewDidLoad()
         
         configureDummyBackBtnAndAddItToViewHierarchy()
@@ -34,8 +32,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         
         showLogoView()
         
-        //webView.load(URLRequest.agremo)
-        webView.load(URLRequest.agremoTest)
+        webView.load(URLRequest.agremo)
+        //webView.load(URLRequest.agremoTest)
         
     }
     
@@ -177,8 +175,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     private func checkCoreLocationAvailability() {
         if CLLocationManager.authorizationStatus() == .denied {
             
-            // radi za pod na ios 9 i verzija neka 2.3.2
-            RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "agremo_icon"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
+            RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
                 RMessage.dismissActiveNotification()
                 if let url = URL(string: UIApplicationOpenSettingsURLString) { // ovo je ok ali root
                     if UIApplication.shared.canOpenURL(url) {
@@ -213,9 +210,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
-        let _ = rControl.dismissOnScreenMessage()
-        
-        //let _ = rControl?.dismissOnScreenMessage() zasto puca ovo ? - u preth podu je radilo...
+        let _ = RMessage.dismissActiveNotification()
     }
     
 }
@@ -281,8 +276,4 @@ extension URLRequest {
 enum TimeOut {
     //static let agremoMobile = TimeInterval.init(0.05)
     static let agremoMobile = TimeInterval.init(7.0)
-}
-
-extension UIColor {
-    static let agremoTossMessage = UIColor.init("#f7931d")
 }
