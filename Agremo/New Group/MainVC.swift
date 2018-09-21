@@ -6,16 +6,17 @@
 //  Copyright © 2018 Marko Dimitrijevic. All rights reserved.
 //
 
-import UIKit
-import CoreLocation
-import RMessage
-import WebKit
+import UIKit; import CoreLocation; import RMessage; import WebKit
 
 class MainVC: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var webView: WKWebView!
     
     var locationManager: CLLocationManager!
+    
+    let observeNotificationsDict: [NSNotification.Name: Selector] = [
+        .UIApplicationDidBecomeActive: #selector(MainVC.applicationDidBecomeActive),
+        .UIApplicationDidEnterBackground: #selector(MainVC.applicationDidEnterBackground)]
     
     override func viewDidLoad() { super.viewDidLoad()
         
@@ -25,12 +26,11 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         
         checkConnectivityWithAgremoBackend()
         
-        webView.uiDelegate = self
-        webView.navigationDelegate = self
+        webView.uiDelegate = self; webView.navigationDelegate = self
         
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil) // prati dokle je stigao sa loading...
         
-        showLogoView()
+//        showLogoView()
         
         webView.load(URLRequest.agremo)
         //webView.load(URLRequest.agremoTest)
@@ -38,52 +38,67 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(MainVC.applicationDidBecomeActive),
-                                               name: .UIApplicationDidBecomeActive,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(MainVC.applicationDidEnterBackground),
-                                               name: .UIApplicationDidEnterBackground,
-                                               object: nil)
-        
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(MainVC.applicationDidBecomeActive),
+//                                               name: .UIApplicationDidBecomeActive,
+//                                               object: nil)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(MainVC.applicationDidEnterBackground),
+//                                               name: .UIApplicationDidEnterBackground,
+//                                               object: nil)
+        NotificationSubscriber.startToObserveNotifications(onListener : self, dict: observeNotificationsDict)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self,
-                                                  name: .UIApplicationDidBecomeActive,
-                                                  object: nil)
+//        NotificationCenter.default.removeObserver(self,
+//                                                  name: .UIApplicationDidBecomeActive,
+//                                                  object: nil)
+//        NotificationCenter.default.removeObserver(self,
+//                                                  name: .UIApplicationDidEnterBackground,
+//                                                  object: nil)
+        NotificationSubscriber.stopToObserveNotifications(onListener : self, names: [.UIApplicationDidBecomeActive,.UIApplicationDidEnterBackground])
     }
     
     // prijavio sam se kao observer da znam dokle je stigao sa loading
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
-        print("change = \(change)")
+        //print("change = \(change)")
         
-        if keyPath == "estimatedProgress" {
-            print("webView.estimatedProgress = \(webView.estimatedProgress)")
+        if keyPath == "estimatedProgress" { print("webView.estimatedProgress = \(webView.estimatedProgress)")
             // kada je fully loaded ukloni mu logo view
             // treba mi i timer na 1 sec koji broji do 7, i na svakih 1 sec da se proveri da li je 'estimatedProgress' == 1
             // cim je 1 (za <= 7 sec) ukloni mu logoView
             
             // za sada samo ukloni kad je ceo loaded:
+
+            let logoViewAction = loadingUrlIsFastEnough(time: 2, timeLimit: Int(TimeOut.agremoMobile), progress: 0.1)
             
-            if webView.estimatedProgress == 1 {
-                self.removeLogoView()
-                checkLocationAvailability()
+            switch logoViewAction {
+            case .wait: break
+            case .removeWithAlert:
+                guard let alertVC = AlertManager().getAlertFor(alertType: .appLoadingToSlow, handler: { (action) in
+                    self.removeLogoView()
+                }) else {return} // trebalo bi ovde da removeLogoView...
+                self.present(alertVC, animated: true)
+            case .remove: self.removeLogoView()
+                                checkLocationAvailability()
             }
+            
+//            if webView.estimatedProgress == 1 { // ovo je radilo...
+//                self.removeLogoView()
+//                checkLocationAvailability()
+//            }
             
         }
     }
     
     @objc func applicationDidBecomeActive() {
-        //        showLogoView()
         checkConnectivityWithAgremoBackend()
         checkLocationAvailability()
     }
     
     @objc func applicationDidEnterBackground() {
-        //        showLogoView()
+        
     }
     
     @objc func dummyBackBtnIsTapped() {
@@ -130,8 +145,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     
     private func checkConnectivityWithAgremoBackend() {
         
-        //showLogoView()
-        
         ServerRequest.sendPingToAgremo { (success, error) in
             
             DispatchQueue.main.async { [weak self] in
@@ -173,19 +186,12 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     }
     
     private func checkCoreLocationAvailability() {
+        
         if CLLocationManager.authorizationStatus() == .denied {
-            
-            RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
-                RMessage.dismissActiveNotification()
-                if let url = URL(string: UIApplicationOpenSettingsURLString) { // ovo je ok ali root
-                    if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
-                }
-                
-            }, at: RMessagePosition.navBarOverlay,
-               canBeDismissedByUser: true)
- 
+            // proveri da li je slucajno neki alert na screen, ako da, nemoj da se prikazujes !!!
+            if self.presentedViewController == nil { // nije alert ili neko ko zahteva user attention
+                RMessage.Agremo.showCoreLocationWarningMessage()
+            }
         } else {
             locationManager.startUpdatingLocation()
         }
@@ -199,18 +205,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         
         print("user latitude = \(userLocation.coordinate.latitude)")
         print("user longitude = \(userLocation.coordinate.longitude)")
-    }
-    
-    
-    // MARK:- customize RMessage
-    
-    @objc func tossMsgSettingsPressed() {
-        if let url = URL(string: UIApplicationOpenSettingsURLString) { // ovo je ok ali root
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-        }
-        let _ = RMessage.dismissActiveNotification()
     }
     
 }
@@ -244,36 +238,42 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
     
 }
 
+// ova func zna da na osnovu params vremena, i dokle je stigao sa download, vrati da li da se nastavi ili ne
+func loadingUrlIsFastEnough(time: Int, timeLimit: Int, progress: Double) -> LogoViewAction {
+
+    //temp off
+    return .removeWithAlert
+//    guard time <= timeLimit else {
+//        print("vreme je isteklo za loading mobile page.....")
+//        return .removeWithAlert} // vreme je isteklo prekini download..
+//
+//    if progress > Constants.Agremo.loadingLimit {
+//        print("progres je veci, ukloni webView")
+//        return .remove
+//    } else {
+//        print("progres je manji ali vreme nije isteklo, cekaj jos....")
+//        return .wait
+//    }
+    
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-extension URLRequest {
-    static var agremo: URLRequest {
-        let url = URL.init(string: "https://app.agremo.com/mobile/#")!
-        //return URLRequest.init(url: url)
-        return URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: TimeOut.agremoMobile)
+struct NotificationSubscriber {
+ 
+    static func startToObserveNotifications(onListener vc: UIViewController,
+                                                       dict: [NSNotification.Name: Selector]) {
+        
+        let _ = dict.keys.map {NotificationCenter.default.addObserver(vc,
+                                                              selector: dict[$0]!,
+                                                              name: $0,
+                                                              object: nil)}
+        
     }
-    static var agremoTest: URLRequest {
-        let url = URL.init(string: "https://daliznas.com/ios_test")!
-        return URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: TimeOut.agremoMobile)
+    
+    static func stopToObserveNotifications(onListener vc: UIViewController, names: [NSNotification.Name]) {
+        
+        let _ = names.map {NotificationCenter.default.removeObserver(vc, name: $0, object: nil)}
+        
     }
 }
 
-enum TimeOut {
-    //static let agremoMobile = TimeInterval.init(0.05)
-    static let agremoMobile = TimeInterval.init(7.0)
-}

@@ -16,6 +16,7 @@ struct AlertManager {
         
         switch alertType {
             case .quitAgremoApp: return getQuitAppAlertVC(handler: handler)
+            case .appLoadingToSlow: return appLoadingToSlowAlertVC(handler: handler)
         default: return nil
         }
         
@@ -58,6 +59,21 @@ struct AlertManager {
         let okAction = UIAlertAction.init(title: AlertInfo.ok, style: .default, handler: nil)
         
         let alertVC = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
+        
+        alertVC.addAction(okAction)
+        
+        return alertVC
+        
+    }
+    
+    private func appLoadingToSlowAlertVC(handler: ((UIAlertAction) -> () )?) -> UIAlertController? {
+        let title = AlertInfo.appLoadingToSlow.title
+        let msg = AlertInfo.appLoadingToSlow.message
+        let yesTitle = AlertInfo.ok
+        
+        let alertVC = UIAlertController.init(title: title, message: msg, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction.init(title: yesTitle, style: .default, handler: handler)
         
         alertVC.addAction(okAction)
         
