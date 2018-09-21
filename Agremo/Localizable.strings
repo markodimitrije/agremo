@@ -7,6 +7,7 @@
 */
 
 Strings.Alert.ok = "OK";
+Strings.Settings = "SETTINGS";
 
 Strings.QuitApp.Alert.title = "Agremo";
 Strings.QuitApp.Alert.message = "Are you sure you want to quit Agremo?";
@@ -16,5 +17,8 @@ Strings.QuitApp.Alert.no = "NO";
 Strings.PingAgremo.Alert.title = "No internet";
 Strings.PingAgremo.Alert.message = "No internet connection was found. This app needs an internet connection to function.";
 
+
 Strings.RMessageText.CoreLocationUnavailable.title = "GPS no available";
 Strings.RMessageText.CoreLocationUnavailable.msg = "Turn On Location Services to Allow Agremo App to Determine Your Location.";
+
+

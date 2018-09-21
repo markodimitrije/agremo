@@ -176,7 +176,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
             
             customizeRMessage() // ovo izmesti u drugu neku klasu....
             /* radi za pod na ios 9 i verzija neka 2.3.2
-            RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
+            RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_100x100"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
                 RMessage.dismissActiveNotification()
                 if let url = URL(string: UIApplicationOpenSettingsURLString) { // ovo je ok ali root
                     if UIApplication.shared.canOpenURL(url) {
@@ -215,7 +215,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     private func customizeRMessage() {
         
         /*
-         RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
+         RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_100x100"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
          RMessage.dismissActiveNotification()
          if let url = URL(string: UIApplicationOpenSettingsURLString) { // ovo je ok ali root
          if UIApplication.shared.canOpenURL(url) {
@@ -230,17 +230,20 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         let rControl = RMController()
         
         var attributedSpec = warningSpec
-        attributedSpec.backgroundColor = .black
-        attributedSpec.iconImage = #imageLiteral(resourceName: "Agremo_icon_44x44")
+        attributedSpec.backgroundColor = UIColor.agremoTossMessage ?? .black
+        attributedSpec.iconImage = 
 
         attributedSpec.timeToDismiss = 5.0
         attributedSpec.durationType = RMessageDuration.timed
         
         let button = UIButton(type: .custom)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-        button.setTitle("SETTINGS", for: .normal) // localize-implement me !
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        button.setTitle(NSLocalizedString("Strings.Settings", comment: ""), for: .normal)
         
         button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        
         button.sizeToFit()
         button.addTarget(self, action: #selector(tossMsgSettingsPressed(_: )), for: .touchUpInside)
         
@@ -271,3 +274,6 @@ enum TimeOut {
     static let agremoMobile = TimeInterval.init(0.05)
 }
 
+extension UIColor {
+    static let agremoTossMessage = UIColor.init("#f7931d")
+}
