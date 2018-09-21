@@ -8,7 +8,7 @@
 
 import UIKit; import CoreLocation; import RMessage; import WebKit
 
-class MainVC: UIViewController, CLLocationManagerDelegate {
+class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadingDelegate {
     
     @IBOutlet weak var webView: AgremoWkWebView! // WKWebView
     
@@ -26,12 +26,9 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         
         checkConnectivityWithAgremoBackend()
         
-        webView.uiDelegate = self; webView.navigationDelegate = self
+        webView.uiDelegate = self; webView.navigationDelegate = self; webView.loadingDelegate = self
         
-        // ako si ugasio observer method na sebi, moras i prijavu sebe u suprotnom imas SIGABRT!
-        //webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil) // prati dokle je stigao sa loading...
-        
-//        showLogoView()
+        showLogoView()
         
         webView.load(URLRequest.agremo)
         //webView.load(URLRequest.agremoTest)
@@ -46,40 +43,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         
         NotificationSubscriber.stopToObserveNotifications(onListener : self, names: [.UIApplicationDidBecomeActive,.UIApplicationDidEnterBackground])
     }
-    /*
-    // prijavio sam se kao observer da znam dokle je stigao sa loading
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
-        //print("change = \(change)")
-        
-        if keyPath == "estimatedProgress" { print("webView.estimatedProgress = \(webView.estimatedProgress)")
-            // kada je fully loaded ukloni mu logo view
-            // treba mi i timer na 1 sec koji broji do 7, i na svakih 1 sec da se proveri da li je 'estimatedProgress' == 1
-            // cim je 1 (za <= 7 sec) ukloni mu logoView
-            
-            // za sada samo ukloni kad je ceo loaded:
-
-            let logoViewAction = loadingUrlIsFastEnough(time: 2, timeLimit: Int(TimeOut.agremoMobile), progress: 0.1)
-            
-            switch logoViewAction {
-            case .wait: break
-            case .removeWithAlert:
-                guard let alertVC = AlertManager().getAlertFor(alertType: .appLoadingToSlow, handler: { (action) in
-                    self.removeLogoView()
-                }) else {return} // trebalo bi ovde da removeLogoView...
-                self.present(alertVC, animated: true)
-            case .remove: self.removeLogoView()
-                                checkLocationAvailability()
-            }
-            
-//            if webView.estimatedProgress == 1 { // ovo je radilo...
-//                self.removeLogoView()
-//                checkLocationAvailability()
-//            }
-            
-        }
-    }
-    */
+    
     @objc func applicationDidBecomeActive() {
         checkConnectivityWithAgremoBackend()
         checkLocationAvailability()
@@ -162,12 +126,12 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         windowView.addSubview(agremoLogoView)
     }
     
-    private func removeLogoView() {
+    fileprivate func removeLogoView() {
         let logoView = UIApplication.view?.subviews.first(where: {$0.tag==12})
         logoView?.removeFromSuperview()
     }
     
-    private func checkLocationAvailability() {
+    fileprivate func checkLocationAvailability() {
         if CLLocationManager.authorizationStatus() != .notDetermined {
             checkCoreLocationAvailability()
         }
@@ -222,70 +186,32 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
     }
     
     
-    
-    
-}
-
-// ova func zna da na osnovu params vremena, i dokle je stigao sa download, vrati da li da se nastavi ili ne
-func loadingUrlIsFastEnough(time: Int, timeLimit: Int, progress: Double) -> LogoViewAction {
-
-    //temp off
-    return .removeWithAlert
-//    guard time <= timeLimit else {
-//        print("vreme je isteklo za loading mobile page.....")
-//        return .removeWithAlert} // vreme je isteklo prekini download..
-//
-//    if progress > Constants.Agremo.loadingLimit {
-//        print("progres je veci, ukloni webView")
-//        return .remove
-//    } else {
-//        print("progres je manji ali vreme nije isteklo, cekaj jos....")
-//        return .wait
-//    }
-    
 }
 
 
-struct NotificationSubscriber {
- 
-    static func startToObserveNotifications(onListener vc: UIViewController,
-                                                       dict: [NSNotification.Name: Selector]) {
-        
-        let _ = dict.keys.map {NotificationCenter.default.addObserver(vc,
-                                                              selector: dict[$0]!,
-                                                              name: $0,
-                                                              object: nil)}
-        
-    }
-    
-    static func stopToObserveNotifications(onListener vc: UIViewController, names: [NSNotification.Name]) {
-        
-        let _ = names.map {NotificationCenter.default.removeObserver(vc, name: $0, object: nil)}
-        
-    }
+// MARK: Protocol + implementacija od strane MainVC
+
+protocol AgremoWkWebViewLoadingDelegate: class {
+    func webView(_ webView: WKWebView, didFinishLoading success: Bool)
 }
 
-
-
-class AgremoWkWebView: WKWebView {
-    
-    
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        self.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil) // prati dokle je stigao sa loading...
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+extension AgremoWkWebViewLoadingDelegate where Self: MainVC {
+    func webView(_ webView: WKWebView, didFinishLoading success: Bool) {
         
-        if keyPath == "estimatedProgress" {
+        if success {
             
-            print("AgremoWkWebView.estimatedProgress = \(self.estimatedProgress)")
+            self.removeLogoView()
+            self.checkLocationAvailability()
             
-            if self.estimatedProgress == 1 { // ovo je radilo...
-                print("AgremoWkWebView.observeValue: status finished")
+        } else {
+            
+            let alertVC = AlertManager().getAlertFor(alertType: .appLoadingToSlow) { (action) in
+                self.removeLogoView()
             }
+            
+            guard alertVC != nil else {return}
+            
+            self.present(alertVC!, animated: true, completion: nil)
         }
     }
 }
-

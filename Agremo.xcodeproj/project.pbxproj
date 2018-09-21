@@ -23,6 +23,8 @@
 		AD6A52D5214ACF6B0061E23A /* LogoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD6A52D4214ACF6B0061E23A /* LogoView.xib */; };
 		AD6A52D7214ACFA50061E23A /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A52D6214ACFA50061E23A /* LogoView.swift */; };
 		AD6A52DA214AD3020061E23A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A52D9214AD3020061E23A /* Extensions.swift */; };
+		AD7223FE2155942B001B55D6 /* AgremoWkWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7223FD2155942B001B55D6 /* AgremoWkWebView.swift */; };
+		AD7224002155950C001B55D6 /* NotificationSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7223FF2155950C001B55D6 /* NotificationSubscriber.swift */; };
 		ADC960472154CD7900FEF9A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADC960462154CD7900FEF9A2 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +48,8 @@
 		AD6A52D4214ACF6B0061E23A /* LogoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogoView.xib; sourceTree = "<group>"; };
 		AD6A52D6214ACFA50061E23A /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		AD6A52D9214AD3020061E23A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		AD7223FD2155942B001B55D6 /* AgremoWkWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgremoWkWebView.swift; sourceTree = "<group>"; };
+		AD7223FF2155950C001B55D6 /* NotificationSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSubscriber.swift; sourceTree = "<group>"; };
 		ADC960462154CD7900FEF9A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB131AA33FBF489CB32305B9 /* Pods_Agremo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agremo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -104,9 +108,10 @@
 				AD6A52D3214ACF530061E23A /* Xib,Nib... */,
 				AD6A52C9214AB3DB0061E23A /* Networking */,
 				AD6A5247214968400061E23A /* Model */,
+				AD5358DF214964B200E7FD96 /* VCs */,
+				AD7223FC215593FC001B55D6 /* Views */,
 				AD5358D821495D3600E7FD96 /* MyClassesAndStructs */,
 				AD5358D4214950CD00E7FD96 /* appDel_assets_splash */,
-				AD5358DF214964B200E7FD96 /* VCs */,
 				AD5358C421494B9000E7FD96 /* Main.storyboard */,
 				AD5358DB21495F3500E7FD96 /* Localizable.strings */,
 				AD5358CC21494B9300E7FD96 /* Info.plist */,
@@ -130,6 +135,7 @@
 				AD5358DD2149600100E7FD96 /* AlertManager.swift */,
 				AD5358D921495D4C00E7FD96 /* MyClassesAndStructs.swift */,
 				AD6A52D0214AC2A80061E23A /* PingAgremoManager.swift */,
+				AD7223FF2155950C001B55D6 /* NotificationSubscriber.swift */,
 			);
 			path = MyClassesAndStructs;
 			sourceTree = "<group>";
@@ -176,6 +182,14 @@
 				AD6A52D9214AD3020061E23A /* Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AD7223FC215593FC001B55D6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AD7223FD2155942B001B55D6 /* AgremoWkWebView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,9 +312,11 @@
 			files = (
 				AD5358D3214950C200E7FD96 /* MainVC.swift in Sources */,
 				AD5358D72149585600E7FD96 /* DummyVC.swift in Sources */,
+				AD7223FE2155942B001B55D6 /* AgremoWkWebView.swift in Sources */,
 				AD5358DE2149600100E7FD96 /* AlertManager.swift in Sources */,
 				AD5358C121494B9000E7FD96 /* AppDelegate.swift in Sources */,
 				AD5358DA21495D4C00E7FD96 /* MyClassesAndStructs.swift in Sources */,
+				AD7224002155950C001B55D6 /* NotificationSubscriber.swift in Sources */,
 				AD6A52D7214ACFA50061E23A /* LogoView.swift in Sources */,
 				AD6A52492149684F0061E23A /* ModelTypes.swift in Sources */,
 				AD6A52CD214AB3F70061E23A /* ServerRequest.swift in Sources */,

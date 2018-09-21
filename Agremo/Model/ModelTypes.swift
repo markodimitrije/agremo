@@ -43,27 +43,23 @@ extension URLRequest {
     static var agremo: URLRequest {
         let url = URL.init(string: "https://app.agremo.com/mobile/#")!
         //return URLRequest.init(url: url)
-        return URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: TimeOut.agremoMobile)
+        return URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: TimeOut.agremoMobileLoadContent)
     }
     static var agremoTest: URLRequest {
         let url = URL.init(string: "https://daliznas.com/ios_test")!
-        return URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: TimeOut.agremoMobile)
+        return URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: TimeOut.agremoMobileLoadContent)
     }
 }
 
 enum TimeOut {
     //static let agremoMobile = TimeInterval.init(0.05)
-    static let agremoMobile = TimeInterval.init(7.0)
+    static let agremoMobileLoadContent = TimeInterval.init(7.0)
 }
 
 struct Constants {
-    struct Agremo {
-        static let loadingLimit: Double = 0.75 // ako je za timeout ucitao manje od 75% daj mu alert da je pure
+    struct AgremoWebView {
+        static let estimatedProgressLimit: Double = 0.9 // ako je za timeout ucitao manje od 75% daj mu alert da je pure
     }
 }
 
-enum LogoViewAction {
-    case wait
-    case remove
-    case removeWithAlert
-}
+
