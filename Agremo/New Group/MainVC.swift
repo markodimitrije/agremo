@@ -10,7 +10,7 @@ import UIKit; import CoreLocation; import RMessage; import WebKit
 
 class MainVC: UIViewController, CLLocationManagerDelegate {
     
-    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var webView: AgremoWkWebView! // WKWebView
     
     var locationManager: CLLocationManager!
     
@@ -28,7 +28,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         
         webView.uiDelegate = self; webView.navigationDelegate = self
         
-        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil) // prati dokle je stigao sa loading...
+        // ako si ugasio observer method na sebi, moras i prijavu sebe u suprotnom imas SIGABRT!
+        //webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil) // prati dokle je stigao sa loading...
         
 //        showLogoView()
         
@@ -38,27 +39,14 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(MainVC.applicationDidBecomeActive),
-//                                               name: .UIApplicationDidBecomeActive,
-//                                               object: nil)
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(MainVC.applicationDidEnterBackground),
-//                                               name: .UIApplicationDidEnterBackground,
-//                                               object: nil)
         NotificationSubscriber.startToObserveNotifications(onListener : self, dict: observeNotificationsDict)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-//        NotificationCenter.default.removeObserver(self,
-//                                                  name: .UIApplicationDidBecomeActive,
-//                                                  object: nil)
-//        NotificationCenter.default.removeObserver(self,
-//                                                  name: .UIApplicationDidEnterBackground,
-//                                                  object: nil)
+        
         NotificationSubscriber.stopToObserveNotifications(onListener : self, names: [.UIApplicationDidBecomeActive,.UIApplicationDidEnterBackground])
     }
-    
+    /*
     // prijavio sam se kao observer da znam dokle je stigao sa loading
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
@@ -91,7 +79,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
             
         }
     }
-    
+    */
     @objc func applicationDidBecomeActive() {
         checkConnectivityWithAgremoBackend()
         checkLocationAvailability()
@@ -274,6 +262,30 @@ struct NotificationSubscriber {
         
         let _ = names.map {NotificationCenter.default.removeObserver(vc, name: $0, object: nil)}
         
+    }
+}
+
+
+
+class AgremoWkWebView: WKWebView {
+    
+    
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil) // prati dokle je stigao sa loading...
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == "estimatedProgress" {
+            
+            print("AgremoWkWebView.estimatedProgress = \(self.estimatedProgress)")
+            
+            if self.estimatedProgress == 1 { // ovo je radilo...
+                print("AgremoWkWebView.observeValue: status finished")
+            }
+        }
     }
 }
 
