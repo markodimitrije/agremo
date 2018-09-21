@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -65,7 +65,7 @@
 		14434E62D7D428CCA3C76CEF7EC43EFC /* Pods-Agremo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Agremo.modulemap"; sourceTree = "<group>"; };
 		149361A31430DC0879A8EA7ED8395B09 /* HexColors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HexColors.swift; path = Sources/HexColors.swift; sourceTree = "<group>"; };
 		1F8A32CE1AF32534F7F059C53B139C62 /* Pods-Agremo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Agremo-acknowledgements.plist"; sourceTree = "<group>"; };
-		1FA99EC83B66E05919949A5689E03670 /* HexColors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HexColors.framework; path = HexColors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FA99EC83B66E05919949A5689E03670 /* HexColors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HexColors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2155A1648A32A37C6BF9137B97453AF4 /* RMessage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RMessage-dummy.m"; sourceTree = "<group>"; };
 		241C93CD94F16D47D7E6AAF683C9CC0C /* RMessage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RMessage-prefix.pch"; sourceTree = "<group>"; };
 		2C87B12B7B8719BD2C56D7F0FC12B1FB /* RMControllerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RMControllerDelegate.swift; path = Sources/RMController/RMControllerDelegate.swift; sourceTree = "<group>"; };
@@ -73,19 +73,19 @@
 		373EC60CA24A69EBF151C99A9B199A54 /* Pods-Agremo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Agremo.debug.xcconfig"; sourceTree = "<group>"; };
 		39CC7CE0F58E3979E0320FD389FD2DB8 /* Pods-Agremo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Agremo.release.xcconfig"; sourceTree = "<group>"; };
 		5E20D4543A819D670BEF9015B17529E2 /* RMController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RMController.swift; path = Sources/RMController/RMController.swift; sourceTree = "<group>"; };
-		5E2633AE1E649DF656412DCF34A1216B /* RMessage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RMessage.framework; path = RMessage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E2633AE1E649DF656412DCF34A1216B /* RMessage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RMessage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		654AD18CEC3864FF74BC0F762DD5B80A /* RMAnimationOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RMAnimationOptions.swift; path = Sources/RMAnimator/RMAnimationOptions.swift; sourceTree = "<group>"; };
 		67D35DADA5D9A0E42D6AC83E58E5116F /* Pods-Agremo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Agremo-umbrella.h"; sourceTree = "<group>"; };
 		6823A957C52584ABDDB919B747C07062 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B66D8542532D96EEF4CA196ADCFCE07 /* RMPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RMPresenter.swift; path = Sources/RMPresenter/RMPresenter.swift; sourceTree = "<group>"; };
 		73A1166B08A18784AEBD96C1702875B4 /* Pods-Agremo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Agremo-acknowledgements.markdown"; sourceTree = "<group>"; };
 		7BBCD61E3CA00D76EE86512B566D95CA /* HexColors-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HexColors-umbrella.h"; sourceTree = "<group>"; };
-		804011F4EBC4B4CDF914FC75144634FA /* Pods_Agremo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Agremo.framework; path = "Pods-Agremo.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		804011F4EBC4B4CDF914FC75144634FA /* Pods_Agremo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agremo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81BC5F9BA091D2221D2BD3A4112C2A73 /* RMShowOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RMShowOperation.swift; path = Sources/RMController/RMShowOperation.swift; sourceTree = "<group>"; };
 		84D313C022DD5847BB2DAC70F12897EF /* UIWindow+ViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIWindow+ViewController.swift"; path = "Sources/General Extensions/UIWindow+ViewController.swift"; sourceTree = "<group>"; };
 		8F34CAB90B9E8C0FB77E41F372B4DC80 /* Pods-Agremo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Agremo-frameworks.sh"; sourceTree = "<group>"; };
 		920517D3E488A0340ED076B88E66AB72 /* HexColors.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HexColors.xcconfig; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9665FE008D7A9A3ADEAD535CCCF2C949 /* RMPresenter+TouchCompletion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "RMPresenter+TouchCompletion.swift"; path = "Sources/RMPresenter/RMPresenter+TouchCompletion.swift"; sourceTree = "<group>"; };
 		971756E1A001C1824E471C5200A6D677 /* RMessage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RMessage-umbrella.h"; sourceTree = "<group>"; };
 		9A0525679D7AD82E40E944AB16D650B5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -210,7 +210,6 @@
 				149361A31430DC0879A8EA7ED8395B09 /* HexColors.swift */,
 				4675D67EB8B73AABE46B80C29D147793 /* Support Files */,
 			);
-			name = HexColors;
 			path = HexColors;
 			sourceTree = "<group>";
 		};
@@ -277,7 +276,6 @@
 				794344F090E58F962E41F05C8C4C9538 /* Resources */,
 				B6891AEE5BFB1708136E2B6C349B7D6C /* Support Files */,
 			);
-			name = RMessage;
 			path = RMessage;
 			sourceTree = "<group>";
 		};
@@ -546,11 +544,7 @@
 				INFOPLIST_FILE = "Target Support Files/RMessage/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/RMessage/RMessage.modulemap";
 				PRODUCT_MODULE_NAME = RMessage;
 				PRODUCT_NAME = RMessage;
@@ -582,12 +576,8 @@
 				GCC_PREFIX_HEADER = "Target Support Files/HexColors/HexColors-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/HexColors/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/HexColors/HexColors.modulemap";
 				PRODUCT_MODULE_NAME = HexColors;
 				PRODUCT_NAME = HexColors;
@@ -620,11 +610,7 @@
 				INFOPLIST_FILE = "Target Support Files/RMessage/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/RMessage/RMessage.modulemap";
 				PRODUCT_MODULE_NAME = RMessage;
 				PRODUCT_NAME = RMessage;
@@ -657,11 +643,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-Agremo/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Agremo/Pods-Agremo.modulemap";
 				OTHER_LDFLAGS = "";
@@ -760,11 +742,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-Agremo/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Agremo/Pods-Agremo.modulemap";
 				OTHER_LDFLAGS = "";
@@ -798,12 +776,8 @@
 				GCC_PREFIX_HEADER = "Target Support Files/HexColors/HexColors-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/HexColors/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/HexColors/HexColors.modulemap";
 				PRODUCT_MODULE_NAME = HexColors;
 				PRODUCT_NAME = HexColors;

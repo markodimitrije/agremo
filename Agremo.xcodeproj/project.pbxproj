@@ -102,7 +102,6 @@
 			children = (
 				AD6A52D8214AD2F50061E23A /* Extensions */,
 				AD6A52D3214ACF530061E23A /* Xib,Nib... */,
-				AD6A52D2214ACF470061E23A /* Views */,
 				AD6A52C9214AB3DB0061E23A /* Networking */,
 				AD6A5247214968400061E23A /* Model */,
 				AD5358D821495D3600E7FD96 /* MyClassesAndStructs */,
@@ -160,13 +159,6 @@
 				AD6A52CC214AB3F70061E23A /* ServerRequest.swift */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		AD6A52D2214ACF470061E23A /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		AD6A52D3214ACF530061E23A /* Xib,Nib... */ = {
@@ -460,6 +452,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S26YPRY864;
 				INFOPLIST_FILE = Agremo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -479,6 +472,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S26YPRY864;
 				INFOPLIST_FILE = Agremo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
