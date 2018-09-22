@@ -8,11 +8,22 @@
 
 import UIKit; import CoreLocation; import RMessage; import WebKit
 
+let token = "9a2b4b9f4e82c1d2043909ff2f08f56f8ac2cc11"
+
 class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadingDelegate {
     
-    @IBOutlet weak var webView: AgremoWkWebView! // WKWebView
+    @IBAction func tempCallScriptBtnTapped(_ sender: UIButton) {
+//        executeGetTokenJavaScript()\
+        executeLoadMyCurrentLocationJavaScript()
+    }
+    
+    @IBOutlet weak var myWebView: AgremoWkWebView! // WKWebView
     
     var locationManager: CLLocationManager!
+    
+    lazy var clUpdater: CoreLocationUpdating = {
+        return AgremoCLUpdater(webView: myWebView)
+    }()
     
     let observeNotificationsDict: [NSNotification.Name: Selector] = [
         .UIApplicationDidBecomeActive: #selector(MainVC.applicationDidBecomeActive),
@@ -26,12 +37,12 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
         checkConnectivityWithAgremoBackend()
         
-        webView.uiDelegate = self; webView.navigationDelegate = self; webView.loadingDelegate = self
+        myWebView.uiDelegate = self; myWebView.navigationDelegate = self; myWebView.loadingDelegate = self
         
         showLogoView()
         
-        webView.load(URLRequest.agremo)
-        //webView.load(URLRequest.agremoTest)
+//        webView.load(URLRequest.agremo)
+        myWebView.load(URLRequest.agremoTest)
         
     }
     
@@ -157,6 +168,71 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
         print("user latitude = \(userLocation.coordinate.latitude)")
         print("user longitude = \(userLocation.coordinate.longitude)")
+        
+        // za sada zovem odavde ali u stvari treba dodati javaScriptLocation objektu koji ce da embed poslednju lokaciju, a onda sledecu uporedi sa prethodnom, pa ako je diff >=1m, onda stvarno zovi JS func
+        
+//        loadMyCurrentLocation(userLocation.coordinate.latitude,
+//                              userLocation.coordinate.longitude)
+        
+//        executeLoadMyCurrentLocationJavaScript(userLocation: userLocation)
+        
+//        executeGetTokenJavaScript()
+        clUpdater.locationUpdated(location: userLocation)
+        
+
+    }
+    
+    //webView.evaluateJavaScript("document.getElementById('someElement').innerText")
+    
+    //theWebView!.evaluateJavaScript("storeAndShow( \(aCount + 1) )",
+    //completionHandler: nil)
+    
+    private func executeLoadMyCurrentLocationJavaScript(userLocation: CLLocation) {
+        let lat = userLocation.coordinate.latitude
+        let long = userLocation.coordinate.longitude
+        let _ = myWebView.evaluateJavaScript("loadMyCurrentLocation(\(lat), \(long));") { (data, err) in // trebas params!!
+            if err == nil {
+                print("executeLoadMyCurrentLocationJavaScript.all good...")
+            } else {
+                print("loadMyCurrentLocation.err = \(err!.localizedDescription)")
+            }
+        }
+        // koristi ovaj  evaluateJavaScript(_:completionHandler:)
+    }
+    
+    private func executeGetTokenJavaScript() {
+        
+        let _ = myWebView.evaluateJavaScript("getToken()") { (data, err) in // trebas params!!
+            if err == nil {
+                print("executeGetToken.all good...")
+            } else {
+                print("executeGetToken.err = \(err!.localizedDescription)")
+            }
+        }
+        // koristi ovaj  evaluateJavaScript(_:completionHandler:)
+    }
+    
+    private func executeLoadMyCurrentLocationJavaScript() {
+        let lat: Float = 7.93
+        let lon: Float = 6.25
+
+        
+        //"setIOSNativeAppLocation(\(lat), \(lon));"
+        //let _ = webView.evaluateJavaScript("loadMyCurrentLocation(\(lat), \(long));") { (data, err) in
+        //let _ = webView.evaluateJavaScript("loadMyCurrentLocation('7.93,67.25')") { (data, err) in
+        //let _ = webView.evaluateJavaScript("callExampleRandom()") { (data, err) in OVO RADI !!!
+        let _ = myWebView.evaluateJavaScript("loadMyCurrentLocation(\(lat), \(lon));") { (data, err) in
+            
+        
+        //let _ = webView.evaluateJavaScript("loadMyCurrentLocation('\(lat)', '\(long)');") { (data, err) in // trebas params!!
+            if err == nil {
+                print("executeLoadMyCurrentLocationJavaScript.all good...")
+            } else {
+                print("loadMyCurrentLocation.err = \(err!.localizedDescription)")
+            }
+        }
+        
+        
     }
     
 }
@@ -215,3 +291,70 @@ extension AgremoWkWebViewLoadingDelegate where Self: MainVC {
         }
     }
 }
+
+protocol CoreLocationUpdating {
+    mutating func locationUpdated(location: CLLocation)
+}
+
+struct AgremoCLUpdater: CoreLocationUpdating {
+    
+    var previousLocation: CLLocation?
+    var webView: WKWebView
+    
+    init(webView: WKWebView) {
+        self.webView = webView
+    }
+    
+    // MARK:- API
+    
+    mutating func locationUpdated(location: CLLocation) {
+     
+        if shouldUpdateJavaScriptAboutCLChange(actualLocation: location) {
+            
+            self.updateJavaScriptFunc(in: webView, with: location)
+            
+            print("update JS, dist change > 1m")
+            
+            self.previousLocation = location
+            
+        } else {
+            
+            print("dont update JS, insufficiant dist change")
+            
+        }
+        
+    }
+    
+    // MARK:- Privates
+    
+    private func shouldUpdateJavaScriptAboutCLChange(actualLocation: CLLocation) -> Bool {
+        
+        guard let previousLocation = previousLocation else {return true}
+        
+        let distance = abs(previousLocation.distance(from: actualLocation))
+        
+        print("distance between 2 locations = \(distance)")
+        
+        return distance >= Constants.Location.sugnificantDistToUpdateJSLocationFunc // 1 meter
+    }
+    
+    private func updateJavaScriptFunc(in webView: WKWebView, with location: CLLocation) {
+        
+        let lat = location.coordinate.latitude
+        let long = location.coordinate.longitude
+        
+        let _ = webView.evaluateJavaScript("loadMyCurrentLocation(\(lat), \(long));") { (data, err) in
+            
+            if err == nil {
+                print("executeLoadMyCurrentLocationJavaScript.all good...")
+            } else {
+                print("loadMyCurrentLocation.err = \(err!.localizedDescription)")
+            }
+        }
+        
+        
+    }
+    
+}
+
+

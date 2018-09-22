@@ -46,7 +46,7 @@ extension URLRequest {
         return URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: TimeOut.agremoMobileLoadContent)
     }
     static var agremoTest: URLRequest {
-        let url = URL.init(string: "https://daliznas.com/ios_test")!
+        let url = URL.init(string: "https://daliznas.com/ios_test/index.html")!
         return URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: TimeOut.agremoMobileLoadContent)
     }
 }
@@ -60,6 +60,9 @@ struct Constants {
     struct AgremoWebView {
         static let estimatedProgressLimit: Double = 0.9 // ako je za timeout ucitao manje od 75% daj mu alert da je pure
     }
+    struct Location {
+        static let sugnificantDistToUpdateJSLocationFunc = 1.0 // ovo je 1 metar...
+        //static let sugnificantDistToUpdateJSLocationFunc = 5.0 // ovo je 5 metar... hard-coded to test
+    }
 }
-
 
