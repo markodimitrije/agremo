@@ -17,6 +17,19 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         executeLoadMyCurrentLocationJavaScript()
     }
     
+    @IBAction func tempCallDownloadZipBtnTapped(_ sender: UIButton) {
+        let addr = "https://daliznas.com/ios_test/Castle_Hill_Flowering.zip"
+        ServerRequest.downloadAgremoZip(addr: addr) { (data) in guard let data = data else {return}
+            
+            print("imam data, save ih na disk")
+            
+            FileManager.saveToDisk(data: data, fileName: "Castle_Hill_Flowering", ext: "zip")
+            
+        }
+    }
+    
+    
+    
     @IBOutlet weak var myWebView: AgremoWkWebView! // WKWebView
     
     var locationManager: CLLocationManager!

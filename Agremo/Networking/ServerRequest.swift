@@ -48,6 +48,28 @@ struct ServerRequest {
         
         task.resume()
     }
+ 
+    static func downloadAgremoZip(addr: String, completionHandler: @escaping (_ data: Data?) -> Void) {
+        
+        guard let request = URLRequest.getRequest(addr: addr,
+                                                  timeout: TimeOut.downloadZipArchive) else {return}
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, err) in
+            
+            guard err == nil,
+                let data = data,
+                let response = response as? HTTPURLResponse,
+                response.statusCode == 200 else {completionHandler(nil); return}
+            
+            // ako si do ovde sve ok, onda imas ok data (trebalo bi...)
+            
+            completionHandler(data)
+            
+        }
+        
+        task.resume()
+        
+    }
     
 }
 

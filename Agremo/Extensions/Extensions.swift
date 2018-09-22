@@ -34,3 +34,27 @@ extension RMessage {
     }
 }
 
+extension FileManager {
+    
+    static func saveToDisk(data: Data, fileName: String, ext: String) {
+        
+        let writeUrl = destinationUrl(fileName: fileName, ext: ext)
+        //print("writeUrl = \(writeUrl)")
+        
+        do {
+            try data.write(to: writeUrl, options: .atomic)
+            print(" data saved !!! all good...")
+        } catch {
+            print("catch.cant save data")
+        }
+        
+    }
+    
+    static var docDir: URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    }
+    
+    static func destinationUrl(fileName: String, ext: String) -> URL {
+        return docDir.appendingPathComponent(fileName).appendingPathExtension(ext)
+    }
+}
