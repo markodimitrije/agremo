@@ -50,9 +50,46 @@ extension FileManager {
         
     }
     
+    static func saveToDiskInDocDir(data: Data, filenameWithExtension: String) {
+        
+        let writeUrl = docDir.appendingPathComponent(filenameWithExtension)
+        
+        do {
+            try data.write(to: writeUrl, options: .atomicWrite)
+            print("saveToDisk.docDir: data saved !!! all good...")
+        } catch {
+            print("saveToDisk.docDir: catch. cant save data")
+        }
+        
+    }
+    
+    static func saveToDisk(data: Data, inDirectory dir: URL , filenameWithExtension: String) {
+        
+        let writeUrl = docDir.appendingPathComponent(filenameWithExtension)
+        
+        do {
+            //try data.write(to: writeUrl, options: .atomicWrite)
+            try data.write(to: writeUrl)
+            print("saveToDisk.docDir: data saved !!! all good...")
+        } catch {
+            print("saveToDisk.docDir: catch. cant save data")
+        }
+        
+    }
+    
+    
     static var docDir: URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
+    
+    static var applicationSupportDir: URL {
+        return FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+    }
+    
+    static var cachesDir: URL {
+        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+    }
+    
     
     static func destinationUrl(fileName: String, ext: String) -> URL {
         return docDir.appendingPathComponent(fileName).appendingPathExtension(ext)

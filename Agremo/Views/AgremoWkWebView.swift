@@ -15,6 +15,12 @@ class AgremoWkWebView: WKWebView {
     var timer: Timer?
     weak var loadingDelegate: AgremoWkWebViewLoadingDelegate?
     
+    
+    
+    //    class func handlesURLScheme(_ urlScheme: String) -> Bool {
+    //        return true
+    //    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil) // prati dokle je stigao sa loading...
