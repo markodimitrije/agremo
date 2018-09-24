@@ -61,7 +61,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
         showLogoView()
         
-//        webView.load(URLRequest.agremo)
+//        myWebView.load(URLRequest.agremo)
         myWebView.load(URLRequest.agremoTest)
         
     }
