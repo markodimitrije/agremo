@@ -12,16 +12,16 @@ let token = "9a2b4b9f4e82c1d2043909ff2f08f56f8ac2cc11"
 
 class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadingDelegate {
     
-    @IBAction func tempCallScriptBtnTapped(_ sender: UIButton) {
-//        executeGetTokenJavaScript()\
-        executeLoadMyCurrentLocationJavaScript()
-    }
-    
-    @IBAction func tempCallDownloadZipBtnTapped(_ sender: UIButton) {
-        
-        //userWantsToDownloadZip(atUrl: URL, filename: "")
-        
-    }
+//    @IBAction func tempCallScriptBtnTapped(_ sender: UIButton) {
+////        executeGetTokenJavaScript()\
+//        executeLoadMyCurrentLocationJavaScript()
+//    }
+//
+//    @IBAction func tempCallDownloadZipBtnTapped(_ sender: UIButton) {
+//
+//        //userWantsToDownloadZip(atUrl: URL, filename: "")
+//
+//    }
     
     fileprivate func userWantsToDownloadZip(atUrl url: URL, filename: String) {
         
@@ -61,8 +61,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
         showLogoView()
         
-//        myWebView.load(URLRequest.agremo)
-        myWebView.load(URLRequest.agremoTest)
+        myWebView.load(URLRequest.agremo)
+//        myWebView.load(URLRequest.agremoTest)
         
     }
     
@@ -253,8 +253,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         }
         
     }
-    
-    
     
 }
 
