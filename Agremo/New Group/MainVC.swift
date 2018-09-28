@@ -87,7 +87,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
     }
     
     @objc func applicationDidEnterBackground() {
-        
+            // zove je moj observer, nesto sam menjao ... mozes da je remove odande...
     }
     
     private func requestCoreLocationAuth() {
@@ -172,21 +172,12 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
         // za sada zovem odavde ali u stvari treba dodati javaScriptLocation objektu koji ce da embed poslednju lokaciju, a onda sledecu uporedi sa prethodnom, pa ako je diff >=1m, onda stvarno zovi JS func
         
-//        loadMyCurrentLocation(userLocation.coordinate.latitude,
-//                              userLocation.coordinate.longitude)
-        
-//        executeLoadMyCurrentLocationJavaScript(userLocation: userLocation)
-        
-//        executeGetTokenJavaScript()
         clUpdater.locationUpdated(location: userLocation)
         
 
     }
     
-    //webView.evaluateJavaScript("document.getElementById('someElement').innerText")
-    
-    //theWebView!.evaluateJavaScript("storeAndShow( \(aCount + 1) )",
-    //completionHandler: nil)
+    // ukloni je kada uklonis dummy btn sa UI-a, samo je on poziva...
     
     private func executeLoadMyCurrentLocationJavaScript(userLocation: CLLocation) {
         let lat = userLocation.coordinate.latitude
@@ -217,15 +208,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         let lat: Float = 7.93
         let lon: Float = 6.25
 
-        
-        //"setIOSNativeAppLocation(\(lat), \(lon));"
-        //let _ = webView.evaluateJavaScript("loadMyCurrentLocation(\(lat), \(long));") { (data, err) in
-        //let _ = webView.evaluateJavaScript("loadMyCurrentLocation('7.93,67.25')") { (data, err) in
-        //let _ = webView.evaluateJavaScript("callExampleRandom()") { (data, err) in OVO RADI !!!
         let _ = myWebView.evaluateJavaScript("loadMyCurrentLocation(\(lat), \(lon));") { (data, err) in
-            
-        
-        //let _ = webView.evaluateJavaScript("loadMyCurrentLocation('\(lat)', '\(long)');") { (data, err) in // trebas params!!
+
             if err == nil {
                 print("executeLoadMyCurrentLocationJavaScript.all good...")
             } else {
@@ -251,17 +235,6 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
         print("webViewWebContentProcessDidTerminate...")
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         print("webView.shouldStartLoadWith is called")
@@ -326,77 +299,6 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
      return nil
      }
     
-    
-    
-    
-     /// Handle javascript:prompt(...)
-     func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
-        
-        print("runJavaScriptTextInputPanelWithPrompt")
-     //        ...
-     //            alertController.addTextFieldWithConfigurationHandler { (textField) in
-     //                textField.text = defaultText
-     //        }
-     //
-     //        let okAction = UIAlertAction(title: Okay, style: .Default) { action in
-     //            let textField = alertController.textFields![0] as UITextField
-     //            completionHandler(textField.text)
-     //        }
-     //
-     //        let cancelAction = UIAlertAction(title: Cancel, style: .Cancel) { _ in
-     //        completionHandler(nil)
-     //        }
-     //        ...
-     
-     completionHandler("abc")
-     
-     }
-    
-     /// Handle javascript:alert(...)
-     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
-     
-     print("runJavaScriptAlertPanelWithMessage")
-     
-     //        ...
-     //        let okAction = UIAlertAction(title: Okay, style: .Default) { _ in
-     //        completionHandler()
-     //        }
-     //        ...
-     
-     completionHandler()
-     }
-    
-    
-     /// Handle javascript:confirm(...)
-     func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
-        
-        
-        print("runJavaScriptConfirmPanelWithMessage")
-     //        ...
-     //        let okAction = UIAlertAction(title: Okay, style: .Default) { _ in
-     //            completionHandler(true)
-     //        }
-     //
-     //        let cancelAction = UIAlertAction(title: Cancel, style: .Cancel) { _ in
-     //        completionHandler(false)
-     //        }
-     //        ...
-     
-     completionHandler(true)
-     
-     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
- 
 }
 
 
