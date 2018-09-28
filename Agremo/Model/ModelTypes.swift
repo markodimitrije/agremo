@@ -72,4 +72,3 @@ struct Constants {
         //static let sugnificantDistToUpdateJSLocationFunc = 5.0 // ovo je 5 metar... hard-coded to test
     }
 }
-
