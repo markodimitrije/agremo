@@ -12,16 +12,22 @@ let token = "9a2b4b9f4e82c1d2043909ff2f08f56f8ac2cc11"
 
 class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadingDelegate {
     
-//    @IBAction func tempCallScriptBtnTapped(_ sender: UIButton) {
-////        executeGetTokenJavaScript()\
-//        executeLoadMyCurrentLocationJavaScript()
-//    }
-//
-//    @IBAction func tempCallDownloadZipBtnTapped(_ sender: UIButton) {
-//
-//        //userWantsToDownloadZip(atUrl: URL, filename: "")
-//
-//    }
+    @IBAction func tempCallScriptBtnTapped(_ sender: UIButton) {
+//        executeGetTokenJavaScript()\
+        executeLoadMyCurrentLocationJavaScript()
+    }
+
+    @IBAction func tempCallDownloadZipBtnTapped(_ sender: UIButton) {
+
+        let addr = "https://daliznas.com/ios_test/Castle_Hill_Flowering.zip"
+//        let addr = "https://drive.google.com/drive/folders/1aJ1Fhr1M9V8EcgvCVBQ9stMLJYpw6NIK?ogsrc=32"
+        let hardcodedUrl = URL.init(string: addr)!
+        
+        userWantsToDownloadZip(atUrl: hardcodedUrl, filename: "Castle_Hill_Flowering.zip")
+    
+        //userWantsToDownloadZip(atUrl: hardcodedUrl, filename: "Castle_Hill_Flowering")
+
+    }
     
     fileprivate func userWantsToDownloadZip(atUrl url: URL, filename: String) {
         
@@ -258,6 +264,30 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
 
 
 extension MainVC: WKUIDelegate, WKNavigationDelegate {
+    
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        print("didFail navigation with error...")
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        print("didFailProvisionalNavigation...")
+    }
+    func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+        print("webViewWebContentProcessDidTerminate...")
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         print("webView.shouldStartLoadWith is called")
         return true
@@ -289,7 +319,7 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) { print("decidePolicyFor action...")
         
         // da li se zavrsavas na .zip ?
-            
+        
         guard let url = navigationAction.request.url else {
             decisionHandler(.cancel)
             return
@@ -308,86 +338,85 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
         decisionHandler(policy)
     }
     
-    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        print("decidePolicyFor response...")
-        decisionHandler(WKNavigationResponsePolicy.allow)
-    }
-    /*
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print("didFail navigation with error...")
-    }
+        func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+            print("decidePolicyFor response...")
+            decisionHandler(WKNavigationResponsePolicy.allow)
+        }
     
-    func webView(_ webView: WKWebView, didFinishLoading success: Bool) {
-        print("didFinishLoading...")
-    }
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        print("didFailProvisionalNavigation...")
-    }
-    func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
-        print("webViewWebContentProcessDidTerminate...")
-    }
     
-    func webView(_ webView: WKWebView, previewingViewControllerForElement elementInfo: WKPreviewElementInfo, defaultActions previewActions: [WKPreviewActionItem]) -> UIViewController? {
-        print("pick action")
-        return nil
-    }
- */
+     func webView(_ webView: WKWebView, previewingViewControllerForElement elementInfo: WKPreviewElementInfo, defaultActions previewActions: [WKPreviewActionItem]) -> UIViewController? {
+     print("pick action")
+     return nil
+     }
     
-    /*
     
-    /// Handle javascript:prompt(...)
-    func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
-//        ...
-//            alertController.addTextFieldWithConfigurationHandler { (textField) in
-//                textField.text = defaultText
-//        }
-//
-//        let okAction = UIAlertAction(title: Okay, style: .Default) { action in
-//            let textField = alertController.textFields![0] as UITextField
-//            completionHandler(textField.text)
-//        }
-//
-//        let cancelAction = UIAlertAction(title: Cancel, style: .Cancel) { _ in
-//        completionHandler(nil)
-//        }
-//        ...
+    
+    
+     /// Handle javascript:prompt(...)
+     func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
         
-        completionHandler("abc")
         print("runJavaScriptTextInputPanelWithPrompt")
-    }
+     //        ...
+     //            alertController.addTextFieldWithConfigurationHandler { (textField) in
+     //                textField.text = defaultText
+     //        }
+     //
+     //        let okAction = UIAlertAction(title: Okay, style: .Default) { action in
+     //            let textField = alertController.textFields![0] as UITextField
+     //            completionHandler(textField.text)
+     //        }
+     //
+     //        let cancelAction = UIAlertAction(title: Cancel, style: .Cancel) { _ in
+     //        completionHandler(nil)
+     //        }
+     //        ...
+     
+     completionHandler("abc")
+     
+     }
     
-    /// Handle javascript:alert(...)
-    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
-        
-        print("runJavaScriptAlertPanelWithMessage")
-        
-        //        ...
-        //        let okAction = UIAlertAction(title: Okay, style: .Default) { _ in
-        //        completionHandler()
-        //        }
-        //        ...
-        
-        completionHandler()
-    }
+     /// Handle javascript:alert(...)
+     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+     
+     print("runJavaScriptAlertPanelWithMessage")
+     
+     //        ...
+     //        let okAction = UIAlertAction(title: Okay, style: .Default) { _ in
+     //        completionHandler()
+     //        }
+     //        ...
+     
+     completionHandler()
+     }
     
     
-    /// Handle javascript:confirm(...)
-    func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
-        //        ...
-        //        let okAction = UIAlertAction(title: Okay, style: .Default) { _ in
-        //            completionHandler(true)
-        //        }
-        //
-        //        let cancelAction = UIAlertAction(title: Cancel, style: .Cancel) { _ in
-        //        completionHandler(false)
-        //        }
-        //        ...
+     /// Handle javascript:confirm(...)
+     func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
         
-        completionHandler(true)
+        
         print("runJavaScriptConfirmPanelWithMessage")
-    }
+     //        ...
+     //        let okAction = UIAlertAction(title: Okay, style: .Default) { _ in
+     //            completionHandler(true)
+     //        }
+     //
+     //        let cancelAction = UIAlertAction(title: Cancel, style: .Cancel) { _ in
+     //        completionHandler(false)
+     //        }
+     //        ...
+     
+     completionHandler(true)
+     
+     }
     
-    */
+    
+    
+    
+    
+    
+    
+    
+    
     
     
  
@@ -419,6 +448,7 @@ extension AgremoWkWebViewLoadingDelegate where Self: MainVC {
             self.present(alertVC!, animated: true, completion: nil)
         }
     }
+    
 }
 
 protocol CoreLocationUpdating {

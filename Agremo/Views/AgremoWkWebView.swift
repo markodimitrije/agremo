@@ -15,8 +15,6 @@ class AgremoWkWebView: WKWebView {
     var timer: Timer?
     weak var loadingDelegate: AgremoWkWebViewLoadingDelegate?
     
-    
-    
     //    class func handlesURLScheme(_ urlScheme: String) -> Bool {
     //        return true
     //    }
