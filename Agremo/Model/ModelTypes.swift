@@ -59,8 +59,8 @@ extension URLRequest {
 
 enum TimeOut {
     //static let agremoMobile = TimeInterval.init(0.05)
-    static let agremoMobileLoadContent = TimeInterval.init(7.0)
-    static let downloadZipArchive = TimeInterval.init(10.0)
+    static let agremoMobileLoadContent = TimeInterval.init(10.0) // bilo je 7.0
+    static let downloadZipArchive = TimeInterval.init(30.0) // bilo je 10.0
 }
 
 struct Constants {

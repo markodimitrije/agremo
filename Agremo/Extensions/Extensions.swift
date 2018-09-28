@@ -95,3 +95,15 @@ extension FileManager {
         return docDir.appendingPathComponent(fileName).appendingPathExtension(ext)
     }
 }
+
+
+extension DateFormatter {
+    
+    static var sharedDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        // Add your formatter configuration here
+        //dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.dateFormat = "yyyyMM_ddHHmmss"
+        return dateFormatter
+    }()
+}

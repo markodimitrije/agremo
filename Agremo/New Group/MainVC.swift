@@ -29,20 +29,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
 
     }
     
-    fileprivate func userWantsToDownloadZip(atUrl url: URL, filename: String) {
-        
-        let addr = url.absoluteString
-        
-        ServerRequest.downloadAgremoZip(addr: addr) { (data) in guard let data = data else {return}
-            
-            //FileManager.saveToDiskInDocDir(data: data, filenameWithExtension: filename)
-            
-            FileManager.saveToDisk(data: data,
-                                   inDirectory: FileManager.applicationSupportDir,
-                                   filenameWithExtension: filename)
-        }
-    }
-    
     @IBOutlet weak var myWebView: AgremoWkWebView! // WKWebView
     
     var locationManager: CLLocationManager!
@@ -88,6 +74,29 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
     
     @objc func applicationDidEnterBackground() {
             // zove je moj observer, nesto sam menjao ... mozes da je remove odande...
+    }
+    
+    
+    fileprivate func userWantsToDownloadZip(atUrl url: URL, filename: String) {
+        
+        let addr = url.absoluteString
+        
+        ServerRequest.downloadAgremoZip(addr: addr) { (data) in guard let data = data else {return}
+            
+            //FileManager.saveToDiskInDocDir(data: data, filenameWithExtension: filename)
+            
+            FileManager.saveToDisk(data: data,
+                                   inDirectory: FileManager.applicationSupportDir,
+                                   filenameWithExtension: filename)
+        }
+    }
+    
+    fileprivate func appReceivedFileContent(data: Data, withFilename filename: String) {
+        
+        FileManager.saveToDisk(data: data,
+                               inDirectory: FileManager.applicationSupportDir,
+                               filenameWithExtension: filename)
+        
     }
     
     private func requestCoreLocationAuth() {
@@ -174,7 +183,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
         clUpdater.locationUpdated(location: userLocation)
         
-
     }
     
     // ukloni je kada uklonis dummy btn sa UI-a, samo je on poziva...
@@ -235,7 +243,9 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
             return
         }
         
-        // jeste download link,
+        // ako si ovde, onda jeste download link:
+        
+        appReceivedFileContent(data: downloadLinkData.data, withFilename: downloadLinkData.filename)
         
         print("save data as file to filename = \(downloadLinkData.1)")
         decisionHandler(.cancel)
@@ -340,44 +350,31 @@ struct AgremoCLUpdater: CoreLocationUpdating {
 
 
 
-
-
-
-
-
-
-
-
-//func isAgremoResourceDownloadUrl(response: URLResponse) -> Bool {
-//
-//    guard let resp = response as? HTTPURLResponse else { return false }
-//
-//    return (resp.allHeaderFields["filename"] as? String) != nil
-//
-//}
-
-func isAgremoResourceDownloadUrl(response: URLResponse) -> (Data, String)? {
+func isAgremoResourceDownloadUrl(response: URLResponse) -> (data: Data, filename: String)? {
     
-    guard let resp = response as? HTTPURLResponse else {
-        return nil
-    }
+    //print("isAgremoResourceDownloadUrl.response = \(response)")
     
-    if resp.allHeaderFields.keys.contains(AnyHashable.init("filename")) {
-        print("IMAM KEY za filename!!!")
-    }
+    guard let resp = response as? HTTPURLResponse else { return nil }
     
-    if resp.allHeaderFields.keys.contains(AnyHashable.init("Vary")) {
-        print("IMAM KEY za Vary!!!")
-    }
+    // ako imam "Content-Disposition" polje
+    // i u njemu odrednicu "filename=" .... zasto nije json.....
+    // i ako imam data na tom url koje su sadrzaj file-a
     
-    print("resp.allHeaderFields.keys = \(resp.allHeaderFields.keys)")
-    
-    guard let filename = resp.allHeaderFields["filename"] as? String,
+    guard let value = resp.allHeaderFields["Content-Disposition"] as? String,
+        let filename = value.components(separatedBy: "filename=").last,
         let url = response.url,
         let data = try? Data.init(contentsOf: url) else {return nil}
     
-    return (data, filename)
+    // onda vrati korisne stvari: data to save + filename, neko drugi zna path...
+    
+    let name = addTimestamp(atFilename: filename)
+    
+    return (data, name)
     
 }
 
-
+func addTimestamp(atFilename filename: String) -> String {
+    let now = Date.init(timeIntervalSinceNow: 0)
+    let timestamp = DateFormatter.sharedDateFormatter.string(from: now)
+    return timestamp + "_" + filename
+}
