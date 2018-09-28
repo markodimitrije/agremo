@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import CoreLocation
 
 class AgremoWkWebView: WKWebView {
     
@@ -68,4 +69,67 @@ class AgremoWkWebView: WKWebView {
     }
 }
 
+protocol CoreLocationUpdating {
+    mutating func locationUpdated(location: CLLocation)
+}
 
+struct AgremoCLUpdater: CoreLocationUpdating {
+    
+    var previousLocation: CLLocation?
+    var webView: WKWebView
+    
+    init(webView: WKWebView) {
+        self.webView = webView
+    }
+    
+    // MARK:- API
+    
+    mutating func locationUpdated(location: CLLocation) {
+        
+        if shouldUpdateJavaScriptAboutCLChange(actualLocation: location) {
+            
+            self.updateJavaScriptFunc(in: webView, with: location)
+            
+            print("update JS, dist change > 1m")
+            
+            self.previousLocation = location
+            
+        } else {
+            
+            print("dont update JS, insufficiant dist change")
+            
+        }
+        
+    }
+    
+    // MARK:- Privates
+    
+    private func shouldUpdateJavaScriptAboutCLChange(actualLocation: CLLocation) -> Bool {
+        
+        guard let previousLocation = previousLocation else {return true}
+        
+        let distance = abs(previousLocation.distance(from: actualLocation))
+        
+        print("distance between 2 locations = \(distance)")
+        
+        return distance >= Constants.Location.sugnificantDistToUpdateJSLocationFunc // 1 meter
+    }
+    
+    private func updateJavaScriptFunc(in webView: WKWebView, with location: CLLocation) {
+        
+        let lat = location.coordinate.latitude
+        let long = location.coordinate.longitude
+        
+        let _ = webView.evaluateJavaScript("loadMyCurrentLocation(\(lat), \(long));") { (data, err) in
+            
+            if err == nil {
+                print("executeLoadMyCurrentLocationJavaScript.all good...")
+            } else {
+                print("loadMyCurrentLocation.err = \(err!.localizedDescription)")
+            }
+        }
+        
+        
+    }
+    
+}

@@ -12,23 +12,6 @@ let token = "9a2b4b9f4e82c1d2043909ff2f08f56f8ac2cc11"
 
 class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadingDelegate {
     
-    @IBAction func tempCallScriptBtnTapped(_ sender: UIButton) {
-//        executeGetTokenJavaScript()\
-        executeLoadMyCurrentLocationJavaScript()
-    }
-
-    @IBAction func tempCallDownloadZipBtnTapped(_ sender: UIButton) {
-
-        let addr = "https://daliznas.com/ios_test/Castle_Hill_Flowering.zip"
-//        let addr = "https://drive.google.com/drive/folders/1aJ1Fhr1M9V8EcgvCVBQ9stMLJYpw6NIK?ogsrc=32"
-        let hardcodedUrl = URL.init(string: addr)!
-        
-        userWantsToDownloadZip(atUrl: hardcodedUrl, filename: "Castle_Hill_Flowering.zip")
-    
-        //userWantsToDownloadZip(atUrl: hardcodedUrl, filename: "Castle_Hill_Flowering")
-
-    }
-    
     @IBOutlet weak var myWebView: AgremoWkWebView! // WKWebView
     
     var locationManager: CLLocationManager!
@@ -134,9 +117,13 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
     }
     
+    /*
+    
     private func showLogoView() {
         
-        guard let windowView = UIApplication.view else {return}
+        guard let windowView = UIApplication.viewIfUsingNavVC else {
+            return
+        }
         
         if let _ = windowView.subviews.first(where: {$0.tag==12}) {
             return // vec ga prikazujes, izadji...
@@ -148,7 +135,25 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
     }
     
     fileprivate func removeLogoView() {
-        let logoView = UIApplication.view?.subviews.first(where: {$0.tag==12})
+        let logoView = UIApplication.viewIfUsingNavVC?.subviews.first(where: {$0.tag==12})
+        logoView?.removeFromSuperview()
+    }
+    
+    */
+    
+    private func showLogoView() {
+        
+        if let _ = self.view.subviews.first(where: {$0.tag==12}) {
+            return // vec ga prikazujes, izadji...
+        }
+        
+        let agremoLogoView = LogoView.init(frame: self.view.bounds); agremoLogoView.tag = 12
+        
+        self.view.addSubview(agremoLogoView)
+    }
+    
+    fileprivate func removeLogoView() {
+        let logoView = self.view.subviews.first(where: {$0.tag==12})
         logoView?.removeFromSuperview()
     }
     
@@ -185,21 +190,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
     }
     
-    // ukloni je kada uklonis dummy btn sa UI-a, samo je on poziva...
-    
-    private func executeLoadMyCurrentLocationJavaScript(userLocation: CLLocation) {
-        let lat = userLocation.coordinate.latitude
-        let long = userLocation.coordinate.longitude
-        let _ = myWebView.evaluateJavaScript("loadMyCurrentLocation(\(lat), \(long));") { (data, err) in // trebas params!!
-            if err == nil {
-                print("executeLoadMyCurrentLocationJavaScript.all good...")
-            } else {
-                print("loadMyCurrentLocation.err = \(err!.localizedDescription)")
-            }
-        }
-        // koristi ovaj  evaluateJavaScript(_:completionHandler:)
-    }
-    
     private func executeGetTokenJavaScript() {
         
         let _ = myWebView.evaluateJavaScript("getToken()") { (data, err) in // trebas params!!
@@ -210,21 +200,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
             }
         }
         // koristi ovaj  evaluateJavaScript(_:completionHandler:)
-    }
-    
-    private func executeLoadMyCurrentLocationJavaScript() {
-        let lat: Float = 7.93
-        let lon: Float = 6.25
-
-        let _ = myWebView.evaluateJavaScript("loadMyCurrentLocation(\(lat), \(lon));") { (data, err) in
-
-            if err == nil {
-                print("executeLoadMyCurrentLocationJavaScript.all good...")
-            } else {
-                print("loadMyCurrentLocation.err = \(err!.localizedDescription)")
-            }
-        }
-        
     }
     
 }
@@ -281,100 +256,4 @@ extension AgremoWkWebViewLoadingDelegate where Self: MainVC {
         }
     }
     
-}
-
-protocol CoreLocationUpdating {
-    mutating func locationUpdated(location: CLLocation)
-}
-
-struct AgremoCLUpdater: CoreLocationUpdating {
-    
-    var previousLocation: CLLocation?
-    var webView: WKWebView
-    
-    init(webView: WKWebView) {
-        self.webView = webView
-    }
-    
-    // MARK:- API
-    
-    mutating func locationUpdated(location: CLLocation) {
-     
-        if shouldUpdateJavaScriptAboutCLChange(actualLocation: location) {
-            
-            self.updateJavaScriptFunc(in: webView, with: location)
-            
-            print("update JS, dist change > 1m")
-            
-            self.previousLocation = location
-            
-        } else {
-            
-            print("dont update JS, insufficiant dist change")
-            
-        }
-        
-    }
-    
-    // MARK:- Privates
-    
-    private func shouldUpdateJavaScriptAboutCLChange(actualLocation: CLLocation) -> Bool {
-        
-        guard let previousLocation = previousLocation else {return true}
-        
-        let distance = abs(previousLocation.distance(from: actualLocation))
-        
-        print("distance between 2 locations = \(distance)")
-        
-        return distance >= Constants.Location.sugnificantDistToUpdateJSLocationFunc // 1 meter
-    }
-    
-    private func updateJavaScriptFunc(in webView: WKWebView, with location: CLLocation) {
-        
-        let lat = location.coordinate.latitude
-        let long = location.coordinate.longitude
-        
-        let _ = webView.evaluateJavaScript("loadMyCurrentLocation(\(lat), \(long));") { (data, err) in
-            
-            if err == nil {
-                print("executeLoadMyCurrentLocationJavaScript.all good...")
-            } else {
-                print("loadMyCurrentLocation.err = \(err!.localizedDescription)")
-            }
-        }
-        
-        
-    }
-    
-}
-
-
-
-func isAgremoResourceDownloadUrl(response: URLResponse) -> (data: Data, filename: String)? {
-    
-    //print("isAgremoResourceDownloadUrl.response = \(response)")
-    
-    guard let resp = response as? HTTPURLResponse else { return nil }
-    
-    // ako imam "Content-Disposition" polje
-    // i u njemu odrednicu "filename=" .... zasto nije json.....
-    // i ako imam data na tom url koje su sadrzaj file-a
-    
-    guard let value = resp.allHeaderFields["Content-Disposition"] as? String,
-        let filename = value.components(separatedBy: "filename=").last,
-        let url = response.url,
-        let data = try? Data.init(contentsOf: url) else {return nil}
-    
-    // onda vrati korisne stvari: data to save + filename, neko drugi zna path...
-    
-    let name = addTimestamp(atFilename: filename)
-    
-    return (data, name)
-    
-}
-
-func addTimestamp(atFilename filename: String) -> String {
-    let now = Date.init(timeIntervalSinceNow: 0)
-    let timestamp = DateFormatter.sharedDateFormatter.string(from: now)
-    return timestamp + "_" + filename
 }

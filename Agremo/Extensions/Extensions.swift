@@ -12,7 +12,7 @@ import RMessage
 // MARK:- marko writes, other's classes
 
 extension UIApplication {
-    static var view: UIView? {
+    static var viewIfUsingNavVC: UIView? {
         return UIApplication.shared.keyWindow?.rootViewController?.view
     }
 }
