@@ -57,7 +57,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
     
     override func viewDidLoad() { super.viewDidLoad()
         
-        configureDummyBackBtnAndAddItToViewHierarchy()
+        //configureDummyBackBtnAndAddItToViewHierarchy() remove - delete
         
         requestCoreLocationAuth()
         
@@ -103,17 +103,17 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
     }
     
-    private func configureDummyBackBtnAndAddItToViewHierarchy() {
-        
-        let height = ApplicationFrameCalculator.getTotalHeightForNavBarAndStatusBar(vc: self)
-        
-        let btn = UIButton.init(frame: CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: height, height: height)))
-        btn.backgroundColor = .clear
-        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(btn)
-        
-        btn.addTarget(self, action: #selector(MainVC.dummyBackBtnIsTapped), for: .touchUpInside)
-        
-    }
+//    private func configureDummyBackBtnAndAddItToViewHierarchy() {
+//
+//        let height = ApplicationFrameCalculator.getTotalHeightForNavBarAndStatusBar(vc: self)
+//
+//        let btn = UIButton.init(frame: CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: height, height: height)))
+//        btn.backgroundColor = .clear
+//        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(btn)
+//
+//        btn.addTarget(self, action: #selector(MainVC.dummyBackBtnIsTapped), for: .touchUpInside)
+//
+//    }
     
     private func requestCoreLocationAuth() {
         
