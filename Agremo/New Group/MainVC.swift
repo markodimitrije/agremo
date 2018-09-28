@@ -224,80 +224,23 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
 
 extension MainVC: WKUIDelegate, WKNavigationDelegate {
     
-    
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print("didFail navigation with error...")
-    }
-    
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        print("didFailProvisionalNavigation...")
-    }
-    func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
-        print("webViewWebContentProcessDidTerminate...")
-    }
-    
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        print("webView.shouldStartLoadWith is called")
-        return true
-    }
-    
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        print("webView.didCommit is called")
-    }
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("webView.didFinish is called")
-    }
-    
-    func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
-        print("navigation = \(navigation)")
-        print("webView.didReceiveServerRedirectForProvisionalNavigation is called")
-    }
-    func webView(_ webView: WKWebView, shouldPreviewElement elementInfo: WKPreviewElementInfo) -> Bool {
-        print("webView.v is called")
-        return true
-    }
-    
-    
-    
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("didStart provisional...")
-    }
-    
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) { print("decidePolicyFor action...")
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        print("decidePolicyFor response...")
+        //decisionHandler(WKNavigationResponsePolicy.allow)
         
-        // da li se zavrsavas na .zip ?
+        print("URL IS : :: : :: \(navigationResponse.response.url!)")
         
-        guard let url = navigationAction.request.url else {
-            decisionHandler(.cancel)
+        guard let downloadLinkData = isAgremoResourceDownloadUrl(response: navigationResponse.response) else {
+            decisionHandler(.allow) // decisionHandler(WKNavigationResponsePolicy.allow)
             return
         }
         
-        print("decidePolicyFor.navigationAction.address = \(url.absoluteString)")
+        // jeste download link,
         
-        let policy: WKNavigationActionPolicy = (url.pathExtension != "zip") ? .allow : .cancel
+        print("save data as file to filename = \(downloadLinkData.1)")
+        decisionHandler(.cancel)
         
-        if policy == .cancel {
-            
-            userWantsToDownloadZip(atUrl: url, filename: url.lastPathComponent)
-            
-        }
-        
-        
-        
-        decisionHandler(policy)
     }
-    
-        func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-            print("decidePolicyFor response...")
-            decisionHandler(WKNavigationResponsePolicy.allow)
-        }
-    
-    
-     func webView(_ webView: WKWebView, previewingViewControllerForElement elementInfo: WKPreviewElementInfo, defaultActions previewActions: [WKPreviewActionItem]) -> UIViewController? {
-     print("pick action")
-     return nil
-     }
     
 }
 
@@ -392,6 +335,48 @@ struct AgremoCLUpdater: CoreLocationUpdating {
         
         
     }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+//func isAgremoResourceDownloadUrl(response: URLResponse) -> Bool {
+//
+//    guard let resp = response as? HTTPURLResponse else { return false }
+//
+//    return (resp.allHeaderFields["filename"] as? String) != nil
+//
+//}
+
+func isAgremoResourceDownloadUrl(response: URLResponse) -> (Data, String)? {
+    
+    guard let resp = response as? HTTPURLResponse else {
+        return nil
+    }
+    
+    if resp.allHeaderFields.keys.contains(AnyHashable.init("filename")) {
+        print("IMAM KEY za filename!!!")
+    }
+    
+    if resp.allHeaderFields.keys.contains(AnyHashable.init("Vary")) {
+        print("IMAM KEY za Vary!!!")
+    }
+    
+    print("resp.allHeaderFields.keys = \(resp.allHeaderFields.keys)")
+    
+    guard let filename = resp.allHeaderFields["filename"] as? String,
+        let url = response.url,
+        let data = try? Data.init(contentsOf: url) else {return nil}
+    
+    return (data, filename)
     
 }
 
