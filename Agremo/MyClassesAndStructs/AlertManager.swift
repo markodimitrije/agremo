@@ -15,7 +15,6 @@ struct AlertManager {
     func getAlertFor(alertType: AlertType, handler: ((UIAlertAction) -> () )?) -> UIAlertController? {
         
         switch alertType {
-            case .quitAgremoApp: return getQuitAppAlertVC(handler: handler)
             case .appLoadingToSlow: return appLoadingToSlowAlertVC(handler: handler)
         default: return nil
         }
@@ -32,24 +31,6 @@ struct AlertManager {
     }
     
     // Privates
-    
-    private func getQuitAppAlertVC(handler: ((UIAlertAction) -> () )?) -> UIAlertController? {
-        let title = AlertInfo.QuitAgremoApp.title
-        let msg = AlertInfo.QuitAgremoApp.message
-        let noTitle = AlertInfo.QuitAgremoApp.no
-        let yesTitle = AlertInfo.QuitAgremoApp.yes
-        
-        let alertVC = UIAlertController.init(title: title, message: msg, preferredStyle: .alert)
-        
-        let noAction = UIAlertAction.init(title: noTitle, style: .default, handler: nil)
-        let yesAction = UIAlertAction.init(title: yesTitle, style: .default, handler: handler)
-        
-        alertVC.addAction(yesAction)
-        alertVC.addAction(noAction)
-        
-        return alertVC
-        
-    }
     
     private func getPingAgremoAlertVC(message: String?) -> UIAlertController {
         

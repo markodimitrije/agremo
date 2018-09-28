@@ -9,11 +9,6 @@
 Strings.Alert.ok = "OK";
 Strings.Settings = "SETTINGS";
 
-Strings.QuitApp.Alert.title = "Agremo";
-Strings.QuitApp.Alert.message = "Are you sure you want to quit Agremo?";
-Strings.QuitApp.Alert.yes = "YES";
-Strings.QuitApp.Alert.no = "NO";
-
 Strings.PingAgremo.Alert.title = "No internet";
 Strings.PingAgremo.Alert.message = "No internet connection was found. This app needs an internet connection to function.";
 
