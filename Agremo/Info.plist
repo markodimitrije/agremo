@@ -37,6 +37,10 @@
 	<string>Agremo would like to use device's location in order to use the most accurate GPS data. Location is accessed only when you actively use Agremo app</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Agremo would like to use device's location in order to use the most accurate GPS data. Location is accessed only when you actively use Agremo app</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+	</array>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

@@ -335,6 +335,8 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
             
         }
         
+        
+        
         decisionHandler(policy)
     }
     
