@@ -120,7 +120,8 @@ struct AgremoCLUpdater: CoreLocationUpdating {
         let lat = location.coordinate.latitude
         let long = location.coordinate.longitude
         
-        let _ = webView.evaluateJavaScript("loadMyCurrentLocation(\(lat), \(long));") { (data, err) in
+        // nemanja spajic: AgrisensObject. loadMyCurrentLocation --->> LONG-LAT
+        let _ = webView.evaluateJavaScript("AgrisensObject.loadMyCurrentLocation(\(long), \(lat));") { (data, err) in
             
             if err == nil {
                 print("executeLoadMyCurrentLocationJavaScript.all good...")

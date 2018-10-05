@@ -229,7 +229,6 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
     
 }
 
-
 // MARK: Protocol + implementacija od strane MainVC
 
 protocol AgremoWkWebViewLoadingDelegate: class {
