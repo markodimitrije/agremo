@@ -20,8 +20,18 @@ class AgremoWkWebView: WKWebView {
     //        return true
     //    }
     
+    // ovo je override za init sa SB-a
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        atachProgressObserverAndTimer()
+    }
+    
+    override init(frame: CGRect, configuration: WKWebViewConfiguration) {
+        super.init(frame: frame, configuration: configuration)
+        atachProgressObserverAndTimer()
+    }
+    
+    private func atachProgressObserverAndTimer() {
         self.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil) // prati dokle je stigao sa loading...
         timer = Timer.scheduledTimer(timeInterval: 1.0,
                                      target: self,

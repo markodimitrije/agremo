@@ -12,7 +12,9 @@ let token = "9a2b4b9f4e82c1d2043909ff2f08f56f8ac2cc11"
 
 class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadingDelegate {
     
-    @IBOutlet weak var myWebView: AgremoWkWebView! // WKWebView
+    //@IBOutlet weak var holderForWebView: UIView!
+    
+    var myWebView: AgremoWkWebView! // WKWebView
     
     var locationManager: CLLocationManager!
     
@@ -32,13 +34,31 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
         checkConnectivityWithAgremoBackend()
         
-        myWebView.uiDelegate = self; myWebView.navigationDelegate = self; myWebView.loadingDelegate = self
+//        myWebView.uiDelegate = self; myWebView.navigationDelegate = self; myWebView.loadingDelegate = self
         
         showLogoView()
         
-        myWebView.load(URLRequest.agremo)
+        configureWebView()
+        
+//        myWebView.load(URLRequest.agremo)
 //        myWebView.load(URLRequest.agremoTest)
         
+    }
+    
+    private func configureWebView() {
+     
+        let webConfiguration = WKWebViewConfiguration()
+        
+        myWebView = AgremoWkWebView.init(frame: self.view.bounds, configuration: webConfiguration)
+        
+        self.view.addSubview(myWebView)
+        
+        myWebView.uiDelegate = self
+        myWebView.navigationDelegate = self
+        myWebView.loadingDelegate = self
+        
+        myWebView.load(URLRequest.agremo)
+//        myWebView.load(URLRequest.agremoTest)
     }
     
     override func viewWillAppear(_ animated: Bool) {
