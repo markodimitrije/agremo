@@ -34,5 +34,6 @@ func isAgremoResourceDownloadUrl(response: URLResponse) -> (data: Data, filename
 func addTimestamp(atFilename filename: String) -> String {
     let now = Date.init(timeIntervalSinceNow: 0)
     let timestamp = DateFormatter.sharedDateFormatter.string(from: now)
+    
     return timestamp + "_" + filename
 }
