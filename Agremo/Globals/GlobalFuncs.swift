@@ -8,31 +8,42 @@
 
 import Foundation
 
-func isAgremoResourceDownloadUrl(response: URLResponse) -> (data: Data, filename: String)? {
+func isAgremoResourceDownloadUrl(response: URLResponse) -> Bool? {
     
-    //print("isAgremoResourceDownloadUrl.response = \(response)")
-    
-    guard let resp = response as? HTTPURLResponse else { return nil }
-    
-    // ako imam "Content-Disposition" polje
-    // i u njemu odrednicu "filename=" .... zasto nije json.....
-    // i ako imam data na tom url koje su sadrzaj file-a
-    
-    guard let value = resp.allHeaderFields["Content-Disposition"] as? String,
-        let filename = value.components(separatedBy: "filename=").last,
-        let url = response.url,
-        let data = try? Data.init(contentsOf: url) else {return nil}
-    
-    // onda vrati korisne stvari: data to save + filename, neko drugi zna path...
-    
-    let name = addTimestamp(atFilename: filename)
-    
-    return (data, name)
+    return response.url?.absoluteString.contains("results")
     
 }
 
-func addTimestamp(atFilename filename: String) -> String {
+func getDownloadFileInfo(response: URLResponse) -> (fileUrl: String, filename: String)? {
+    
+    guard let response = response as? HTTPURLResponse else {
+        //print("nisam HTTPURLResponse!")
+        return nil
+    }
+    
+    guard let url = response.url?.absoluteString, url.contains("results") else {
+        //print("nemam results!")
+        return nil
+    }
+    
+    guard let contentDisposition = response.allHeaderFields["Content-Disposition"] as? String else {
+        //print("nemam contentDisposition string")
+        return nil
+    }
+    
+    guard let filename = contentDisposition.components(separatedBy: "filename=").last else {
+        //print("nemam filename!")
+        return nil
+    }
+    
+    let final = timestamped(filename: filename)
+    
+    return (url, final)
+}
+
+func timestamped(filename: String) -> String {
     let now = Date.init(timeIntervalSinceNow: 0)
     let timestamp = DateFormatter.sharedDateFormatter.string(from: now)
+    
     return timestamp + "_" + filename
 }

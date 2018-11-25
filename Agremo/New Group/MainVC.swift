@@ -165,11 +165,19 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         if CLLocationManager.authorizationStatus() == .denied {
             // proveri da li je slucajno neki alert na screen, ako da, nemoj da se prikazujes !!!
             if self.presentedViewController == nil { // nije alert ili neko ko zahteva user attention
-                RMessage.Agremo.showCoreLocationWarningMessage(vc: self)
+                RMessage.Agremo.showCoreLocationWarningMessage()
             }
         } else {
             locationManager.startUpdatingLocation()
         }
+    }
+    
+    fileprivate func userWantsToDownloadFile(atUrl addr: String, filename: String) {
+        
+        myFilename = filename
+        
+        ServerRequest.downloadAgremoArchiveInBackground(addr: addr, delegate: self)
+        
     }
     
     // MARK:- poziva sistem jer si delegate za CoreLocation
@@ -208,21 +216,29 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
 extension MainVC: WKUIDelegate, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-//        print("decidePolicyFor response...")
+        
+        //print("decidePolicyFor response...")
         //decisionHandler(WKNavigationResponsePolicy.allow)
         
-//        print("URL IS : :: : :: \(navigationResponse.response.url!)")
+        print("URL IS : :: : :: \(navigationResponse.response.url!)")
         
-        guard let downloadLinkData = isAgremoResourceDownloadUrl(response: navigationResponse.response) else {
+        guard let downloadLinkData = isAgremoResourceDownloadUrl(response: navigationResponse.response), downloadLinkData else {
+            decisionHandler(.allow) // decisionHandler(WKNavigationResponsePolicy.allow)
+            return
+        }
+        
+        guard let downloadInfo = getDownloadFileInfo(response: navigationResponse.response) else {
             decisionHandler(.allow)
             return
         }
         
-        // ako si ovde, onda jeste download link:
+        // treba da download-ujes file ....
         
-        appReceivedFileContent(data: downloadLinkData.data, withFilename: downloadLinkData.filename)
+        RMessage.Agremo.showFileDownloadMessage()
         
-//        print("save data as file to filename = \(downloadLinkData.1)")
+        userWantsToDownloadFile(atUrl: downloadInfo.fileUrl,
+                                filename: downloadInfo.filename)
+        
         decisionHandler(.cancel)
         
     }
@@ -255,4 +271,41 @@ extension AgremoWkWebViewLoadingDelegate where Self: MainVC {
         }
     }
     
+}
+
+
+// bg download
+extension MainVC: URLSessionDelegate, URLSessionDownloadDelegate {
+    
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        DispatchQueue.main.async {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+            guard let handler = appDelegate.backgroundCompletionHandler else { return }
+            handler() // izvrsi svoj handler, njega si save ranije, da izvrsi save downloaded data na disk
+        }
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        guard let httpResponse = downloadTask.response as? HTTPURLResponse,
+            (200...299).contains(httpResponse.statusCode) else { print ("server error")
+                return
+        }
+        do {
+            let documentsURL = try
+                FileManager.default.url(for: .documentDirectory,
+                                        in: .userDomainMask,
+                                        appropriateFor: nil,
+                                        create: false)
+            
+            let filename = myFilename ?? timestamped(filename: "Report")
+            let savedURL = documentsURL.appendingPathComponent(filename)
+            try FileManager.default.moveItem(at: location, to: savedURL)
+            
+            print("da li je item saved i sa kojim imenom ?? -> \(filename)")
+            
+        } catch {
+            print ("file error: \(error)")
+        }
+        
+    }
 }

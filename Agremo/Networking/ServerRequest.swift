@@ -49,10 +49,27 @@ struct ServerRequest {
         task.resume()
     }
  
+    static func downloadAgremoArchiveInBackground(addr: String, delegate: URLSessionDelegate?) {
+        
+        guard let request = URLRequest.getRequest(addr: addr,
+                                                  timeout: TimeOut.downloadArchive) else {return}
+        
+        let configuration = URLSessionConfiguration.background(withIdentifier: "agremoDownloadInBackgroundSession")
+        configuration.isDiscretionary = true
+        configuration.sessionSendsLaunchEvents = true
+        let bgSession = URLSession.init(configuration: configuration, delegate: delegate, delegateQueue: nil)
+        
+        let task = bgSession.downloadTask(with: request)
+        
+        task.resume()
+        
+    }
+    
+    /*
     static func downloadAgremoZip(addr: String, completionHandler: @escaping (_ data: Data?) -> Void) {
         
         guard let request = URLRequest.getRequest(addr: addr,
-                                                  timeout: TimeOut.downloadZipArchive) else {return}
+                                                  timeout: TimeOut.downloadArchive) else {return}
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, err) in
             
@@ -70,13 +87,14 @@ struct ServerRequest {
         task.resume()
         
     }
+    */
     
     // test func, download image....
-    
+    /*
     static func downloadImage(addr: String, completionHandler: @escaping (_ data: Data?) -> Void) {
         
         guard let request = URLRequest.getRequest(addr: addr,
-                                                  timeout: TimeOut.downloadZipArchive) else {return}
+                                                  timeout: TimeOut.downloadArchive) else {return}
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, err) in
             
@@ -94,6 +112,7 @@ struct ServerRequest {
         task.resume()
         
     }
+    */
     
 }
 

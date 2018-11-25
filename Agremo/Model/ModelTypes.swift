@@ -35,6 +35,12 @@ struct AlertInfo {
 struct RMessageText {
     static let coreLocationUnavailableTitle = NSLocalizedString("Strings.RMessageText.CoreLocationUnavailable.title", comment: "")
     static let coreLocationUnavailableMsg = NSLocalizedString("Strings.RMessageText.CoreLocationUnavailable.msg", comment: "")
+    static let fileDownloadTitle = NSLocalizedString("Strings.RMessageText.FileDownload.title", comment: "")
+    static let fileDownloadMsg = NSLocalizedString("Strings.RMessageText.FileDownload.msg", comment: "")
+    
+    static let fileDownloadMsgStatusOk = NSLocalizedString("Strings.RMessageText.FileDownloadStatus.OK", comment: "")
+    static let fileDownloadMsgStatusFailed = NSLocalizedString("Strings.RMessageText.FileDownloadStatus.Failed", comment: "")
+    
 }
 
 extension URLRequest {
@@ -65,7 +71,7 @@ extension URLRequest {
 enum TimeOut {
     //static let agremoMobile = TimeInterval.init(0.05)
     static let agremoMobileLoadContent = TimeInterval.init(10.0) // bilo je 7.0
-    static let downloadZipArchive = TimeInterval.init(30.0) // bilo je 10.0
+    static let downloadArchive = TimeInterval.init(60.0) // bilo je 10.0
 }
 
 struct Constants {

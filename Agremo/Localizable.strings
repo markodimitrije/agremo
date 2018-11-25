@@ -21,4 +21,8 @@ Strings.CantOpenUrlScheme.Alert.message = "Your device's system iOS version is l
 Strings.RMessageText.CoreLocationUnavailable.title = "GPS no available";
 Strings.RMessageText.CoreLocationUnavailable.msg = "Turn On Location Services to Allow Agremo App to Determine Your Location.";
 
+Strings.RMessageText.FileDownload.title = "File download";
+Strings.RMessageText.FileDownload.msg = "1 item will be downloaded. See notification for details";
 
+Strings.RMessageText.FileDownloadStatus.OK = "Download successfull! File's location: Files App/On My Iphone/Agremo";
+Strings.RMessageText.FileDownloadStatus.Failed = "Download failed; Try again later";

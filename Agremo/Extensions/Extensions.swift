@@ -19,24 +19,29 @@ extension UIApplication {
 
 extension RMessage {
     struct Agremo {
-        static func showCoreLocationWarningMessage(vc: UIViewController?) {
+        static func showCoreLocationWarningMessage() {
             RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
                 RMessage.dismissActiveNotification()
-                if let url = URL(string: UIApplicationOpenSettingsURLString) { // ovo je ok ali root
-                    if UIApplication.shared.canOpenURL(url) {
-                        if #available(iOS 10.0, *) {
-                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                        } else {
-                            // Device's iOS version does not support this functionality; please upgrade your system
-                            
-                            let alertVC = AlertManager().getAlertFor(alertType: AlertType.cantOpenUrlScheme, message: nil)
-                            
-                            vc?.present(alertVC!, animated: true)
-                            
-                        }
+                if let url = URL(string: UIApplicationOpenSettingsURLString), // ovo je ok ali root
+                    UIApplication.shared.canOpenURL(url) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    } else {
+                        UIApplication.shared.openURL(url)
                     }
                 }
-                
+            }, at: RMessagePosition.navBarOverlay,
+               canBeDismissedByUser: true)
+        }
+        static func showFileDownloadMessage() {
+            RMessage.showNotification(withTitle: RMessageText.fileDownloadTitle, subtitle: RMessageText.fileDownloadMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.normal, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "OK", buttonCallback: {
+                RMessage.dismissActiveNotification()
+            }, at: RMessagePosition.navBarOverlay,
+               canBeDismissedByUser: true)
+        }
+        static func showFileDownloadStatusMessage(success: String) {
+            RMessage.showNotification(withTitle: RMessageText.fileDownloadTitle, subtitle: success, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "OK", buttonCallback: {
+                RMessage.dismissActiveNotification()
             }, at: RMessagePosition.navBarOverlay,
                canBeDismissedByUser: true)
         }
