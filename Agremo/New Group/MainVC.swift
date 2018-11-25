@@ -12,7 +12,7 @@ let token = "9a2b4b9f4e82c1d2043909ff2f08f56f8ac2cc11"
 
 class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadingDelegate {
     
-    @IBOutlet weak var myWebView: AgremoWkWebView! // WKWebView
+    var myWebView: AgremoWkWebView! // WKWebView
     
     var locationManager: CLLocationManager!
     
@@ -28,16 +28,32 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
         //configureDummyBackBtnAndAddItToViewHierarchy() remove - delete
         
+        configureWebView()
+        
         requestCoreLocationAuth()
         
         checkConnectivityWithAgremoBackend()
         
-        myWebView.uiDelegate = self; myWebView.navigationDelegate = self; myWebView.loadingDelegate = self
-        
         showLogoView()
         
-        myWebView.load(URLRequest.agremo)
+        //myWebView.load(URLRequest.agremo)
 //        myWebView.load(URLRequest.agremoTest)
+        
+    }
+    
+    private func configureWebView() {
+    
+        let webConfiguration = WKWebViewConfiguration()
+        
+        myWebView = AgremoWkWebView.init(frame: self.view.bounds, configuration: webConfiguration)
+        
+        self.view.addSubview(myWebView)
+        
+        myWebView.uiDelegate = self; myWebView.navigationDelegate = self; myWebView.loadingDelegate = self
+        
+        myWebView.load(URLRequest.agremo)
+        
+        //        myWebView.load(URLRequest.agremoTest)
         
     }
     
@@ -59,7 +75,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
             // zove je moj observer, nesto sam menjao ... mozes da je remove odande...
     }
     
-    
+    /*
     fileprivate func userWantsToDownloadZip(atUrl url: URL, filename: String) {
         
         let addr = url.absoluteString
@@ -73,12 +89,17 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
                                    filenameWithExtension: filename)
         }
     }
+    */
     
     fileprivate func appReceivedFileContent(data: Data, withFilename filename: String) {
         
-        FileManager.saveToDisk(data: data,
-                               inDirectory: FileManager.applicationSupportDir,
-                               filenameWithExtension: filename)
+        DispatchQueue.main.async {
+            
+            FileManager.saveToDisk(data: data,
+                                   inDirectory: FileManager.applicationSupportDir,
+                                   filenameWithExtension: filename)
+            
+        }
         
     }
     
@@ -117,30 +138,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
     }
     
-    /*
-    
-    private func showLogoView() {
-        
-        guard let windowView = UIApplication.viewIfUsingNavVC else {
-            return
-        }
-        
-        if let _ = windowView.subviews.first(where: {$0.tag==12}) {
-            return // vec ga prikazujes, izadji...
-        }
-        
-        let agremoLogoView = LogoView.init(frame: self.view.bounds); agremoLogoView.tag = 12
-        
-        windowView.addSubview(agremoLogoView)
-    }
-    
-    fileprivate func removeLogoView() {
-        let logoView = UIApplication.viewIfUsingNavVC?.subviews.first(where: {$0.tag==12})
-        logoView?.removeFromSuperview()
-    }
-    
-    */
-    
     private func showLogoView() {
         
         if let _ = self.view.subviews.first(where: {$0.tag==12}) {
@@ -168,7 +165,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         if CLLocationManager.authorizationStatus() == .denied {
             // proveri da li je slucajno neki alert na screen, ako da, nemoj da se prikazujes !!!
             if self.presentedViewController == nil { // nije alert ili neko ko zahteva user attention
-                RMessage.Agremo.showCoreLocationWarningMessage()
+                RMessage.Agremo.showCoreLocationWarningMessage(vc: self)
             }
         } else {
             locationManager.startUpdatingLocation()
@@ -181,8 +178,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
         let userLocation:CLLocation = locations[0] as CLLocation
         
-        print("user latitude = \(userLocation.coordinate.latitude)")
-        print("user longitude = \(userLocation.coordinate.longitude)")
+//        print("user latitude = \(userLocation.coordinate.latitude)")
+//        print("user longitude = \(userLocation.coordinate.longitude)")
         
         // za sada zovem odavde ali u stvari treba dodati javaScriptLocation objektu koji ce da embed poslednju lokaciju, a onda sledecu uporedi sa prethodnom, pa ako je diff >=1m, onda stvarno zovi JS func
         
@@ -190,6 +187,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
     }
     
+    /*
     private func executeGetTokenJavaScript() {
         
         let _ = myWebView.evaluateJavaScript("getToken()") { (data, err) in // trebas params!!
@@ -201,6 +199,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         }
         // koristi ovaj  evaluateJavaScript(_:completionHandler:)
     }
+    */
+    
     
 }
 
@@ -208,13 +208,13 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
 extension MainVC: WKUIDelegate, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        print("decidePolicyFor response...")
+//        print("decidePolicyFor response...")
         //decisionHandler(WKNavigationResponsePolicy.allow)
         
-        print("URL IS : :: : :: \(navigationResponse.response.url!)")
+//        print("URL IS : :: : :: \(navigationResponse.response.url!)")
         
         guard let downloadLinkData = isAgremoResourceDownloadUrl(response: navigationResponse.response) else {
-            decisionHandler(.allow) // decisionHandler(WKNavigationResponsePolicy.allow)
+            decisionHandler(.allow)
             return
         }
         
@@ -222,7 +222,7 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
         
         appReceivedFileContent(data: downloadLinkData.data, withFilename: downloadLinkData.filename)
         
-        print("save data as file to filename = \(downloadLinkData.1)")
+//        print("save data as file to filename = \(downloadLinkData.1)")
         decisionHandler(.cancel)
         
     }

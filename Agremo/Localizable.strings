@@ -15,6 +15,9 @@ Strings.PingAgremo.Alert.message = "No internet connection was found. This app n
 Strings.AppLoadingToSlow.Alert.title = "Poor connection";
 Strings.AppLoadingToSlow.Alert.message = "App content is loading to slow. You may experiance serious delays if using app at the moment.";
 
+Strings.CantOpenUrlScheme.Alert.title = "Device system version";
+Strings.CantOpenUrlScheme.Alert.message = "Your device's system iOS version is lower than 10.0. To use this functionality, please upgrade.";
+
 Strings.RMessageText.CoreLocationUnavailable.title = "GPS no available";
 Strings.RMessageText.CoreLocationUnavailable.msg = "Turn On Location Services to Allow Agremo App to Determine Your Location.";
 

@@ -19,12 +19,21 @@ extension UIApplication {
 
 extension RMessage {
     struct Agremo {
-        static func showCoreLocationWarningMessage() {
+        static func showCoreLocationWarningMessage(vc: UIViewController?) {
             RMessage.showNotification(withTitle: RMessageText.coreLocationUnavailableTitle, subtitle: RMessageText.coreLocationUnavailableMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "SETTINGS", buttonCallback: {
                 RMessage.dismissActiveNotification()
                 if let url = URL(string: UIApplicationOpenSettingsURLString) { // ovo je ok ali root
                     if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        if #available(iOS 10.0, *) {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        } else {
+                            // Device's iOS version does not support this functionality; please upgrade your system
+                            
+                            let alertVC = AlertManager().getAlertFor(alertType: AlertType.cantOpenUrlScheme, message: nil)
+                            
+                            vc?.present(alertVC!, animated: true)
+                            
+                        }
                     }
                 }
                 
@@ -56,9 +65,9 @@ extension FileManager {
         
         do {
             try data.write(to: writeUrl, options: .atomicWrite)
-            print("saveToDisk.docDir: data saved !!! all good...")
+//            print("saveToDisk.docDir: data saved !!! all good...")
         } catch {
-            print("saveToDisk.docDir: catch. cant save data")
+//            print("saveToDisk.docDir: catch. cant save data")
         }
         
     }
@@ -70,9 +79,9 @@ extension FileManager {
         do {
             //try data.write(to: writeUrl, options: .atomicWrite)
             try data.write(to: writeUrl)
-            print("saveToDisk.docDir: data saved !!! all good...")
+//            print("saveToDisk.docDir: data saved !!! all good...")
         } catch {
-            print("saveToDisk.docDir: catch. cant save data")
+//            print("saveToDisk.docDir: catch. cant save data")
         }
         
     }

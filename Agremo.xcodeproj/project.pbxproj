@@ -7,23 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B1B86DA21A0335E00B3231F /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1B86D921A0335E00B3231F /* MainVC.swift */; };
+		8B1B86DC21A0337900B3231F /* AgremoWkWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1B86DB21A0337900B3231F /* AgremoWkWebView.swift */; };
+		8B1B86DE21A0339100B3231F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B1B86DD21A0339000B3231F /* Localizable.strings */; };
+		8B1B86E021A0339E00B3231F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1B86DF21A0339E00B3231F /* Extensions.swift */; };
+		8B1B86E421A0357200B3231F /* ModelTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1B86E321A0357200B3231F /* ModelTypes.swift */; };
+		8BCABCE821AAAF2B005D911A /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCABCE721AAAF2B005D911A /* AlertManager.swift */; };
 		99DAA47EF2A35815E6882680 /* Pods_Agremo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB131AA33FBF489CB32305B9 /* Pods_Agremo.framework */; };
 		AD5358C121494B9000E7FD96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5358C021494B9000E7FD96 /* AppDelegate.swift */; };
 		AD5358C621494B9000E7FD96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5358C421494B9000E7FD96 /* Main.storyboard */; };
 		AD5358CB21494B9300E7FD96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5358C921494B9300E7FD96 /* LaunchScreen.storyboard */; };
-		AD5358D3214950C200E7FD96 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5358D2214950C200E7FD96 /* MainVC.swift */; };
-		AD5358D72149585600E7FD96 /* DummyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5358D62149585600E7FD96 /* DummyVC.swift */; };
 		AD5358DA21495D4C00E7FD96 /* MyClassesAndStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5358D921495D4C00E7FD96 /* MyClassesAndStructs.swift */; };
-		AD5358DC21495F3500E7FD96 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD5358DB21495F3500E7FD96 /* Localizable.strings */; };
-		AD5358DE2149600100E7FD96 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5358DD2149600100E7FD96 /* AlertManager.swift */; };
-		AD6A52492149684F0061E23A /* ModelTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A52482149684F0061E23A /* ModelTypes.swift */; };
 		AD6A52CB214AB3E90061E23A /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A52CA214AB3E90061E23A /* Networking.swift */; };
 		AD6A52CD214AB3F70061E23A /* ServerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A52CC214AB3F70061E23A /* ServerRequest.swift */; };
 		AD6A52D1214AC2A80061E23A /* PingAgremoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A52D0214AC2A80061E23A /* PingAgremoManager.swift */; };
 		AD6A52D5214ACF6B0061E23A /* LogoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD6A52D4214ACF6B0061E23A /* LogoView.xib */; };
 		AD6A52D7214ACFA50061E23A /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A52D6214ACFA50061E23A /* LogoView.swift */; };
-		AD6A52DA214AD3020061E23A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A52D9214AD3020061E23A /* Extensions.swift */; };
-		AD7223FE2155942B001B55D6 /* AgremoWkWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7223FD2155942B001B55D6 /* AgremoWkWebView.swift */; };
 		AD7224002155950C001B55D6 /* NotificationSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7223FF2155950C001B55D6 /* NotificationSubscriber.swift */; };
 		ADB38A51215EA7C100E8F54A /* GlobalFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB38A50215EA7C100E8F54A /* GlobalFuncs.swift */; };
 		ADC960472154CD7900FEF9A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADC960462154CD7900FEF9A2 /* Assets.xcassets */; };
@@ -32,24 +31,23 @@
 /* Begin PBXFileReference section */
 		4A49FFC26C3C3C0CBDE4B214 /* Pods-Agremo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agremo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agremo/Pods-Agremo.release.xcconfig"; sourceTree = "<group>"; };
 		74674FF27588D76475692402 /* Pods-Agremo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agremo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agremo/Pods-Agremo.debug.xcconfig"; sourceTree = "<group>"; };
+		8B1B86D921A0335E00B3231F /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		8B1B86DB21A0337900B3231F /* AgremoWkWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgremoWkWebView.swift; sourceTree = "<group>"; };
+		8B1B86DD21A0339000B3231F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		8B1B86DF21A0339E00B3231F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8B1B86E321A0357200B3231F /* ModelTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTypes.swift; sourceTree = "<group>"; };
+		8BCABCE721AAAF2B005D911A /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertManager.swift; path = ../../../../../../development/backupClasses/AlertManager.swift; sourceTree = "<group>"; };
 		AD5358BD21494B9000E7FD96 /* Agremo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agremo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD5358C021494B9000E7FD96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD5358C521494B9000E7FD96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD5358CA21494B9300E7FD96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD5358CC21494B9300E7FD96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD5358D2214950C200E7FD96 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
-		AD5358D62149585600E7FD96 /* DummyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyVC.swift; sourceTree = "<group>"; };
 		AD5358D921495D4C00E7FD96 /* MyClassesAndStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyClassesAndStructs.swift; sourceTree = "<group>"; };
-		AD5358DB21495F3500E7FD96 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		AD5358DD2149600100E7FD96 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
-		AD6A52482149684F0061E23A /* ModelTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypes.swift; sourceTree = "<group>"; };
 		AD6A52CA214AB3E90061E23A /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		AD6A52CC214AB3F70061E23A /* ServerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerRequest.swift; sourceTree = "<group>"; };
 		AD6A52D0214AC2A80061E23A /* PingAgremoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingAgremoManager.swift; sourceTree = "<group>"; };
 		AD6A52D4214ACF6B0061E23A /* LogoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogoView.xib; sourceTree = "<group>"; };
 		AD6A52D6214ACFA50061E23A /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
-		AD6A52D9214AD3020061E23A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		AD7223FD2155942B001B55D6 /* AgremoWkWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgremoWkWebView.swift; sourceTree = "<group>"; };
 		AD7223FF2155950C001B55D6 /* NotificationSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSubscriber.swift; sourceTree = "<group>"; };
 		ADB38A50215EA7C100E8F54A /* GlobalFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFuncs.swift; sourceTree = "<group>"; };
 		ADC960462154CD7900FEF9A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,7 +114,7 @@
 				AD5358D821495D3600E7FD96 /* MyClassesAndStructs */,
 				AD5358D4214950CD00E7FD96 /* appDel_assets_splash */,
 				AD5358C421494B9000E7FD96 /* Main.storyboard */,
-				AD5358DB21495F3500E7FD96 /* Localizable.strings */,
+				8B1B86DD21A0339000B3231F /* Localizable.strings */,
 				AD5358CC21494B9300E7FD96 /* Info.plist */,
 			);
 			path = Agremo;
@@ -135,7 +133,7 @@
 		AD5358D821495D3600E7FD96 /* MyClassesAndStructs */ = {
 			isa = PBXGroup;
 			children = (
-				AD5358DD2149600100E7FD96 /* AlertManager.swift */,
+				8BCABCE721AAAF2B005D911A /* AlertManager.swift */,
 				AD5358D921495D4C00E7FD96 /* MyClassesAndStructs.swift */,
 				AD6A52D0214AC2A80061E23A /* PingAgremoManager.swift */,
 				AD7223FF2155950C001B55D6 /* NotificationSubscriber.swift */,
@@ -146,8 +144,7 @@
 		AD5358DF214964B200E7FD96 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
-				AD5358D62149585600E7FD96 /* DummyVC.swift */,
-				AD5358D2214950C200E7FD96 /* MainVC.swift */,
+				8B1B86D921A0335E00B3231F /* MainVC.swift */,
 			);
 			name = VCs;
 			path = "New Group";
@@ -156,7 +153,7 @@
 		AD6A5247214968400061E23A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AD6A52482149684F0061E23A /* ModelTypes.swift */,
+				8B1B86E321A0357200B3231F /* ModelTypes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -182,7 +179,7 @@
 		AD6A52D8214AD2F50061E23A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				AD6A52D9214AD3020061E23A /* Extensions.swift */,
+				8B1B86DF21A0339E00B3231F /* Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -190,7 +187,7 @@
 		AD7223FC215593FC001B55D6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AD7223FD2155942B001B55D6 /* AgremoWkWebView.swift */,
+				8B1B86DB21A0337900B3231F /* AgremoWkWebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -233,7 +230,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "Marko Dimitrijevic";
+				ORGANIZATIONNAME = Agremo;
 				TargetAttributes = {
 					AD5358BC21494B9000E7FD96 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -268,8 +265,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B1B86DE21A0339100B3231F /* Localizable.strings in Resources */,
 				AD5358CB21494B9300E7FD96 /* LaunchScreen.storyboard in Resources */,
-				AD5358DC21495F3500E7FD96 /* Localizable.strings in Resources */,
 				AD5358C621494B9000E7FD96 /* Main.storyboard in Resources */,
 				AD6A52D5214ACF6B0061E23A /* LogoView.xib in Resources */,
 				ADC960472154CD7900FEF9A2 /* Assets.xcassets in Resources */,
@@ -326,20 +323,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD5358D3214950C200E7FD96 /* MainVC.swift in Sources */,
-				AD5358D72149585600E7FD96 /* DummyVC.swift in Sources */,
-				AD7223FE2155942B001B55D6 /* AgremoWkWebView.swift in Sources */,
-				AD5358DE2149600100E7FD96 /* AlertManager.swift in Sources */,
 				AD5358C121494B9000E7FD96 /* AppDelegate.swift in Sources */,
 				AD5358DA21495D4C00E7FD96 /* MyClassesAndStructs.swift in Sources */,
 				AD7224002155950C001B55D6 /* NotificationSubscriber.swift in Sources */,
 				AD6A52D7214ACFA50061E23A /* LogoView.swift in Sources */,
-				AD6A52492149684F0061E23A /* ModelTypes.swift in Sources */,
 				AD6A52CD214AB3F70061E23A /* ServerRequest.swift in Sources */,
+				8BCABCE821AAAF2B005D911A /* AlertManager.swift in Sources */,
+				8B1B86E421A0357200B3231F /* ModelTypes.swift in Sources */,
 				AD6A52CB214AB3E90061E23A /* Networking.swift in Sources */,
-				AD6A52DA214AD3020061E23A /* Extensions.swift in Sources */,
+				8B1B86E021A0339E00B3231F /* Extensions.swift in Sources */,
 				ADB38A51215EA7C100E8F54A /* GlobalFuncs.swift in Sources */,
 				AD6A52D1214AC2A80061E23A /* PingAgremoManager.swift in Sources */,
+				8B1B86DA21A0335E00B3231F /* MainVC.swift in Sources */,
+				8B1B86DC21A0337900B3231F /* AgremoWkWebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,12 +483,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WMWUKCDWS5;
 				INFOPLIST_FILE = Agremo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.logit.agremo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agremo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -507,12 +503,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WMWUKCDWS5;
 				INFOPLIST_FILE = Agremo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.logit.agremo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agremo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

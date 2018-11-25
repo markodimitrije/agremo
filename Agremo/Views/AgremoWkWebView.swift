@@ -22,7 +22,18 @@ class AgremoWkWebView: WKWebView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil) // prati dokle je stigao sa loading...
+        atachProgressObserverAndTimer()
+    }
+    
+    override init(frame: CGRect, configuration: WKWebViewConfiguration) {
+        super.init(frame: frame, configuration: configuration)
+        atachProgressObserverAndTimer()
+    }
+    
+    private func atachProgressObserverAndTimer() {
+        
+        self.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil) //
+
         timer = Timer.scheduledTimer(timeInterval: 1.0,
                                      target: self,
                                      selector: #selector(AgremoWkWebView.count),
@@ -32,15 +43,15 @@ class AgremoWkWebView: WKWebView {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
-        if keyPath == "estimatedProgress" {
+        //if keyPath == "estimatedProgress" {
             
-            print("AgremoWkWebView.estimatedProgress = \(self.estimatedProgress)")
+            //print("AgremoWkWebView.estimatedProgress = \(self.estimatedProgress)")
             
-        }
+        //}
     }
     
     // MARK:- objc za Selector
-    @objc func count() { print("time is = \(timeElapsed)")
+    @objc func count() { //print("time is = \(timeElapsed)")
         
         timeElapsed += 1
         
@@ -54,19 +65,24 @@ class AgremoWkWebView: WKWebView {
             
             if self.estimatedProgress > Constants.AgremoWebView.estimatedProgressLimit {
                 
-                print("javi notifikacijom da je all good")
+                //print("javi notifikacijom da je all good")
                 
                 loadingDelegate?.webView(self, didFinishLoading: true)
                 
                 timer?.invalidate()
                 
-            } else { print("just wait, vreme nije isteklo....")
-                
+            } else {
+                //print("just wait, vreme nije isteklo....")
             }
             
         }
         
     }
+    
+    override func snapshotView(afterScreenUpdates afterUpdates: Bool) -> UIView? {
+        return self
+    }
+    
 }
 
 protocol CoreLocationUpdating {
@@ -90,15 +106,15 @@ struct AgremoCLUpdater: CoreLocationUpdating {
             
             self.updateJavaScriptFunc(in: webView, with: location)
             
-            print("update JS, dist change > 1m")
+//            print("update JS, dist change > 1m")
             
             self.previousLocation = location
             
-        } else {
+        } //else {
             
-            print("dont update JS, insufficiant dist change")
+//            print("dont update JS, insufficiant dist change")
             
-        }
+        //}
         
     }
     
@@ -110,7 +126,7 @@ struct AgremoCLUpdater: CoreLocationUpdating {
         
         let distance = abs(previousLocation.distance(from: actualLocation))
         
-        print("distance between 2 locations = \(distance)")
+//        print("distance between 2 locations = \(distance)")
         
         return distance >= Constants.Location.sugnificantDistToUpdateJSLocationFunc // 1 meter
     }
@@ -123,11 +139,11 @@ struct AgremoCLUpdater: CoreLocationUpdating {
         // nemanja spajic: AgrisensObject. loadMyCurrentLocation --->> LONG-LAT
         let _ = webView.evaluateJavaScript("AgrisensObject.loadMyCurrentLocation(\(long), \(lat));") { (data, err) in
             
-            if err == nil {
-                print("executeLoadMyCurrentLocationJavaScript.all good...")
-            } else {
-                print("loadMyCurrentLocation.err = \(err!.localizedDescription)")
-            }
+//            if err == nil {
+//                print("executeLoadMyCurrentLocationJavaScript.all good...")
+//            } else {
+//                print("loadMyCurrentLocation.err = \(err!.localizedDescription)")
+//            }
         }
         
         

@@ -11,6 +11,7 @@ import Foundation
 enum AlertType {
     case pingAgremo
     case appLoadingToSlow
+    case cantOpenUrlScheme
 }
 
 struct AlertInfo {
@@ -24,6 +25,10 @@ struct AlertInfo {
     struct appLoadingToSlow {
         static let title = NSLocalizedString("Strings.AppLoadingToSlow.Alert.title", comment: "")
         static let message = NSLocalizedString("Strings.AppLoadingToSlow.Alert.message", comment: "")
+    }
+    struct CantOpenUrlScheme {
+        static let title = NSLocalizedString("Strings.CantOpenUrlScheme.Alert.title", comment: "")
+        static let message = NSLocalizedString("Strings.CantOpenUrlScheme.Alert.message", comment: "")
     }
 }
 
