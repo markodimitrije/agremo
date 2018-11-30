@@ -24,20 +24,18 @@ extension RMessage {
                 RMessage.dismissActiveNotification()
                 if let url = URL(string: UIApplicationOpenSettingsURLString), // ovo je ok ali root
                     UIApplication.shared.canOpenURL(url) {
-                    if #available(iOS 10.0, *) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    } else {
                         UIApplication.shared.openURL(url)
-                    }
                 }
             }, at: RMessagePosition.navBarOverlay,
                canBeDismissedByUser: true)
         }
         static func showFileDownloadMessage() {
-            RMessage.showNotification(withTitle: RMessageText.fileDownloadTitle, subtitle: RMessageText.fileDownloadMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.normal, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "OK", buttonCallback: {
-                RMessage.dismissActiveNotification()
-            }, at: RMessagePosition.navBarOverlay,
-               canBeDismissedByUser: true)
+            if !RMessage.isNotificationActive() {
+                RMessage.showNotification(withTitle: RMessageText.fileDownloadTitle, subtitle: RMessageText.fileDownloadMsg, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.normal, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "OK", buttonCallback: {
+                    RMessage.dismissActiveNotification()
+                }, at: RMessagePosition.navBarOverlay,
+                   canBeDismissedByUser: true)
+            }
         }
         static func showFileDownloadStatusMessage(success: String) {
             RMessage.showNotification(withTitle: RMessageText.fileDownloadTitle, subtitle: success, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "OK", buttonCallback: {
@@ -49,6 +47,24 @@ extension RMessage {
 }
 
 extension FileManager {
+    
+    static func persistDownloadedFile(tempFilename: String, at location: URL, as filename: String) {
+        
+        do {
+            let documentsURL = try FileManager.default.url(for: .documentDirectory,
+                                                           in: .userDomainMask,
+                                                           appropriateFor: nil,
+                                                           create: false)
+            
+            let savedURL = documentsURL.appendingPathComponent(timestamped(filename: filename))
+            
+            try FileManager.default.moveItem(at: location, to: savedURL)
+            
+            print("da li je item saved i sa kojim imenom ?? -> \(filename)")
+            
+        } catch { print ("file error: \(error)") }
+        
+    }
     
     static func saveToDisk(data: Data, fileName: String, ext: String) {
         
@@ -117,7 +133,7 @@ extension DateFormatter {
         let dateFormatter = DateFormatter()
         // Add your formatter configuration here
         //dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.dateFormat = "yyyyMM_ddHHmmss"
+        dateFormatter.dateFormat = "yyyyMMdd_HHmmss"
         return dateFormatter
     }()
 }

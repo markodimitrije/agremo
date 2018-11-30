@@ -8,8 +8,6 @@
 
 import UIKit; import CoreLocation; import RMessage; import WebKit
 
-let token = "9a2b4b9f4e82c1d2043909ff2f08f56f8ac2cc11"
-
 class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadingDelegate {
     
     var myWebView: AgremoWkWebView! // WKWebView
@@ -26,8 +24,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
     
     override func viewDidLoad() { super.viewDidLoad()
         
-        //configureDummyBackBtnAndAddItToViewHierarchy() remove - delete
-        
         configureWebView()
         
         requestCoreLocationAuth()
@@ -35,9 +31,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         checkConnectivityWithAgremoBackend()
         
         showLogoView()
-        
-        //myWebView.load(URLRequest.agremo)
-//        myWebView.load(URLRequest.agremoTest)
         
     }
     
@@ -52,8 +45,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         myWebView.uiDelegate = self; myWebView.navigationDelegate = self; myWebView.loadingDelegate = self
         
         myWebView.load(URLRequest.agremo)
-        
-        //        myWebView.load(URLRequest.agremoTest)
         
     }
     
@@ -74,22 +65,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
     @objc func applicationDidEnterBackground() {
             // zove je moj observer, nesto sam menjao ... mozes da je remove odande...
     }
-    
-    /*
-    fileprivate func userWantsToDownloadZip(atUrl url: URL, filename: String) {
-        
-        let addr = url.absoluteString
-        
-        ServerRequest.downloadAgremoZip(addr: addr) { (data) in guard let data = data else {return}
-            
-            //FileManager.saveToDiskInDocDir(data: data, filenameWithExtension: filename)
-            
-            FileManager.saveToDisk(data: data,
-                                   inDirectory: FileManager.applicationSupportDir,
-                                   filenameWithExtension: filename)
-        }
-    }
-    */
     
     fileprivate func appReceivedFileContent(data: Data, withFilename filename: String) {
         
@@ -172,14 +147,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         }
     }
     
-    fileprivate func userWantsToDownloadFile(atUrl addr: String, filename: String) {
-        
-        myFilename = filename
-        
-        ServerRequest.downloadAgremoArchiveInBackground(addr: addr, delegate: self)
-        
-    }
-    
     // MARK:- poziva sistem jer si delegate za CoreLocation
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -195,30 +162,37 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
     }
     
-    /*
-    private func executeGetTokenJavaScript() {
-        
-        let _ = myWebView.evaluateJavaScript("getToken()") { (data, err) in // trebas params!!
-            if err == nil {
-                print("executeGetToken.all good...")
-            } else {
-                print("executeGetToken.err = \(err!.localizedDescription)")
-            }
-        }
-        // koristi ovaj  evaluateJavaScript(_:completionHandler:)
-    }
-    */
-    
-    
 }
 
 
 extension MainVC: WKUIDelegate, WKNavigationDelegate {
     
-    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
-        //print("decidePolicyFor response...")
-        //decisionHandler(WKNavigationResponsePolicy.allow)
+        guard let addr = navigationAction.request.url?.absoluteString else {
+            decisionHandler(.allow)
+            return
+        }
+        
+        print("tap is catched, myUrl is = \(addr)")
+        
+        if isDownloadFileUrl(addr) {
+            
+            guard let tempFileName = getTempFilename(addr) else {
+                print("decidePolicyFor.error: nemam temp filename iz url-a \(addr)")
+                decisionHandler(.allow)
+                return
+            }
+            
+            ServerRequest.downloadAgremoArchiveInBackground(addr: addr, delegate: self, filename: tempFileName)
+            
+        }
+        
+        decisionHandler(.allow) // uvek dopustas, nije vise blob, da se iscrta na screen....
+        
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         
         print("URL IS : :: : :: \(navigationResponse.response.url!)")
         
@@ -227,17 +201,7 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
             return
         }
         
-        guard let downloadInfo = getDownloadFileInfo(response: navigationResponse.response) else {
-            decisionHandler(.allow)
-            return
-        }
-        
-        // treba da download-ujes file ....
-        
         RMessage.Agremo.showFileDownloadMessage()
-        
-        userWantsToDownloadFile(atUrl: downloadInfo.fileUrl,
-                                filename: downloadInfo.filename)
         
         decisionHandler(.cancel)
         
@@ -285,27 +249,21 @@ extension MainVC: URLSessionDelegate, URLSessionDownloadDelegate {
         }
     }
     
+    // ova func se moze izvrsiti pre ili nakon sto se dobije "filename" u decidePolicyFor response !
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         guard let httpResponse = downloadTask.response as? HTTPURLResponse,
             (200...299).contains(httpResponse.statusCode) else { print ("server error")
                 return
         }
-        do {
-            let documentsURL = try
-                FileManager.default.url(for: .documentDirectory,
-                                        in: .userDomainMask,
-                                        appropriateFor: nil,
-                                        create: false)
-            
-            let filename = myFilename ?? timestamped(filename: "Report")
-            let savedURL = documentsURL.appendingPathComponent(filename)
-            try FileManager.default.moveItem(at: location, to: savedURL)
-            
-            print("da li je item saved i sa kojim imenom ?? -> \(filename)")
-            
-        } catch {
-            print ("file error: \(error)")
-        }
+        
+        guard let responseInfo = getDownloadFileInfo(response: httpResponse) else {return}
+
+        guard let tempFilename = session.configuration.identifier else { return }
+        
+        
+        
+        FileManager.persistDownloadedFile(tempFilename: tempFilename, at: location, as: responseInfo.filename)
         
     }
+    
 }

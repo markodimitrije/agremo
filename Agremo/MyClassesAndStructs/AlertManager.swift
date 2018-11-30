@@ -15,7 +15,7 @@ struct AlertManager {
     func getAlertFor(alertType: AlertType, handler: ((UIAlertAction) -> () )?) -> UIAlertController? {
         
         switch alertType {
-            case .appLoadingToSlow: return appLoadingToSlowAlertVC(handler: handler)
+        case .appLoadingToSlow: return appLoadingToSlowAlertVC(handler: handler)
         default: return nil
         }
         
@@ -24,7 +24,8 @@ struct AlertManager {
     func getAlertFor(alertType: AlertType, message: String?) -> UIAlertController? {
         
         switch alertType {
-            case .pingAgremo: return getPingAgremoAlertVC(message: message)
+        case .pingAgremo: return getPingAgremoAlertVC(message: message)
+        case .cantOpenUrlScheme: return cantOpenUrlSchemeAlertVC(message: message)
         default: return nil
         }
         
@@ -36,6 +37,23 @@ struct AlertManager {
         
         let title = AlertInfo.PingAgremoApp.title
         let message = message ?? AlertInfo.PingAgremoApp.message
+        
+        let okAction = UIAlertAction.init(title: AlertInfo.ok, style: .default, handler: nil)
+        
+        let alertVC = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
+        
+        alertVC.addAction(okAction)
+        
+        return alertVC
+        
+    }
+    
+    // Privates
+    
+    private func cantOpenUrlSchemeAlertVC(message: String?) -> UIAlertController {
+        
+        let title = AlertInfo.CantOpenUrlScheme.title
+        let message = message ?? AlertInfo.CantOpenUrlScheme.message
         
         let okAction = UIAlertAction.init(title: AlertInfo.ok, style: .default, handler: nil)
         
@@ -61,6 +79,6 @@ struct AlertManager {
         return alertVC
         
     }
-
+    
     
 }

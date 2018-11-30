@@ -49,12 +49,12 @@ struct ServerRequest {
         task.resume()
     }
  
-    static func downloadAgremoArchiveInBackground(addr: String, delegate: URLSessionDelegate?) {
+    static func downloadAgremoArchiveInBackground(addr: String, delegate: URLSessionDelegate?, filename: String) {
         
         guard let request = URLRequest.getRequest(addr: addr,
                                                   timeout: TimeOut.downloadArchive) else {return}
         
-        let configuration = URLSessionConfiguration.background(withIdentifier: "agremoDownloadInBackgroundSession")
+        let configuration = URLSessionConfiguration.background(withIdentifier: filename)
         configuration.isDiscretionary = true
         configuration.sessionSendsLaunchEvents = true
         let bgSession = URLSession.init(configuration: configuration, delegate: delegate, delegateQueue: nil)
@@ -64,55 +64,6 @@ struct ServerRequest {
         task.resume()
         
     }
-    
-    /*
-    static func downloadAgremoZip(addr: String, completionHandler: @escaping (_ data: Data?) -> Void) {
-        
-        guard let request = URLRequest.getRequest(addr: addr,
-                                                  timeout: TimeOut.downloadArchive) else {return}
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, err) in
-            
-            guard err == nil,
-                let data = data,
-                let response = response as? HTTPURLResponse,
-                response.statusCode == 200 else {completionHandler(nil); return}
-            
-            // ako si do ovde sve ok, onda imas ok data (trebalo bi...)
-            
-            completionHandler(data)
-            
-        }
-        
-        task.resume()
-        
-    }
-    */
-    
-    // test func, download image....
-    /*
-    static func downloadImage(addr: String, completionHandler: @escaping (_ data: Data?) -> Void) {
-        
-        guard let request = URLRequest.getRequest(addr: addr,
-                                                  timeout: TimeOut.downloadArchive) else {return}
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, err) in
-            
-            guard err == nil,
-                let data = data,
-                let response = response as? HTTPURLResponse,
-                response.statusCode == 200 else {completionHandler(nil); return}
-            
-            // ako si do ovde sve ok, onda imas ok data (trebalo bi...)
-            
-            completionHandler(data)
-            
-        }
-        
-        task.resume()
-        
-    }
-    */
     
 }
 
