@@ -54,9 +54,13 @@ struct ServerRequest {
         guard let request = URLRequest.getRequest(addr: addr,
                                                   timeout: TimeOut.downloadArchive) else {return}
         
+        
+        
+        
         let configuration = URLSessionConfiguration.background(withIdentifier: filename)
         configuration.isDiscretionary = true
         configuration.sessionSendsLaunchEvents = true
+        
         let bgSession = URLSession.init(configuration: configuration, delegate: delegate, delegateQueue: nil)
         
         let task = bgSession.downloadTask(with: request)

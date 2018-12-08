@@ -178,11 +178,16 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
         
         if isDownloadFileUrl(addr) {
             
-            guard let tempFileName = getTempFilename(addr) else {
-                print("decidePolicyFor.error: nemam temp filename iz url-a \(addr)")
-                decisionHandler(.allow)
+            guard let tempFileName = getTempFilename(addr),
+                !liveDownloadSessionsIdentifiers.contains(tempFileName) else { // ako nisi u global state monitor
+                    print("decidePolicyFor.error: nemam temp filename iz url-a \(addr) ili je session alive")
+                    decisionHandler(.allow)
                 return
             }
+            
+            RMessage.Agremo.showFileDownloadMessage()
+            
+            liveDownloadSessionsIdentifiers.append(tempFileName)
             
             ServerRequest.downloadAgremoArchiveInBackground(addr: addr, delegate: self, filename: tempFileName)
             
@@ -200,8 +205,6 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
             decisionHandler(.allow) // decisionHandler(WKNavigationResponsePolicy.allow)
             return
         }
-        
-        RMessage.Agremo.showFileDownloadMessage()
         
         decisionHandler(.cancel)
         
@@ -249,8 +252,16 @@ extension MainVC: URLSessionDelegate, URLSessionDownloadDelegate {
         }
     }
     
+    
+    
     // ova func se moze izvrsiti pre ili nakon sto se dobije "filename" u decidePolicyFor response !
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        
+        manageStateWithSessionIdentifiers(session: session)
+        
+        // cim je gotovo, momentalno oslobodi iz svoje global koja prati state...
+        guard let tempFilename = session.configuration.identifier else { return }
+        
         guard let httpResponse = downloadTask.response as? HTTPURLResponse,
             (200...299).contains(httpResponse.statusCode) else { print ("server error")
                 return
@@ -258,12 +269,45 @@ extension MainVC: URLSessionDelegate, URLSessionDownloadDelegate {
         
         guard let responseInfo = getDownloadFileInfo(response: httpResponse) else {return}
 
-        guard let tempFilename = session.configuration.identifier else { return }
-        
-        
-        
         FileManager.persistDownloadedFile(tempFilename: tempFilename, at: location, as: responseInfo.filename)
         
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        manageStateWithSessionIdentifiers(session: session)
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        
+        //let progress = abs(Float(totalBytesWritten) / Float(totalBytesExpectedToWrite))
+        let progress = Float(totalBytesWritten) / 5022606 // hard-coded za Jerry's farm, server treba da posalje Content-Length
+        
+        print("trenutno skidam =  \(progress * 100)")
+        
+//        DispatchQueue.main.async {
+//            //self.progressDownloadIndicator.progress = progress
+            //print("nadji ref na view i prikazi....")
+//        }
+        
+        
+        
+        
+    }
+    
+    func calculateProgress(session : URLSession, completionHandler : @escaping (Float) -> ()) {
+        session.getTasksWithCompletionHandler { (tasks, uploads, downloads) in
+            let bytesReceived = downloads.map{ $0.countOfBytesReceived }.reduce(0, +)
+            let bytesExpectedToReceive = downloads.map{ $0.countOfBytesExpectedToReceive }.reduce(0, +)
+            let progress = bytesExpectedToReceive > 0 ? Float(bytesReceived) / Float(bytesExpectedToReceive) : 0.0
+            completionHandler(progress)
+        }
+    }
+    
+    private func manageStateWithSessionIdentifiers(session: URLSession) {
+        guard let tempFilename = session.configuration.identifier else { return }
+        if let index = liveDownloadSessionsIdentifiers.firstIndex(of: tempFilename) { // handle state, mozes opet isti file da skidas...
+            liveDownloadSessionsIdentifiers.remove(at: index)
+        }
     }
     
 }

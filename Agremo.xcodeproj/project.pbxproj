@@ -27,6 +27,8 @@
 		AD81F94121B1518A00AC646E /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81F94021B1518A00AC646E /* AlertManager.swift */; };
 		ADB38A51215EA7C100E8F54A /* GlobalFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB38A50215EA7C100E8F54A /* GlobalFuncs.swift */; };
 		ADC960472154CD7900FEF9A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADC960462154CD7900FEF9A2 /* Assets.xcassets */; };
+		ADEA429B21BBEE3100985C96 /* DownloadProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEA429A21BBEE3100985C96 /* DownloadProgressView.xib */; };
+		ADEA429D21BBEE4500985C96 /* DownloadProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEA429C21BBEE4500985C96 /* DownloadProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 		AD81F94021B1518A00AC646E /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		ADB38A50215EA7C100E8F54A /* GlobalFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFuncs.swift; sourceTree = "<group>"; };
 		ADC960462154CD7900FEF9A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ADEA429A21BBEE3100985C96 /* DownloadProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadProgressView.xib; sourceTree = "<group>"; };
+		ADEA429C21BBEE4500985C96 /* DownloadProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadProgressView.swift; sourceTree = "<group>"; };
 		BB131AA33FBF489CB32305B9 /* Pods_Agremo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agremo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -174,6 +178,8 @@
 			children = (
 				AD6A52D4214ACF6B0061E23A /* LogoView.xib */,
 				AD6A52D6214ACFA50061E23A /* LogoView.swift */,
+				ADEA429A21BBEE3100985C96 /* DownloadProgressView.xib */,
+				ADEA429C21BBEE4500985C96 /* DownloadProgressView.swift */,
 			);
 			path = "Xib,Nib...";
 			sourceTree = "<group>";
@@ -271,6 +277,7 @@
 				8B1B86DE21A0339100B3231F /* Localizable.strings in Resources */,
 				AD5358CB21494B9300E7FD96 /* LaunchScreen.storyboard in Resources */,
 				AD5358C621494B9000E7FD96 /* Main.storyboard in Resources */,
+				ADEA429B21BBEE3100985C96 /* DownloadProgressView.xib in Resources */,
 				AD6A52D5214ACF6B0061E23A /* LogoView.xib in Resources */,
 				ADC960472154CD7900FEF9A2 /* Assets.xcassets in Resources */,
 			);
@@ -328,6 +335,7 @@
 			files = (
 				AD5358C121494B9000E7FD96 /* AppDelegate.swift in Sources */,
 				AD5358DA21495D4C00E7FD96 /* MyClassesAndStructs.swift in Sources */,
+				ADEA429D21BBEE4500985C96 /* DownloadProgressView.swift in Sources */,
 				AD7224002155950C001B55D6 /* NotificationSubscriber.swift in Sources */,
 				AD6A52D7214ACFA50061E23A /* LogoView.swift in Sources */,
 				AD6A52CD214AB3F70061E23A /* ServerRequest.swift in Sources */,
