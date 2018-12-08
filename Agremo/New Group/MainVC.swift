@@ -12,6 +12,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
     
     var myWebView: AgremoWkWebView! // WKWebView
     
+    let downloadsProgressManager = DownloadsProgressManager()
+    
     var locationManager: CLLocationManager!
     
     lazy var clUpdater: CoreLocationUpdating = {
@@ -179,7 +181,7 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
         if isDownloadFileUrl(addr) {
             
             guard let tempFileName = getTempFilename(addr),
-                !liveDownloadSessionsIdentifiers.contains(tempFileName) else { // ako nisi u global state monitor
+                !downloadsProgressManager.hasActiveSession(withName: tempFileName) else {
                     print("decidePolicyFor.error: nemam temp filename iz url-a \(addr) ili je session alive")
                     decisionHandler(.allow)
                 return
@@ -187,9 +189,7 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
             
             RMessage.Agremo.showFileDownloadMessage()
             
-            liveDownloadSessionsIdentifiers.append(tempFileName)
-            
-            ServerRequest.downloadAgremoArchiveInBackground(addr: addr, delegate: self, filename: tempFileName)
+            ServerRequest.downloadAgremoArchiveInBackground(addr: addr, delegate: downloadsProgressManager, filename: tempFileName)
             
         }
         
@@ -240,21 +240,15 @@ extension AgremoWkWebViewLoadingDelegate where Self: MainVC {
     
 }
 
-
-// bg download
-extension MainVC: URLSessionDelegate, URLSessionDownloadDelegate {
+class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownloadDelegate { // bolje je DownloadsSessionManager
     
-    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
-        DispatchQueue.main.async {
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-            guard let handler = appDelegate.backgroundCompletionHandler else { return }
-            handler() // izvrsi svoj handler, njega si save ranije, da izvrsi save downloaded data na disk
-        }
+    var activeSessions = [DownloadInfo]()
+    
+    func sessionStarted(session: URLSession) {
+        activeSessions.append(DownloadInfo(session: session))
     }
     
-    
-    
-    // ova func se moze izvrsiti pre ili nakon sto se dobije "filename" u decidePolicyFor response !
+    // omoguci da je OK btn tap dostupan...
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         
         manageStateWithSessionIdentifiers(session: session)
@@ -268,46 +262,63 @@ extension MainVC: URLSessionDelegate, URLSessionDownloadDelegate {
         }
         
         guard let responseInfo = getDownloadFileInfo(response: httpResponse) else {return}
-
+        
         FileManager.persistDownloadedFile(tempFilename: tempFilename, at: location, as: responseInfo.filename)
         
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        // handle ikonicom da je error ili pitaj kako...
+        
         manageStateWithSessionIdentifiers(session: session)
+    
     }
+    
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         
         //let progress = abs(Float(totalBytesWritten) / Float(totalBytesExpectedToWrite))
         let progress = Float(totalBytesWritten) / 5022606 // hard-coded za Jerry's farm, server treba da posalje Content-Length
         
-        print("trenutno skidam =  \(progress * 100)")
-        
-//        DispatchQueue.main.async {
-//            //self.progressDownloadIndicator.progress = progress
-            //print("nadji ref na view i prikazi....")
-//        }
-        
-        
-        
+        if let index = activeSessions.firstIndex(where: { (info) -> Bool in
+            info.sessionName == (session.configuration.identifier ?? "")
+        }) {
+            
+            print("sessionName: \(activeSessions[index].sessionName), ima progress: \(progress * 100)")
+            
+            activeSessions[index].progress = progress
+        }
         
     }
     
-    func calculateProgress(session : URLSession, completionHandler : @escaping (Float) -> ()) {
-        session.getTasksWithCompletionHandler { (tasks, uploads, downloads) in
-            let bytesReceived = downloads.map{ $0.countOfBytesReceived }.reduce(0, +)
-            let bytesExpectedToReceive = downloads.map{ $0.countOfBytesExpectedToReceive }.reduce(0, +)
-            let progress = bytesExpectedToReceive > 0 ? Float(bytesReceived) / Float(bytesExpectedToReceive) : 0.0
-            completionHandler(progress)
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        DispatchQueue.main.async {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+            guard let handler = appDelegate.backgroundCompletionHandler else { return }
+            handler() // izvrsi svoj handler, njega si save ranije, (da izvrsi save downloaded data na disk - mislim da ne tu...)
         }
+    }
+    
+    func hasActiveSession(withName name: String) -> Bool {
+        return activeSessions.map {$0.sessionName}.contains(name)
     }
     
     private func manageStateWithSessionIdentifiers(session: URLSession) {
-        guard let tempFilename = session.configuration.identifier else { return }
-        if let index = liveDownloadSessionsIdentifiers.firstIndex(of: tempFilename) { // handle state, mozes opet isti file da skidas...
-            liveDownloadSessionsIdentifiers.remove(at: index)
+
+        if let index = activeSessions.firstIndex(where: { (info) -> Bool in
+            info.sessionName == (session.configuration.identifier ?? "")
+        }) {
+            print("\(activeSessions[index].sessionName) je finished, prikazi OK btn")
+            activeSessions.remove(at: index)
         }
     }
     
+}
+
+struct DownloadInfo {
+    var sessionName: String = ""
+    var progress: Float = 0
+    init(session: URLSession) {
+        self.sessionName = session.configuration.identifier ?? ""
+    }
 }

@@ -7,5 +7,3 @@
 //
 
 import Foundation
-
-var liveDownloadSessionsIdentifiers = [String]()

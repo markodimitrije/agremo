@@ -54,9 +54,6 @@ struct ServerRequest {
         guard let request = URLRequest.getRequest(addr: addr,
                                                   timeout: TimeOut.downloadArchive) else {return}
         
-        
-        
-        
         let configuration = URLSessionConfiguration.background(withIdentifier: filename)
         configuration.isDiscretionary = true
         configuration.sessionSendsLaunchEvents = true
@@ -66,6 +63,8 @@ struct ServerRequest {
         let task = bgSession.downloadTask(with: request)
         
         task.resume()
+        
+        (delegate as? DownloadsProgressManager)?.sessionStarted(session: bgSession)
         
     }
     
