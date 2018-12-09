@@ -59,7 +59,9 @@ extension FileManager {
             //let savedURL = documentsURL.appendingPathComponent(timestamped(filename: filename))
             let savedURL = documentsURL.appendingPathComponent(filename)
             
-            try FileManager.default.moveItem(at: location, to: savedURL)
+            //try FileManager.default.moveItem(at: location, to: savedURL)
+            
+            try FileManager.default.copyItem(at: location, to: savedURL)
             
             print("da li je item saved i sa kojim imenom ?? -> \(filename)")
             

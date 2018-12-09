@@ -50,7 +50,7 @@ func getDownloadFileInfo(downloadTask: URLSessionDownloadTask) -> (fileUrl: Stri
     return getDownloadFileInfo(response: httpResponse)
 }
 
-func getDownloadFileInfo(response: URLResponse) -> (fileUrl: String, filename: String)? {
+func getDownloadFileInfo(response: URLResponse?) -> (fileUrl: String, filename: String)? {
     
     guard let response = response as? HTTPURLResponse,
         let url = response.url?.absoluteString, url.contains("results"),
@@ -76,9 +76,13 @@ func getDownloadFileInfo(response: URLResponse) -> (fileUrl: String, filename: S
 }
 
 func isDownloadFileUrl(_ adr: String) -> Bool {
+    //return adr.contains("results")
+    var copy = adr
+    guard let last = copy.popLast() else {
+        return adr.contains("results")
+    }
     
-    return adr.contains("results")
-    
+    return adr.contains("results") && last != "/"
 }
 
 func getTempFilename(_ adr: String) -> String? {

@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "DownloadsProgressManager.previewFile(responseInfo:didFinishDownloadingTo:):MainVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fileUrl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MainVC.configureDownloadsView():MainVC.swift">
          <PersistentStrings>
             <PersistentString

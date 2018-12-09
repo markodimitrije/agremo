@@ -15,6 +15,8 @@ class DownloadProgressView: UIView {
     var parentHeightCnstr: NSLayoutConstraint?
     var sessionIdentifier = ""
     
+    weak var delegate: FilePreviewResponding?
+    
     @IBOutlet weak var progressView: UIProgressView! {
         didSet {
             progressView.transform = progressView.transform.scaledBy(x: 1, y: 3)
@@ -41,6 +43,7 @@ class DownloadProgressView: UIView {
     
     @IBAction func showBtnTapped(_ sender: UIButton) {
         print("prikazi file, impelement me")
+        delegate?.preview(sessionIdentifier: sessionIdentifier)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -69,9 +72,11 @@ class DownloadProgressView: UIView {
     
     func update(info: ProgressViewInfo) {
         progressView.progress = Float(info.percent) / 100 // ovaj je od 0-1 range
+        //percentLbl.text = info.percent != 100 ? "\(info.percent) %" : (info.filename ?? "")
         percentLbl.text = info.percent != 100 ? "\(info.percent) %" : (info.filename ?? "")
         statusLbl.text = info.statusDesc
-        showBtn(enable: info.percent == 100)
+        //showBtn(enable: info.percent == 100)
+        showBtn(enable: true) // hard-coded
         dismissBtn.setTitle(info.dismissBtnTxt, for: .normal)
         showBtn.setTitle(info.previewFileBtnTxt, for: .normal)
     }
@@ -90,4 +95,8 @@ struct ProgressViewInfo {
     var filename: String?
     var dismissBtnTxt = ""
     var previewFileBtnTxt: String = ""
+}
+
+protocol FilePreviewResponding: class {
+    func preview(sessionIdentifier: String)
 }
