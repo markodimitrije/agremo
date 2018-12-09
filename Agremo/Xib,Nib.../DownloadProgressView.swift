@@ -30,7 +30,6 @@ class DownloadProgressView: UIView {
         }
     }
     
-    
     @IBAction func closeBtnTapped(_ sender: UIButton) {
         
         guard let superview = self.superview else {return}
