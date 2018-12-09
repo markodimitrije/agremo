@@ -20,6 +20,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "AgremoCLUpdater.locationUpdated(location:):MainVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "location.description">
+            </PersistentString>
+            <PersistentString
+               value = "previousLocation.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MainVC.urlSession(_:downloadTask:didFinishDownloadingTo:):MainVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -30,17 +41,6 @@
             </PersistentString>
             <PersistentString
                value = "downloadTask.response">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "AgremoCLUpdater.locationUpdated(location:):MainVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "location.description">
-            </PersistentString>
-            <PersistentString
-               value = "previousLocation.description">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -118,6 +118,14 @@
             </PersistentString>
             <PersistentString
                value = "stackView.subviews">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DownloadsProgressManager.urlSession(_:downloadTask:didFinishDownloadingTo:):MainVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "activeSessions.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

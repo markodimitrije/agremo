@@ -41,6 +41,15 @@ func isAgremoResourceDownloadUrl(response: URLResponse) -> Bool? {
 //    return (url, final)
 //}
 
+func getDownloadFileInfo(downloadTask: URLSessionDownloadTask) -> (fileUrl: String, filename: String)? {
+    
+    guard let httpResponse = downloadTask.response as? HTTPURLResponse,
+        (200...299).contains(httpResponse.statusCode) else {
+            return nil
+    }
+    return getDownloadFileInfo(response: httpResponse)
+}
+
 func getDownloadFileInfo(response: URLResponse) -> (fileUrl: String, filename: String)? {
     
     guard let response = response as? HTTPURLResponse,
@@ -83,4 +92,9 @@ func timestamped(filename: String) -> String {
     let timestamp = DateFormatter.sharedDateFormatter.string(from: now)
     
     return timestamp + "_" + filename
+}
+
+func delay(_ delay:Double, closure:@escaping ()->()) {
+    DispatchQueue.main.asyncAfter(
+        deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
 }

@@ -225,7 +225,7 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         
-        print("URL IS : :: : :: \(navigationResponse.response.url!)")
+        print("imam ok odgovor za URL : :: : :: \(navigationResponse.response.url!)")
         
         guard let downloadLinkData = isAgremoResourceDownloadUrl(response: navigationResponse.response), downloadLinkData else {
             decisionHandler(.allow) // decisionHandler(WKNavigationResponsePolicy.allow)
@@ -277,18 +277,17 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
         self.stackHeightCnstr = stackHeightCnstr
     }
     
-    func sessionStarted(session: URLSession) {
-        
-        print("session started = \(session.configuration.identifier!)")
+    func sessionStarted(session: URLSession, task: URLSessionDownloadTask) {
         
         activeSessions.append(DownloadInfo(session: session))
         
         let frame = CGRect.init(origin: stackView.frame.origin,
                                 size: CGSize.init(width: stackView.bounds.width, height: Constants.DownloadView.height))
-        let progressView = DownloadProgressView.init(frame: frame)
-        progressView.parentHeightCnstr = stackHeightCnstr
         
-        print("session started, ubaci downloads view!")
+        let progressView = DownloadProgressView.init(frame: frame,
+                                                     sessionIdentifier: DownloadInfo(session: session).sessionName)
+        
+        progressView.parentHeightCnstr = stackHeightCnstr
         
         stackView.addArrangedSubview(progressView)
 
@@ -302,14 +301,13 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
         manageStateWithSessionIdentifiers(session: session)
         
         // cim je gotovo, momentalno oslobodi iz svoje global koja prati state...
-        guard let tempFilename = session.configuration.identifier else { return }
-        
-        guard let httpResponse = downloadTask.response as? HTTPURLResponse,
-            (200...299).contains(httpResponse.statusCode) else { print ("server error")
+        guard let tempFilename = session.configuration.identifier,
+            let httpResponse = downloadTask.response as? HTTPURLResponse,
+            (200...299).contains(httpResponse.statusCode),
+            let responseInfo = getDownloadFileInfo(response: httpResponse) else {
+                handleUrlSession(session, downloadTask: downloadTask, totalBytesWritten: nil, totalBytesExpectedToWrite: nil)
                 return
         }
-        
-        guard let responseInfo = getDownloadFileInfo(response: httpResponse) else {return}
         
         FileManager.persistDownloadedFile(tempFilename: tempFilename, at: location, as: responseInfo.filename)
         
@@ -318,35 +316,104 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         // handle ikonicom da je error ili pitaj kako...
         
-        manageStateWithSessionIdentifiers(session: session)
-    
+        func errorReceived() {
+            print("error is catched for session and task!!")
+            handleProgressViewForSessionError(session: session)
+            manageStateWithSessionIdentifiers(session: session)
+        }
+        
+        if error != nil {
+            
+            errorReceived()
+        
+        } else {
+            
+            guard let statusCode = (task.response as? HTTPURLResponse)?.statusCode,
+                !(200...299).contains(statusCode) else {
+                    return
+            }
+            
+            errorReceived() // 404 i slicno....
+            
+        }
+        
+        
     }
     
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         
-        let progress = Int(100 * Float(totalBytesWritten) / 5022606) // hard-coded za Jerry's farm, server treba da posalje Content-Length
+        handleUrlSession(session, downloadTask: downloadTask, totalBytesWritten: totalBytesWritten, totalBytesExpectedToWrite: totalBytesExpectedToWrite)
+        
+    }
+    
+    
+    
+    private func handleUrlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, totalBytesWritten: Int64?, totalBytesExpectedToWrite: Int64?) {
+        
+        let downloadOk = (totalBytesWritten != nil && totalBytesExpectedToWrite != nil)
+        
+        guard let sessionId = session.configuration.identifier else {
+            return
+        }
+        
+        let progress = downloadOk ? Int(100 * Float(totalBytesWritten!) / 5022606) /* hard-coded za Jerry's farm, server treba da posalje Content-Length */ : 2
         
         if let index = activeSessions.firstIndex(where: { (info) -> Bool in
-            info.sessionName == (session.configuration.identifier ?? "")
+            info.sessionName == sessionId
         }) {
-            
-            print("sessionName: \(activeSessions[index].sessionName), ima progress: \(progress)")
             
             activeSessions[index].progress = progress
             
-            var text = (progress < 2) ? "preparing for download..." : "downloading..."
-            if progress == 100 {text = "dobaci filename"}
+            var statusDesc = (progress < 2) ? DownloadingInfoText.preparing : DownloadingInfoText.downloading
             
-            let info = ProgressViewInfo.init(session: session, name: text, percent: progress, dismissBtnTxt: "dismiss", previewFileBtnTxt: "VIEW")
+            let filename = getDownloadFileInfo(downloadTask: downloadTask)?.filename
             
-            DispatchQueue.main.async { [weak self] in
-                ((self?.stackView.arrangedSubviews.first {$0.tag == 0}) as? DownloadProgressView)?.update(info: info)
+            if progress == 100 { statusDesc = DownloadingInfoText.finished }
+            
+            let file = downloadOk ? filename : "server error, try again later"
+            
+            let info = ProgressViewInfo.init(session: session, statusDesc: statusDesc, percent: progress, filename: file, dismissBtnTxt: DownloadingInfoText.dismiss, previewFileBtnTxt: DownloadingInfoText.show)
+
+            updateProgressView(forSession: session, withInfo: info, hasError: !downloadOk)
+            
+        }
+    }
+    
+    private func handleProgressViewForSessionError(session: URLSession) {
+        
+        let info = ProgressViewInfo.init(session: session, statusDesc: "server error, try again later", percent: 1, filename: "", dismissBtnTxt: DownloadingInfoText.dismiss, previewFileBtnTxt: DownloadingInfoText.show)
+
+        updateProgressView(forSession: session, withInfo: info, hasError: true)
+        
+        
+        
+    }
+    
+    private func updateProgressView(forSession session: URLSession, withInfo info: ProgressViewInfo, hasError: Bool) {
+        
+        guard let sessionId = session.configuration.identifier else { return }
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let sSelf = self else {return}
+            
+            let progressViews = sSelf.stackView.arrangedSubviews.filter {$0 is DownloadProgressView}.compactMap {$0 as? DownloadProgressView}
+            let viewToUpdate = progressViews.first(where: {$0.sessionIdentifier == sessionId})
+            viewToUpdate?.update(info: info)
+            
+            if hasError {
+                delay(1.0, closure: {
+                    guard let sSelf = self else {return}
+                    guard let superview = viewToUpdate?.superview else {return}
+                    sSelf.stackHeightCnstr.constant = superview.frame.height - CGFloat(Constants.DownloadView.heightWithGap)
+                    viewToUpdate?.removeFromSuperview()
+                })
             }
             
         }
         
     }
+    
     
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
         DispatchQueue.main.async {

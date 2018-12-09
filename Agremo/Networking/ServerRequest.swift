@@ -64,7 +64,7 @@ struct ServerRequest {
         
         task.resume()
         
-        (delegate as? DownloadsProgressManager)?.sessionStarted(session: bgSession)
+        (delegate as? DownloadsProgressManager)?.sessionStarted(session: bgSession, task: task)
         
     }
     

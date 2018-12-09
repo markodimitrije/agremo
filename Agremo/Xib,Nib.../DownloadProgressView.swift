@@ -13,6 +13,7 @@ import UIKit
 class DownloadProgressView: UIView {
     
     var parentHeightCnstr: NSLayoutConstraint?
+    var sessionIdentifier = ""
     
     @IBOutlet weak var progressView: UIProgressView! {
         didSet {
@@ -20,16 +21,14 @@ class DownloadProgressView: UIView {
         }
     }
     
-    @IBOutlet weak var filename: UILabel!
+    @IBOutlet weak var statusLbl: UILabel!
     @IBOutlet weak var percentLbl: UILabel!
     
     @IBAction func closeBtnTapped(_ sender: UIButton) {
         
         guard let superview = self.superview else {return}
         
-        parentHeightCnstr?.constant = superview.frame.height - 88
-        
-        //superview.frame = CGRect.init(origin: superview.frame.origin, size: CGSize.init(width: superview.frame.width, height:  ))
+        parentHeightCnstr?.constant = superview.frame.height - CGFloat(Constants.DownloadView.heightWithGap)
         
         self.removeFromSuperview()
     }
@@ -46,6 +45,12 @@ class DownloadProgressView: UIView {
         super.init(frame: frame)
         loadViewFromNib()
     }
+    
+    convenience init(frame: CGRect, sessionIdentifier: String) {
+        self.init(frame: frame)
+        self.sessionIdentifier = sessionIdentifier
+    }
+    
     private func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "DownloadProgressView", bundle: bundle)
@@ -58,16 +63,17 @@ class DownloadProgressView: UIView {
     
     func update(info: ProgressViewInfo) {
         progressView.progress = Float(info.percent) / 100 // ovaj je od 0-1 range
-        percentLbl.text = "\(info.percent) %"
-        filename.text = info.name
+        percentLbl.text = info.percent != 100 ? "\(info.percent) %" : (info.filename ?? "")
+        statusLbl.text = info.statusDesc
     }
     
 }
 
 struct ProgressViewInfo {
     var session: URLSession?
-    var name: String = "downloading content"
+    var statusDesc: String = ""
     var percent: Int = 0
+    var filename: String?
     var dismissBtnTxt = ""
     var previewFileBtnTxt: String = ""
 }

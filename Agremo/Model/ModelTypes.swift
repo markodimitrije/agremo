@@ -43,6 +43,14 @@ struct RMessageText {
     
 }
 
+struct DownloadingInfoText {
+    static let preparing = NSLocalizedString("Strings.DownloadingView.FileStatus.preparing", comment: "")
+    static let downloading = NSLocalizedString("Strings.DownloadingView.FileStatus.downloading", comment: "")
+    static let finished = NSLocalizedString("Strings.DownloadingView.FileStatus.finished", comment: "")
+    static let dismiss = NSLocalizedString("Strings.DownloadingView.FileStatus.dismiss", comment: "")
+    static let show = NSLocalizedString("Strings.DownloadingView.FileStatus.show", comment: "")
+}
+
 extension URLRequest {
     
     static var agremo: URLRequest {
