@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DownloadProgressView" customModule="Agremo" customModuleProvider="target">
             <connections>
+                <outlet property="filename" destination="YxI-O1-iXI" id="iwF-KP-jYR"/>
+                <outlet property="percentLbl" destination="xD7-ru-gJv" id="Ljg-2h-K3O"/>
                 <outlet property="progressView" destination="JZb-lt-5cA" id="bIp-Lt-Hs0"/>
             </connections>
         </placeholder>
@@ -22,6 +24,7 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRO-3b-MIs">
                     <rect key="frame" x="317" y="15" width="38" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Show"/>
                     <connections>
                         <action selector="showBtnTapped:" destination="-1" eventType="touchUpInside" id="LtH-8W-xj2"/>
@@ -29,24 +32,42 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uB-6N-NXc">
                     <rect key="frame" x="270" y="15" width="39" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Close"/>
                     <connections>
                         <action selector="closeBtnTapped:" destination="-1" eventType="touchUpInside" id="t3H-HR-eBe"/>
                     </connections>
                 </button>
-                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="JZb-lt-5cA">
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.02" translatesAutoresizingMaskIntoConstraints="NO" id="JZb-lt-5cA">
                     <rect key="frame" x="16" y="29" width="247" height="2"/>
+                    <color key="trackTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </progressView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="filename" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YxI-O1-iXI">
+                    <rect key="frame" x="16" y="4" width="55" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="percent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xD7-ru-gJv">
+                    <rect key="frame" x="16" y="39" width="50" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="JZb-lt-5cA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2b6-KQ-5n1"/>
                 <constraint firstItem="QRO-3b-MIs" firstAttribute="leading" secondItem="9uB-6N-NXc" secondAttribute="trailing" constant="8" id="C8a-ji-3kh"/>
+                <constraint firstItem="JZb-lt-5cA" firstAttribute="top" secondItem="YxI-O1-iXI" secondAttribute="bottom" constant="8" id="Dst-wZ-b1S"/>
                 <constraint firstItem="9uB-6N-NXc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HbK-fy-KBf"/>
+                <constraint firstItem="xD7-ru-gJv" firstAttribute="leading" secondItem="YxI-O1-iXI" secondAttribute="leading" id="LvS-wq-9RO"/>
                 <constraint firstItem="JZb-lt-5cA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Toe-iN-Zmq"/>
                 <constraint firstItem="QRO-3b-MIs" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="UdC-17-VLr"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QRO-3b-MIs" secondAttribute="trailing" constant="20" id="p9H-rG-BsU"/>
                 <constraint firstItem="9uB-6N-NXc" firstAttribute="leading" secondItem="JZb-lt-5cA" secondAttribute="trailing" constant="7" id="xeA-lp-vZG"/>
+                <constraint firstItem="xD7-ru-gJv" firstAttribute="top" secondItem="JZb-lt-5cA" secondAttribute="bottom" constant="8" id="z50-3x-9h4"/>
+                <constraint firstItem="JZb-lt-5cA" firstAttribute="leading" secondItem="YxI-O1-iXI" secondAttribute="leading" id="zHP-fb-2eb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

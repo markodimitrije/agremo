@@ -12,17 +12,31 @@ import UIKit
 
 class DownloadProgressView: UIView {
     
-    @IBOutlet weak var progressView: UIProgressView!
+    var parentHeightCnstr: NSLayoutConstraint?
+    
+    @IBOutlet weak var progressView: UIProgressView! {
+        didSet {
+            progressView.transform = progressView.transform.scaledBy(x: 1, y: 3)
+        }
+    }
+    
+    @IBOutlet weak var filename: UILabel!
+    @IBOutlet weak var percentLbl: UILabel!
     
     @IBAction func closeBtnTapped(_ sender: UIButton) {
+        
+        guard let superview = self.superview else {return}
+        
+        parentHeightCnstr?.constant = superview.frame.height - 88
+        
+        //superview.frame = CGRect.init(origin: superview.frame.origin, size: CGSize.init(width: superview.frame.width, height:  ))
+        
         self.removeFromSuperview()
     }
     
     @IBAction func showBtnTapped(_ sender: UIButton) {
         print("prikazi file, impelement me")
     }
-    
-    var filename: String? // ovo je jako vazno da ti neko javi..
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -42,4 +56,18 @@ class DownloadProgressView: UIView {
         self.addSubview(view)
     }
     
+    func update(info: ProgressViewInfo) {
+        progressView.progress = Float(info.percent) / 100 // ovaj je od 0-1 range
+        percentLbl.text = "\(info.percent) %"
+        filename.text = info.name
+    }
+    
+}
+
+struct ProgressViewInfo {
+    var session: URLSession?
+    var name: String = "downloading content"
+    var percent: Int = 0
+    var dismissBtnTxt = ""
+    var previewFileBtnTxt: String = ""
 }

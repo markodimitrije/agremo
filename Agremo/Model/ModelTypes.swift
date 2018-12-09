@@ -6,7 +6,7 @@
 //  Copyright © 2018 Marko Dimitrijevic. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum AlertType {
     case pingAgremo
@@ -81,5 +81,12 @@ struct Constants {
     struct Location {
         static let sugnificantDistToUpdateJSLocationFunc = 1.0 // ovo je 1 metar...
         //static let sugnificantDistToUpdateJSLocationFunc = 5.0 // ovo je 5 metar... hard-coded to test
+    }
+    struct DownloadView {
+        static let height = CGFloat(80)
+        static let gap = CGFloat(8)
+        static var heightWithGap: Int {
+            return Int(height + gap)
+        }
     }
 }

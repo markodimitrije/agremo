@@ -12,7 +12,16 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
     
     var myWebView: AgremoWkWebView! // WKWebView
     
-    let downloadsProgressManager = DownloadsProgressManager()
+    //let sv = UIStackView.init(frame: UIScreen.main.bounds)
+    //let sv = UIView.init(frame: CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: UIScreen.main.bounds.width, height: 10)))
+    //private let sv = UIStackView.init(frame: CGRect.init(origin: CGPoint.zero,
+//                                                         size: CGSize.init(width: UIScreen.main.bounds.width, height: 10)))
+    
+    @IBOutlet weak var sv: UIStackView!
+    @IBOutlet weak var stackHeightCnstr: NSLayoutConstraint!
+    
+    
+    private lazy var downloadsProgressManager = DownloadsProgressManager(stackView: sv, stackHeightCnstr: stackHeightCnstr)
     
     var locationManager: CLLocationManager!
     
@@ -27,6 +36,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
     override func viewDidLoad() { super.viewDidLoad()
         
         configureWebView()
+        
+        configureDownloadsView()
         
         requestCoreLocationAuth()
         
@@ -47,6 +58,21 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         myWebView.uiDelegate = self; myWebView.navigationDelegate = self; myWebView.loadingDelegate = self
         
         myWebView.load(URLRequest.agremo)
+        
+    }
+    
+    private func configureDownloadsView() {
+        
+        if !myWebView.subviews.map({$0.tag}).contains(12) { // samo ako vec nije na screenu, dodaj ga ...
+            sv.tag = 12
+            sv.axis = .vertical
+            sv.layer.zPosition = 100
+            sv.distribution = UIStackView.Distribution.fillEqually
+            sv.spacing = 8.0
+            myWebView.addSubview(sv)
+            
+            print("configureDownloadsView/dodajem stackView")
+        }
         
     }
     
@@ -187,7 +213,7 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
                 return
             }
             
-            RMessage.Agremo.showFileDownloadMessage()
+            //RMessage.Agremo.showFileDownloadMessage()
             
             ServerRequest.downloadAgremoArchiveInBackground(addr: addr, delegate: downloadsProgressManager, filename: tempFileName)
             
@@ -243,9 +269,31 @@ extension AgremoWkWebViewLoadingDelegate where Self: MainVC {
 class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownloadDelegate { // bolje je DownloadsSessionManager
     
     var activeSessions = [DownloadInfo]()
+    var stackView: UIStackView
+    var stackHeightCnstr: NSLayoutConstraint
+    
+    init(stackView: UIStackView, stackHeightCnstr: NSLayoutConstraint) {
+        self.stackView = stackView
+        self.stackHeightCnstr = stackHeightCnstr
+    }
     
     func sessionStarted(session: URLSession) {
+        
+        print("session started = \(session.configuration.identifier!)")
+        
         activeSessions.append(DownloadInfo(session: session))
+        
+        let frame = CGRect.init(origin: stackView.frame.origin,
+                                size: CGSize.init(width: stackView.bounds.width, height: Constants.DownloadView.height))
+        let progressView = DownloadProgressView.init(frame: frame)
+        progressView.parentHeightCnstr = stackHeightCnstr
+        
+        print("session started, ubaci downloads view!")
+        
+        stackView.addArrangedSubview(progressView)
+
+        self.stackHeightCnstr.constant = CGFloat(stackView.subviews.count * Constants.DownloadView.heightWithGap)
+        
     }
     
     // omoguci da je OK btn tap dostupan...
@@ -277,16 +325,25 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         
-        //let progress = abs(Float(totalBytesWritten) / Float(totalBytesExpectedToWrite))
-        let progress = Float(totalBytesWritten) / 5022606 // hard-coded za Jerry's farm, server treba da posalje Content-Length
+        let progress = Int(100 * Float(totalBytesWritten) / 5022606) // hard-coded za Jerry's farm, server treba da posalje Content-Length
         
         if let index = activeSessions.firstIndex(where: { (info) -> Bool in
             info.sessionName == (session.configuration.identifier ?? "")
         }) {
             
-            print("sessionName: \(activeSessions[index].sessionName), ima progress: \(progress * 100)")
+            print("sessionName: \(activeSessions[index].sessionName), ima progress: \(progress)")
             
             activeSessions[index].progress = progress
+            
+            var text = (progress < 2) ? "preparing for download..." : "downloading..."
+            if progress == 100 {text = "dobaci filename"}
+            
+            let info = ProgressViewInfo.init(session: session, name: text, percent: progress, dismissBtnTxt: "dismiss", previewFileBtnTxt: "VIEW")
+            
+            DispatchQueue.main.async { [weak self] in
+                ((self?.stackView.arrangedSubviews.first {$0.tag == 0}) as? DownloadProgressView)?.update(info: info)
+            }
+            
         }
         
     }
@@ -317,7 +374,7 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
 
 struct DownloadInfo {
     var sessionName: String = ""
-    var progress: Float = 0
+    var progress: Int = 0
     init(session: URLSession) {
         self.sessionName = session.configuration.identifier ?? ""
     }

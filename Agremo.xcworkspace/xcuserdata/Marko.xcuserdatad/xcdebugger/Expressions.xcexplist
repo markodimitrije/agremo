@@ -3,6 +3,23 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "MainVC.configureDownloadsView():MainVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.view.subviews.count">
+            </PersistentString>
+            <PersistentString
+               value = "myWebView">
+            </PersistentString>
+            <PersistentString
+               value = "self.view.subviews">
+            </PersistentString>
+            <PersistentString
+               value = "sv">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MainVC.urlSession(_:downloadTask:didFinishDownloadingTo:):MainVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -72,6 +89,35 @@
             </PersistentString>
             <PersistentString
                value = "resp.allHeaderFields">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DownloadsProgressManager.sessionStarted(session:):MainVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "stackView.subviews.count">
+            </PersistentString>
+            <PersistentString
+               value = "stackView.subviews.count * Constants.DownloadView.heightWithGap)">
+            </PersistentString>
+            <PersistentString
+               value = "CGFloat(stackView.subviews.count * Constants.DownloadView.heightWithGap)">
+            </PersistentString>
+            <PersistentString
+               value = "stackView.frame.origin">
+            </PersistentString>
+            <PersistentString
+               value = "Constants.DownloadView.heightWithGap">
+            </PersistentString>
+            <PersistentString
+               value = "stackView.bounds.height">
+            </PersistentString>
+            <PersistentString
+               value = "stackView.bounds.width">
+            </PersistentString>
+            <PersistentString
+               value = "stackView.subviews">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
