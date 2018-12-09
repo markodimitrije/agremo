@@ -23,6 +23,13 @@ class DownloadProgressView: UIView {
     
     @IBOutlet weak var statusLbl: UILabel!
     @IBOutlet weak var percentLbl: UILabel!
+    @IBOutlet weak var dismissBtn: UIButton!
+    @IBOutlet weak var showBtn: UIButton! {
+        didSet {
+            showBtn(enable: false)
+        }
+    }
+    
     
     @IBAction func closeBtnTapped(_ sender: UIButton) {
         
@@ -65,6 +72,14 @@ class DownloadProgressView: UIView {
         progressView.progress = Float(info.percent) / 100 // ovaj je od 0-1 range
         percentLbl.text = info.percent != 100 ? "\(info.percent) %" : (info.filename ?? "")
         statusLbl.text = info.statusDesc
+        showBtn(enable: info.percent == 100)
+        dismissBtn.setTitle(info.dismissBtnTxt, for: .normal)
+        showBtn.setTitle(info.previewFileBtnTxt, for: .normal)
+    }
+    
+    private func showBtn(enable: Bool) {
+        showBtn.isEnabled = enable
+        showBtn.alpha = enable ? 1 : 0.5
     }
     
 }

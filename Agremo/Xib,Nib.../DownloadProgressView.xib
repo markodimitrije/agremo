@@ -12,8 +12,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DownloadProgressView" customModule="Agremo" customModuleProvider="target">
             <connections>
+                <outlet property="dismissBtn" destination="9uB-6N-NXc" id="IQy-ZH-lK4"/>
                 <outlet property="percentLbl" destination="xD7-ru-gJv" id="GX9-Ta-F9s"/>
                 <outlet property="progressView" destination="JZb-lt-5cA" id="bIp-Lt-Hs0"/>
+                <outlet property="showBtn" destination="QRO-3b-MIs" id="SfH-jg-geB"/>
                 <outlet property="statusLbl" destination="YxI-O1-iXI" id="JW0-FH-gd0"/>
             </connections>
         </placeholder>
