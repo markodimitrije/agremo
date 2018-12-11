@@ -34,6 +34,8 @@ class DownloadProgressView: UIView {
     
     @IBAction func closeBtnTapped(_ sender: UIButton) {
         
+        toggleColorsOnPressed(btn: showBtn)
+        
         delegate?.hide(sessionIdentifier: sessionIdentifier)
         
         removeProgressView(during: TimeInterval(0))
@@ -43,10 +45,20 @@ class DownloadProgressView: UIView {
         
         print("prikazi file, impelement me")
         
+        toggleColorsOnPressed(btn: showBtn)
+        
         delegate?.preview(sessionIdentifier: sessionIdentifier)
         
         removeProgressView(during: TimeInterval(3))
         
+    }
+    
+    func toggleColorsOnPressed(btn: UIButton) {
+        let actualColor = btn.backgroundColor ?? Constants.Colors.progressBar
+        btn.backgroundColor = .white
+        btn.setTitleColor(.black, for: .normal)
+        btn.layer.borderColor = actualColor.cgColor
+        btn.layer.borderWidth = 2.0
     }
     
     required init?(coder aDecoder: NSCoder) {

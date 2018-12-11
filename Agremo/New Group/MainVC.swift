@@ -47,8 +47,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
         showLogoView()
         
-        let myColor = UIColor.init(netHex: 0x003a4c) // #003a4c -> 0x003a4c
-        
     }
     
     private func configureWebView() {

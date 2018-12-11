@@ -98,33 +98,36 @@ struct Constants {
         }
     }
     struct Colors {
-        struct DownloadProgress {
-            static let backgroundView = 0x003a4c
-            static let progressBarBg = 0xffffff
-            static let progressBarLine = 0xf7941d
-            static let progressBarText = 0xf7941d
-            static let btnPreviewText = 0xffffff
-            static let btnHideText = 0xffffff
-            static let btnPreviewBg = 0x00b259
-            static let btnHideBg = 0xef495f
-        }
-        
-
-    }
-}
-
-
-
-extension UIColor {
-    convenience init(red: Int, green: Int, blue: Int) {
-        assert(red >= 0 && red <= 255, "Invalid red component")
-        assert(green >= 0 && green <= 255, "Invalid green component")
-        assert(blue >= 0 && blue <= 255, "Invalid blue component")
-        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+        static let progressBar = UIColor.init(red: 247/255, green: 147/255, blue: 29/255, alpha: 1.0)
     }
     
-    convenience init(netHex:Int) {
-        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
-    }
+    
+//    struct Colors {
+//        struct DownloadProgress {
+//            static let backgroundView = 0x003a4c
+//            static let progressBarBg = 0xffffff
+//            static let progressBarLine = 0xf7941d
+//            static let progressBarText = 0xf7941d
+//            static let btnPreviewText = 0xffffff
+//            static let btnHideText = 0xffffff
+//            static let btnPreviewBg = 0x00b259
+//            static let btnHideBg = 0xef495f
+//        }
+//    }
 }
+
+
+
+//extension UIColor {
+//    convenience init(red: Int, green: Int, blue: Int) {
+//        assert(red >= 0 && red <= 255, "Invalid red component")
+//        assert(green >= 0 && green <= 255, "Invalid green component")
+//        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+//        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+//    }
+//
+//    convenience init(netHex:Int) {
+//        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
+//    }
+//}
 
