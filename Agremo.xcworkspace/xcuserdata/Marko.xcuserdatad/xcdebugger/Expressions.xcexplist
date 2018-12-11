@@ -3,10 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "DownloadsProgressManager.previewFile(responseInfo:didFinishDownloadingTo:):MainVC.swift">
+         contextName = "DownloadsProgressManager.urlSession(_:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:):MainVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "fileUrl">
+               value = "activeSessions">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -56,13 +56,16 @@
          contextName = "MainVC.webView(_:decidePolicyFor:decisionHandler:):MainVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "url.lastPathComponent">
+               value = "downloadsProgressManager">
             </PersistentString>
             <PersistentString
                value = "navigationAction.navigationType">
             </PersistentString>
             <PersistentString
                value = "navigationAction.request.url">
+            </PersistentString>
+            <PersistentString
+               value = "url.lastPathComponent">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -77,6 +80,14 @@
             </PersistentString>
             <PersistentString
                value = "downloadTask.response">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DownloadsProgressManager.previewFile(responseInfo:didFinishDownloadingTo:):MainVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fileUrl">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -134,14 +145,6 @@
          <PersistentStrings>
             <PersistentString
                value = "activeSessions.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "DownloadsProgressManager.urlSession(_:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:):MainVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "activeSessions">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -47,6 +47,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
         
         showLogoView()
         
+        let myColor = UIColor.init(netHex: 0x003a4c) // #003a4c -> 0x003a4c
+        
     }
     
     private func configureWebView() {
@@ -314,6 +316,8 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
         
     }
     
+    // MARK:- delegate methods
+    
     func preview(sessionIdentifier: String) {
         if let sessionInfo = activeSessions.first(where: { (info) -> Bool in
             info.sessionName == sessionIdentifier
@@ -325,6 +329,12 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
             manageStateWithSession(identifier: sessionIdentifier)
             
         }
+        
+    }
+    
+    func hide(sessionIdentifier: String) {
+        
+        manageStateWithSession(identifier: sessionIdentifier)
         
     }
     
@@ -451,7 +461,7 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
             
             let file = downloadOk ? filename : "server error, try again later"
             
-            let info = ProgressViewInfo.init(session: session, statusDesc: statusDesc, percent: progress, filename: file, dismissBtnTxt: DownloadingInfoText.dismiss, previewFileBtnTxt: DownloadingInfoText.show)
+            let info = ProgressViewInfo.init(session: session, statusDesc: statusDesc, percent: progress, filename: file, dismissBtnTxt: DownloadingInfoText.hide, previewFileBtnTxt: DownloadingInfoText.preview)
 
             updateProgressView(forSession: session, withInfo: info, hasError: !downloadOk)
             
@@ -460,7 +470,7 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
     
     private func handleProgressViewForSessionError(session: URLSession) {
         
-        let info = ProgressViewInfo.init(session: session, statusDesc: "server error, try again later", percent: 1, filename: "", dismissBtnTxt: DownloadingInfoText.dismiss, previewFileBtnTxt: DownloadingInfoText.show)
+        let info = ProgressViewInfo.init(session: session, statusDesc: "server error, try again later", percent: 1, filename: "", dismissBtnTxt: DownloadingInfoText.hide, previewFileBtnTxt: DownloadingInfoText.preview)
 
         updateProgressView(forSession: session, withInfo: info, hasError: true)
         

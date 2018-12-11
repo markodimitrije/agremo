@@ -1,81 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DownloadProgressView" customModule="Agremo" customModuleProvider="target">
             <connections>
-                <outlet property="dismissBtn" destination="9uB-6N-NXc" id="IQy-ZH-lK4"/>
+                <outlet property="dismissBtn" destination="QRO-3b-MIs" id="L5s-4o-SKH"/>
                 <outlet property="percentLbl" destination="xD7-ru-gJv" id="GX9-Ta-F9s"/>
                 <outlet property="progressView" destination="JZb-lt-5cA" id="bIp-Lt-Hs0"/>
-                <outlet property="showBtn" destination="QRO-3b-MIs" id="SfH-jg-geB"/>
+                <outlet property="showBtn" destination="9uB-6N-NXc" id="kAN-Mr-8v8"/>
                 <outlet property="statusLbl" destination="YxI-O1-iXI" id="JW0-FH-gd0"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRO-3b-MIs">
-                    <rect key="frame" x="319" y="15.5" width="36" height="29"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="Show"/>
+                    <rect key="frame" x="297" y="28.5" width="70" height="27"/>
+                    <color key="backgroundColor" red="0.86783581970000001" green="0.27090615029999998" blue="0.3469858468" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="O6a-3J-BpR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="HIDE">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                     <connections>
-                        <action selector="showBtnTapped:" destination="-1" eventType="touchUpInside" id="LtH-8W-xj2"/>
+                        <action selector="closeBtnTapped:" destination="-1" eventType="touchUpInside" id="2dw-KD-YKF"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uB-6N-NXc">
-                    <rect key="frame" x="260" y="15.5" width="51" height="29"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="Dismiss"/>
+                    <rect key="frame" x="219" y="28.5" width="70" height="27"/>
+                    <color key="backgroundColor" red="0.034017540509999999" green="0.6561780572" blue="0.33652114869999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="PREVIEW">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                     <connections>
-                        <action selector="closeBtnTapped:" destination="-1" eventType="touchUpInside" id="t3H-HR-eBe"/>
+                        <action selector="showBtnTapped:" destination="-1" eventType="touchUpInside" id="Nbe-c1-C5o"/>
                     </connections>
                 </button>
                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.02" translatesAutoresizingMaskIntoConstraints="NO" id="JZb-lt-5cA">
-                    <rect key="frame" x="16" y="29" width="237" height="2"/>
-                    <color key="trackTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <rect key="frame" x="8" y="41" width="204" height="2"/>
+                    <color key="progressTintColor" red="0.96862745100000003" green="0.57647058819999997" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="trackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </progressView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="preparing for download..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YxI-O1-iXI">
-                    <rect key="frame" x="16" y="6.5" width="142.5" height="14.5"/>
+                    <rect key="frame" x="8" y="18.5" width="142.5" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" red="0.96862745100000003" green="0.57647058819999997" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 %" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xD7-ru-gJv">
-                    <rect key="frame" x="16" y="39" width="21.5" height="14.5"/>
+                    <rect key="frame" x="8" y="51" width="21.5" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" red="0.96862745100000003" green="0.57647058819999997" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.077178575098514557" green="0.19167199730873108" blue="0.23353776335716248" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="JZb-lt-5cA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2b6-KQ-5n1"/>
+                <constraint firstItem="9uB-6N-NXc" firstAttribute="width" secondItem="QRO-3b-MIs" secondAttribute="width" id="8iE-j6-IMt"/>
                 <constraint firstItem="QRO-3b-MIs" firstAttribute="leading" secondItem="9uB-6N-NXc" secondAttribute="trailing" constant="8" id="C8a-ji-3kh"/>
                 <constraint firstItem="JZb-lt-5cA" firstAttribute="top" secondItem="YxI-O1-iXI" secondAttribute="bottom" constant="8" id="Dst-wZ-b1S"/>
                 <constraint firstItem="9uB-6N-NXc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HbK-fy-KBf"/>
                 <constraint firstItem="xD7-ru-gJv" firstAttribute="leading" secondItem="YxI-O1-iXI" secondAttribute="leading" id="LvS-wq-9RO"/>
-                <constraint firstItem="JZb-lt-5cA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Toe-iN-Zmq"/>
+                <constraint firstItem="JZb-lt-5cA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Toe-iN-Zmq"/>
                 <constraint firstItem="QRO-3b-MIs" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="UdC-17-VLr"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QRO-3b-MIs" secondAttribute="trailing" constant="20" id="p9H-rG-BsU"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QRO-3b-MIs" secondAttribute="trailing" constant="8" id="qeO-pK-1Ni"/>
                 <constraint firstItem="9uB-6N-NXc" firstAttribute="leading" secondItem="JZb-lt-5cA" secondAttribute="trailing" constant="7" id="xeA-lp-vZG"/>
                 <constraint firstItem="xD7-ru-gJv" firstAttribute="top" secondItem="JZb-lt-5cA" secondAttribute="bottom" constant="8" id="z50-3x-9h4"/>
                 <constraint firstItem="JZb-lt-5cA" firstAttribute="leading" secondItem="YxI-O1-iXI" secondAttribute="leading" id="zHP-fb-2eb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="24.800000000000001" y="13.493253373313344"/>
+            <point key="canvasLocation" x="24.800000000000001" y="2.6986506746626691"/>
         </view>
     </objects>
 </document>

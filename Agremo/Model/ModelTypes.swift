@@ -47,8 +47,8 @@ struct DownloadingInfoText {
     static let preparing = NSLocalizedString("Strings.DownloadingView.FileStatus.preparing", comment: "")
     static let downloading = NSLocalizedString("Strings.DownloadingView.FileStatus.downloading", comment: "")
     static let finished = NSLocalizedString("Strings.DownloadingView.FileStatus.finished", comment: "")
-    static let dismiss = NSLocalizedString("Strings.DownloadingView.FileStatus.dismiss", comment: "")
-    static let show = NSLocalizedString("Strings.DownloadingView.FileStatus.show", comment: "")
+    static let hide = NSLocalizedString("Strings.DownloadingView.FileStatus.hide", comment: "")
+    static let preview = NSLocalizedString("Strings.DownloadingView.FileStatus.preview", comment: "")
 }
 
 extension URLRequest {
@@ -97,4 +97,34 @@ struct Constants {
             return Int(height + gap)
         }
     }
+    struct Colors {
+        struct DownloadProgress {
+            static let backgroundView = 0x003a4c
+            static let progressBarBg = 0xffffff
+            static let progressBarLine = 0xf7941d
+            static let progressBarText = 0xf7941d
+            static let btnPreviewText = 0xffffff
+            static let btnHideText = 0xffffff
+            static let btnPreviewBg = 0x00b259
+            static let btnHideBg = 0xef495f
+        }
+        
+
+    }
 }
+
+
+
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(netHex:Int) {
+        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
+    }
+}
+

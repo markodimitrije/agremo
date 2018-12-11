@@ -34,16 +34,19 @@ class DownloadProgressView: UIView {
     
     @IBAction func closeBtnTapped(_ sender: UIButton) {
         
-        guard let superview = self.superview else {return}
+        delegate?.hide(sessionIdentifier: sessionIdentifier)
         
-        parentHeightCnstr?.constant = superview.frame.height - CGFloat(Constants.DownloadView.heightWithGap)
-        
-        self.removeFromSuperview()
+        removeProgressView(during: TimeInterval(0))
     }
     
     @IBAction func showBtnTapped(_ sender: UIButton) {
+        
         print("prikazi file, impelement me")
+        
         delegate?.preview(sessionIdentifier: sessionIdentifier)
+        
+        removeProgressView(during: TimeInterval(3))
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,13 +70,41 @@ class DownloadProgressView: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        roundBtns()
+        
         self.addSubview(view)
+    }
+    
+    private func removeProgressView(during: TimeInterval) {
+        
+        disableBtns(during: during)
+        
+        guard let superview = self.superview else {return}
+        
+        delay(during) { [weak self] in
+            guard let sSelf = self else { return }
+            sSelf.parentHeightCnstr?.constant = superview.frame.height - CGFloat(Constants.DownloadView.heightWithGap)
+            sSelf.removeFromSuperview()
+        }
+        
+    }
+    
+    private func disableBtns(during: TimeInterval) {
+        
+        _ = [dismissBtn, showBtn].map { btn in
+            btn?.isEnabled = false
+            
+            UIView.animate(withDuration: during, animations: {
+                btn?.alpha = 0.0
+            })
+        }
+        
     }
     
     func update(info: ProgressViewInfo) {
         progressView.progress = Float(info.percent) / 100 // ovaj je od 0-1 range
         //percentLbl.text = info.percent != 100 ? "\(info.percent) %" : (info.filename ?? "")
-        percentLbl.text = info.percent != 100 ? "\(info.percent) %" : (info.filename ?? "")
+        percentLbl.text = info.percent <= 100 ? "\(info.percent) %" : (info.filename ?? "")
         statusLbl.text = info.statusDesc
         //showBtn(enable: info.percent == 100)
         showBtn(enable: true) // hard-coded
@@ -84,6 +115,13 @@ class DownloadProgressView: UIView {
     private func showBtn(enable: Bool) {
         showBtn.isEnabled = enable
         showBtn.alpha = enable ? 1 : 0.5
+    }
+    
+    private func roundBtns() {
+        
+        _ = [showBtn, dismissBtn].map { (btn) -> Void in
+            btn?.layer.cornerRadius = showBtn.bounds.height / 2
+        }
     }
     
 }
@@ -99,4 +137,5 @@ struct ProgressViewInfo {
 
 protocol FilePreviewResponding: class {
     func preview(sessionIdentifier: String)
+    func hide(sessionIdentifier: String)
 }
