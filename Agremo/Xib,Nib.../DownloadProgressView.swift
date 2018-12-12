@@ -49,6 +49,7 @@ class DownloadProgressView: UIView {
         
         delegate?.preview(sessionIdentifier: sessionIdentifier)
         
+        // probao u dummy proj (razne fajlove razne const..), ne mogu da resim.. da ne treba na bg thread ? ovo yek nema smisla - ostavi.
         removeProgressView(during: TimeInterval(3))
         
     }
