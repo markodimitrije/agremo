@@ -29,6 +29,8 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
     
     func sessionStarted(session: URLSession, task: URLSessionDownloadTask) {
         
+        print("session started! = \(session.configuration.identifier!)")
+        
         //let downloadInfo = DownloadInfo(session: session, location: nil,
         let downloadInfo = DownloadInfo.init(session: session, location: nil, realFilename: nil)
         
@@ -70,6 +72,8 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
         
         manageStateWithSession(identifier: sessionIdentifier)
         
+        RMessage.Agremo.showFileWillBeAvailableInFilesAppMessage(success: "")
+        
     }
     
     // omoguci da je OK btn tap dostupan...
@@ -92,14 +96,17 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
             (200...299).contains(httpResponse.statusCode),
             let responseInfo = getDownloadFileInfo(response: httpResponse) else {
                 handleUrlSession(session, downloadTask: downloadTask, totalBytesWritten: nil, totalBytesExpectedToWrite: nil)
+                print("O-O not good, no fileinfo......)")
                 return
         }
         
         FileManager.persistDownloadedFile(tempFilename: tempFilename, at: location, as: responseInfo.filename)
         
-        // obezbedi preview
+        print("DownloadFilesManager.didFinishDownloadingTo.responseInfo.filename = \(responseInfo.filename)")
         
-        //previewFile(filename: responseInfo.filename, didFinishDownloadingTo: location)
+        handleUrlSession(session, downloadTask: downloadTask, totalBytesWritten: 100, totalBytesExpectedToWrite: 100) // jednostavno je finished
+        
+        session.finishTasksAndInvalidate() // JAKO VAZNO !
         
     }
     
@@ -139,15 +146,15 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         // handle ikonicom da je error ili pitaj kako...
         
-        func errorReceived() {
-            print("error is catched for session and task!!")
+        func errorReceived(_ error: Error?) {
+            print("error is catched for session and task!!, error = \(error?.localizedDescription ?? "unknown error")")
             handleProgressViewForSessionError(session: session)
             manageStateWithSessionIdentifiers(session: session)
         }
         
         if error != nil {
             
-            errorReceived()
+            errorReceived(error!)
             
         } else {
             
@@ -156,7 +163,7 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
                     return
             }
             
-            errorReceived() // 404 i slicno....
+            errorReceived(nil) // 404 i slicno....
             
         }
         
@@ -175,11 +182,9 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
         
         let downloadOk = (totalBytesWritten != nil && totalBytesExpectedToWrite != nil)
         
-        guard let sessionId = session.configuration.identifier else {
-            return
-        }
+        guard let sessionId = session.configuration.identifier else { return }
         
-        let progress = downloadOk ? Int(100 * Float(totalBytesWritten!) / 5022606) /* hard-coded za Jerry's farm, server treba da posalje Content-Length */ : 2
+        let progress = downloadOk ? Int(100 * Float(totalBytesWritten!) / Float(totalBytesExpectedToWrite!)) : 2 // 2 je 2 %
         
         if let index = activeSessions.firstIndex(where: { (info) -> Bool in
             info.sessionName == sessionId
@@ -187,13 +192,13 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
             
             activeSessions[index].progress = progress
             
-            var statusDesc = (progress < 2) ? DownloadingInfoText.preparing : DownloadingInfoText.downloading
+            var statusDesc = (progress <= 2) ? DownloadingInfoText.preparing : DownloadingInfoText.downloading
             
             let filename = getDownloadFileInfo(downloadTask: downloadTask)?.filename
             
             if progress == 100 { statusDesc = DownloadingInfoText.finished }
             
-            let file = downloadOk ? filename : "server error, try again later"
+            let file = downloadOk ? filename : RMessageText.serverErrorTryAgain
             
             let info = ProgressViewInfo.init(session: session, statusDesc: statusDesc, percent: progress, filename: file, dismissBtnTxt: DownloadingInfoText.hide, previewFileBtnTxt: DownloadingInfoText.preview)
             
@@ -204,7 +209,7 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
     
     private func handleProgressViewForSessionError(session: URLSession) {
         
-        let info = ProgressViewInfo.init(session: session, statusDesc: "server error, try again later", percent: 1, filename: "", dismissBtnTxt: DownloadingInfoText.hide, previewFileBtnTxt: DownloadingInfoText.preview)
+        let info = ProgressViewInfo.init(session: session, statusDesc: RMessageText.serverErrorTryAgain, percent: 1, filename: "", dismissBtnTxt: DownloadingInfoText.hide, previewFileBtnTxt: DownloadingInfoText.preview)
         
         updateProgressView(forSession: session, withInfo: info, hasError: true)
         
@@ -252,7 +257,7 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
         if let index = activeSessions.firstIndex(where: { (info) -> Bool in
             info.sessionName == (session.configuration.identifier ?? "")
         }) {
-            print("\(activeSessions[index].sessionName) je finished, prikazi OK btn")
+            print("\(activeSessions[index].sessionName) je finished, ukloni je sa activeSessions, i dozvoli preview")
             
             self.activeSessions.remove(at: index)
             

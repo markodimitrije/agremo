@@ -82,12 +82,14 @@ func isDownloadFileUrl(_ adr: String) -> Bool {
         return adr.contains("results")
     }
     
-    return adr.contains("results") && last != "/"
+    //return adr.contains("results") && last != "/"
+    return adr.contains("results") && last == "/"
 }
 
 func getTempFilename(_ adr: String) -> String? {
     // https://app.agremo.com/results/8b1dacc013c64562b92f1989a50f3e38
-    return adr.components(separatedBy: "results").last?.replacingOccurrences(of: "/", with: "")
+    guard let tempFilename = adr.components(separatedBy: "results").last?.replacingOccurrences(of: "/", with: "") else {return nil}
+    return tempFilename + "/" // jer tap na btn salje i "results/xyz" i "results/xyz/"
     
 }
 

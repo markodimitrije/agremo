@@ -40,7 +40,8 @@ struct RMessageText {
     
     static let fileDownloadMsgStatusOk = NSLocalizedString("Strings.RMessageText.FileDownloadStatus.OK", comment: "")
     static let fileDownloadMsgStatusFailed = NSLocalizedString("Strings.RMessageText.FileDownloadStatus.Failed", comment: "")
-    
+    static let fileWillBeAvailableMsg = NSLocalizedString("Strings.DownloadingView.FileWillBeAvailableInFilesApp", comment: "")
+    static let serverErrorTryAgain = NSLocalizedString("Strings.DownloadingView.ServerErrorTryAgain", comment: "")
 }
 
 struct DownloadingInfoText {
@@ -79,7 +80,9 @@ extension URLRequest {
 enum TimeOut {
     //static let agremoMobile = TimeInterval.init(0.05)
     static let agremoMobileLoadContent = TimeInterval.init(10.0) // bilo je 7.0
-    static let downloadArchive = TimeInterval.init(60.0) // bilo je 10.0
+    //static let downloadArchive = TimeInterval.init(60.0) // bilo je 10.0
+    //static let downloadArchive = TimeInterval.init(5.0) // bilo je 10.0
+    static let downloadArchive = TimeInterval.init(10.0) // bilo je 10.0
 }
 
 struct Constants {

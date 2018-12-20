@@ -43,16 +43,16 @@ class DownloadProgressView: UIView {
     
     @IBAction func showBtnTapped(_ sender: UIButton) {
         
-        print("prikazi file, impelement me")
-        
         toggleColorsOnPressed(btn: showBtn)
         
         delegate?.preview(sessionIdentifier: sessionIdentifier)
         
         // probao u dummy proj (razne fajlove razne const..), ne mogu da resim.. da ne treba na bg thread ? ovo yek nema smisla - ostavi.
-        removeProgressView(during: TimeInterval(3))
+        removeProgressView(during: TimeInterval(5))
         
     }
+    
+    private var lastSavedPercent: Int = 0
     
     func toggleColorsOnPressed(btn: UIButton) {
         let actualColor = btn.backgroundColor ?? Constants.Colors.progressBar
@@ -104,25 +104,35 @@ class DownloadProgressView: UIView {
     
     private func disableBtns(during: TimeInterval) {
         
-        _ = [dismissBtn, showBtn].map { btn in
-            btn?.isEnabled = false
-            
-            UIView.animate(withDuration: during, animations: {
-                btn?.alpha = 0.0
-            })
-        }
+//      _ = [dismissBtn, showBtn].map { btn in
+//            btn?.isEnabled = false
+//
+//            UIView.animate(withDuration: during, animations: {
+//                btn?.alpha = 0.0
+//            })
+//        }
+
+        UIView.animate(withDuration: during, animations: { [weak self] in
+            guard let sSelf = self else {return}
+            sSelf.alpha = 0.0
+        })
         
     }
     
     func update(info: ProgressViewInfo) {
-        progressView.progress = Float(info.percent) / 100 // ovaj je od 0-1 range
-        //percentLbl.text = info.percent != 100 ? "\(info.percent) %" : (info.filename ?? "")
-        percentLbl.text = info.percent <= 100 ? "\(info.percent) %" : (info.filename ?? "")
-        statusLbl.text = info.statusDesc
-        //showBtn(enable: info.percent == 100)
-        showBtn(enable: true) // hard-coded
-        dismissBtn.setTitle(info.dismissBtnTxt, for: .normal)
-        showBtn.setTitle(info.previewFileBtnTxt, for: .normal)
+        
+        if info.percent > self.lastSavedPercent { // ne dozvoljavam da ga sync sa losim data, ili paralelnim download-om (trebao si cancel web request..)
+            
+            progressView.progress = Float(info.percent) / 100 // ovaj je od 0-1 range
+            //percentLbl.text = info.percent != 100 ? "\(info.percent) %" : (info.filename ?? "")
+            percentLbl.text = "\(info.percent) %"
+            statusLbl.text = info.statusDesc
+            showBtn(enable: info.percent >= 98)
+            dismissBtn.setTitle(info.dismissBtnTxt, for: .normal)
+            showBtn.setTitle(info.previewFileBtnTxt, for: .normal)
+            
+        }
+        
     }
     
     private func showBtn(enable: Bool) {

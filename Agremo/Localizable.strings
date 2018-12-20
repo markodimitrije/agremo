@@ -33,3 +33,5 @@ Strings.DownloadingView.FileStatus.finished = "Finished";
 Strings.DownloadingView.FileStatus.hide = "HIDE";
 Strings.DownloadingView.FileStatus.preview = "PREVIEW";
 
+Strings.DownloadingView.FileWillBeAvailableInFilesApp = "When the download is complete, the file will be available in the Agremo folder on your phone.";
+Strings.DownloadingView.ServerErrorTryAgain = "Something went wrong. Please try again";

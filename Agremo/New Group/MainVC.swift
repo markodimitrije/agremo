@@ -206,16 +206,18 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
         
         print("tap is catched, myUrl is = \(addr)")
         
+        
+        
         if isDownloadFileUrl(addr) {
             
             guard let tempFileName = getTempFilename(addr),
                 !downloadsProgressManager.hasActiveSession(withName: tempFileName) else {
                     print("decidePolicyFor.error: nemam temp filename iz url-a \(addr) ili je session alive")
-                    decisionHandler(.allow)
+                    decisionHandler(.cancel)
                 return
             }
             
-            //RMessage.Agremo.showFileDownloadMessage()
+            print("PROSAO link !!!", addr)
             
             ServerRequest.downloadAgremoArchiveInBackground(addr: addr, delegate: downloadsProgressManager, filename: tempFileName)
             
