@@ -204,9 +204,12 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
             return
         }
         
+        if let lastChar = addr.last, lastChar == "/" {
+            decisionHandler(.cancel)
+            return
+        }
+        
         print("tap is catched, myUrl is = \(addr)")
-        
-        
         
         if isDownloadFileUrl(addr) {
             
