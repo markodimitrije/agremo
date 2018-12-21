@@ -131,6 +131,8 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
     
     private func showFileWithPath(path: String){
         
+        print("my path = \(path)")
+        
         let isFileFound:Bool? = FileManager.default.fileExists(atPath: path)
         if isFileFound == true{
             DispatchQueue.main.async {
@@ -184,25 +186,32 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
         
         let progress = downloadOk ? Int(100 * Float(totalBytesWritten!) / Float(totalBytesExpectedToWrite!)) : 2 // 2 je 2 %
         
-        if let index = activeSessions.firstIndex(where: { (info) -> Bool in
-            info.sessionName == sessionId
-        }) {
-            
-            activeSessions[index].progress = progress
-            
-            var statusDesc = (progress <= 2) ? DownloadingInfoText.preparing : DownloadingInfoText.downloading
-            
-            let filename = getDownloadFileInfo(downloadTask: downloadTask)?.filename
-            
-            if progress == 100 { statusDesc = DownloadingInfoText.finished }
-            
-            let file = downloadOk ? filename : RMessageText.serverErrorTryAgain
-            
-            let info = ProgressViewInfo.init(session: session, statusDesc: statusDesc, percent: progress, filename: file, dismissBtnTxt: DownloadingInfoText.hide, previewFileBtnTxt: DownloadingInfoText.preview)
-            
-            updateProgressView(forSession: session, withInfo: info, hasError: !downloadOk)
+        DispatchQueue.main.async { [weak self] in
+            guard let sSelf = self else {return}
+        
+            if let index = sSelf.activeSessions.firstIndex(where: { (info) -> Bool in
+                info.sessionName == sessionId
+            }) {
+                
+                sSelf.activeSessions[index].progress = progress
+                
+                var statusDesc = (progress <= 2) ? DownloadingInfoText.preparing : DownloadingInfoText.downloading
+                
+                let filename = getDownloadFileInfo(downloadTask: downloadTask)?.filename
+                
+                if progress == 100 { statusDesc = DownloadingInfoText.finished }
+                
+                let file = downloadOk ? filename : RMessageText.serverErrorTryAgain
+                
+                let info = ProgressViewInfo.init(session: session, statusDesc: statusDesc, percent: progress, filename: file, dismissBtnTxt: DownloadingInfoText.hide, previewFileBtnTxt: DownloadingInfoText.preview)
+                
+                sSelf.updateProgressView(forSession: session, withInfo: info, hasError: !downloadOk)
+                
+                
+            }
             
         }
+        
     }
     
     private func handleProgressViewForSessionError(session: URLSession) {
