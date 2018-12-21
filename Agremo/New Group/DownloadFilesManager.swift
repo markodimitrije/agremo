@@ -88,8 +88,6 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
             activeSessions[index] = DownloadInfo.init(session: session, location: location, realFilename: responseInfo.filename)
         }
         
-        
-        
         // cim je gotovo, momentalno oslobodi iz svoje global koja prati state...
         guard let tempFilename = session.configuration.identifier,
             let httpResponse = downloadTask.response as? HTTPURLResponse,

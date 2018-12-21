@@ -204,6 +204,11 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
             return
         }
         
+        if !isDownloadFileUrl(addr) { // ako nije download link
+            decisionHandler(.allow)
+            return
+        }
+        
         if let lastChar = addr.last, lastChar == "/" {
             decisionHandler(.cancel)
             return

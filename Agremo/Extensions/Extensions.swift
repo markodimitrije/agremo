@@ -66,10 +66,7 @@ extension FileManager {
                                                            appropriateFor: nil,
                                                            create: false)
             
-            //let savedURL = documentsURL.appendingPathComponent(timestamped(filename: filename))
             let savedURL = documentsURL.appendingPathComponent(filename)
-            
-            //try FileManager.default.moveItem(at: location, to: savedURL)
             
             try FileManager.default.copyItem(at: location, to: savedURL)
             
@@ -82,7 +79,6 @@ extension FileManager {
     static func saveToDisk(data: Data, fileName: String, ext: String) {
         
         let writeUrl = destinationUrl(fileName: fileName, ext: ext)
-        //print("writeUrl = \(writeUrl)")
         
         do {
             try data.write(to: writeUrl, options: .atomic)
