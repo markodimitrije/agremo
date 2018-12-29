@@ -37,7 +37,7 @@ class DownloadProgressView: UIView {
         
         toggleColorsOnPressed(btn: showBtn)
         
-        delegate?.hide(sessionIdentifier: sessionIdentifier)
+        delegate?.hide(sessionIdentifier: sessionIdentifier, isFinished: isFinished)
         
         removeProgressView(during: TimeInterval(0))
     }
@@ -54,6 +54,9 @@ class DownloadProgressView: UIView {
     }
     
     private var lastSavedPercent: Int = 0
+    private var isFinished: Bool {
+        return lastSavedPercent >= 98 // treba 100, ostavljam za svaki slucaj (desava se da ne update na 99 ?!?)
+    }
     
     func toggleColorsOnPressed(btn: UIButton) {
         let actualColor = btn.backgroundColor ?? Constants.Colors.progressBar
@@ -141,6 +144,8 @@ class DownloadProgressView: UIView {
         
         if info.percent > self.lastSavedPercent { // ne dozvoljavam da ga sync sa losim data, ili paralelnim download-om (trebao si cancel web request..)
             
+            lastSavedPercent = info.percent
+            
             progressView.progress = Float(info.percent) / 100 // ovaj je od 0-1 range
             //percentLbl.text = info.percent != 100 ? "\(info.percent) %" : (info.filename ?? "")
             percentLbl.text = "\(info.percent) %"
@@ -178,7 +183,7 @@ struct ProgressViewInfo {
 
 protocol FilePreviewResponding: class {
     func preview(sessionIdentifier: String)
-    func hide(sessionIdentifier: String)
+    func hide(sessionIdentifier: String, isFinished: Bool)
 }
 
 protocol StackScrolling: class {

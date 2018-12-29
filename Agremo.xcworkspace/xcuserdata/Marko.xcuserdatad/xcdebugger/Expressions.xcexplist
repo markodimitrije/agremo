@@ -132,6 +132,20 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "DownloadProgressView.closeBtnTapped(_:):DownloadProgressView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "isFinished">
+            </PersistentString>
+            <PersistentString
+               value = "lastSavedPercent &gt;= 98">
+            </PersistentString>
+            <PersistentString
+               value = "lastSavedPercent">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "AgremoCLUpdater.locationUpdated(location:):MainVC.swift">
          <PersistentStrings>
             <PersistentString

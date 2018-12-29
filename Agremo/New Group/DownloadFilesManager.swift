@@ -70,11 +70,13 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
         
     }
     
-    func hide(sessionIdentifier: String) {
+    func hide(sessionIdentifier: String, isFinished: Bool) {
         
         manageStateWithSession(identifier: sessionIdentifier)
         
-        RMessage.Agremo.showFileWillBeAvailableInFilesAppMessage(success: "")
+        if !isFinished {
+            RMessage.Agremo.showFileWillBeAvailableInFilesAppMessage(success: "")
+        }
         
     }
     
