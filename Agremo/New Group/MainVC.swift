@@ -199,6 +199,8 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
+        print("imam decidePolicyFor :")
+        
         guard let addr = navigationAction.request.url?.absoluteString else {
             decisionHandler(.allow)
             return

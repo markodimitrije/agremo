@@ -44,6 +44,8 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
         
         progressView.delegate = self
         
+        progressView.swipeDelegate = myDelegate as? StackScrolling
+        
         progressView.parentHeightCnstr = stackHeightCnstr
         
         stackView.addArrangedSubview(progressView)
@@ -300,6 +302,48 @@ struct DownloadInfo {
         self.sessionName = session.configuration.identifier ?? ""
         self.location = location
         self.filename = realFilename
+    }
+}
+
+extension MainVC: StackScrolling {
+    @objc func onProgressViewScroll(_ direction: UISwipeGestureRecognizerDirection) { //UISwipeGestureRecognizerDirection treba mi kao param
+        
+        var newOriginX: CGFloat = self.sv.frame.origin.x
+        
+        var actualOr: CGPoint {
+            return self.sv.frame.origin // moze biti levo = middle = desno
+        }
+        
+        let bounds = self.sv.bounds // const
+        
+        let shiftedX = bounds.width * 0.95
+        
+        var stackIsLeft: Bool { return actualOr.x < -bounds.width/2 }
+        var stackIsRight: Bool { return actualOr.x > bounds.width/2 }
+        
+        switch direction {
+        
+        case .left:
+            
+            if stackIsLeft { return } // ako si vec left, ignore...
+            
+            newOriginX = stackIsRight ? 0.0 : -shiftedX
+            
+        case .right:
+            
+            if stackIsRight { return } // ako si vec desno, ignore...
+            
+            newOriginX = stackIsLeft ? 0.0 : shiftedX
+            
+        default: break
+        }
+        
+        let newOr = CGPoint.init(x: newOriginX, y: actualOr.y)
+        
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            self.sv.frame = CGRect.init(origin: newOr, size: bounds.size)
+        }, completion: nil)
+        
     }
 }
 

@@ -16,6 +16,7 @@ class DownloadProgressView: UIView {
     var sessionIdentifier = ""
     
     weak var delegate: FilePreviewResponding?
+    weak var swipeDelegate: StackScrolling?
     
     @IBOutlet weak var progressView: UIProgressView! {
         didSet {
@@ -85,7 +86,24 @@ class DownloadProgressView: UIView {
         
         roundBtns()
         
+        attachSwipeHandledByParentView(toView: view) // onProgressViewScroll(sender
+        
         self.addSubview(view)
+    }
+    
+    private func attachSwipeHandledByParentView(toView view: UIView) {
+        let leftGr = UISwipeGestureRecognizer.init(target: self, action: #selector(self.onProgressViewScroll(_:)))
+        leftGr.direction = .left
+        
+        let rightGr = UISwipeGestureRecognizer.init(target: self, action: #selector(self.onProgressViewScroll(_:)))
+        rightGr.direction = .right
+        
+        view.addGestureRecognizers(gestureRecognizers: [leftGr, rightGr])
+
+    }
+    
+    @objc func onProgressViewScroll(_ gesture: UISwipeGestureRecognizer) {
+        swipeDelegate?.onProgressViewScroll(gesture.direction) // dodaj ga parentu...
     }
     
     private func removeProgressView(during: TimeInterval) {
@@ -161,4 +179,8 @@ struct ProgressViewInfo {
 protocol FilePreviewResponding: class {
     func preview(sessionIdentifier: String)
     func hide(sessionIdentifier: String)
+}
+
+protocol StackScrolling: class {
+    func onProgressViewScroll(_ direction: UISwipeGestureRecognizerDirection)
 }

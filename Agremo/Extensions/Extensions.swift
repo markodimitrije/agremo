@@ -146,3 +146,11 @@ extension DateFormatter {
         return dateFormatter
     }()
 }
+
+extension UIView {
+    func addGestureRecognizers(gestureRecognizers: [UIGestureRecognizer]) {
+        _ = gestureRecognizers.map {
+            self.addGestureRecognizer($0)
+        }
+    }
+}

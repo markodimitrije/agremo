@@ -3,6 +3,9 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "DownloadProgressView.onProgressViewScroll(_:):DownloadProgressView.swift">
+      </ContextState>
+      <ContextState
          contextName = "MainVC.configureDownloadsView():MainVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -27,6 +30,23 @@
             </PersistentString>
             <PersistentString
                value = "task.response as? HTTPURLResponse)?.statusCode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainVC.onProgressViewScroll(_:):DownloadFilesManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "stackIsRight">
+            </PersistentString>
+            <PersistentString
+               value = "actualOr.x &gt; bounds.width/2 ">
+            </PersistentString>
+            <PersistentString
+               value = "actualOr.x &gt; bounds.width/2">
+            </PersistentString>
+            <PersistentString
+               value = "self.view.frame.origin.x">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -112,6 +132,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "AgremoCLUpdater.locationUpdated(location:):MainVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "location.description">
+            </PersistentString>
+            <PersistentString
+               value = "previousLocation.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MainVC.urlSession(_:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:):MainVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -122,17 +153,6 @@
             </PersistentString>
             <PersistentString
                value = "downloadTask.response">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "AgremoCLUpdater.locationUpdated(location:):MainVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "location.description">
-            </PersistentString>
-            <PersistentString
-               value = "previousLocation.description">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
