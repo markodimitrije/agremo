@@ -167,6 +167,8 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
                     return
             }
             
+            print("didCompleteWithError.error.statusCode = \(statusCode)")
+            
             errorReceived(nil) // 404 i slicno....
             
         }

@@ -9,7 +9,7 @@
 import Foundation
 
 func isAgremoResourceDownloadUrl(response: URLResponse) -> Bool? {
-    
+
     return response.url?.absoluteString.contains("results")
     
 }

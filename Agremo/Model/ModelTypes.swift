@@ -82,7 +82,7 @@ enum TimeOut {
     static let agremoMobileLoadContent = TimeInterval.init(10.0) // bilo je 7.0
     //static let downloadArchive = TimeInterval.init(60.0) // bilo je 10.0
     //static let downloadArchive = TimeInterval.init(5.0) // bilo je 10.0
-    static let downloadArchive = TimeInterval.init(10.0) // bilo je 10.0
+    static let downloadArchive = TimeInterval.init(15.0) // bilo je 10.0
 }
 
 struct Constants {
