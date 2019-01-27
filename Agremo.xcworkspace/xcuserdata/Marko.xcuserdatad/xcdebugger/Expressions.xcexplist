@@ -6,6 +6,14 @@
          contextName = "DownloadProgressView.onProgressViewScroll(_:):DownloadProgressView.swift">
       </ContextState>
       <ContextState
+         contextName = "closure #3 in MainVC.webView(_:decidePolicyFor:decisionHandler:):MainVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "activeSession.filename">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MainVC.configureDownloadsView():MainVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -116,14 +124,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "DownloadsProgressManager.previewFile(responseInfo:didFinishDownloadingTo:):MainVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "fileUrl">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "DownloadsProgressManager.urlSession(_:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:):MainVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -142,6 +142,14 @@
             </PersistentString>
             <PersistentString
                value = "lastSavedPercent">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DownloadsProgressManager.previewFile(responseInfo:didFinishDownloadingTo:):MainVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fileUrl">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -174,16 +182,28 @@
          contextName = "MainVC.webView(_:decidePolicyFor:decisionHandler:):MainVC.swift">
          <PersistentStrings>
             <PersistentString
+               value = "activeSession">
+            </PersistentString>
+            <PersistentString
                value = "downloadsProgressManager">
             </PersistentString>
             <PersistentString
-               value = "navigationAction.navigationType">
+               value = "downloadsProgressManager.hasActiveSession(withName: tempFileName)">
             </PersistentString>
             <PersistentString
                value = "navigationAction.request.url">
             </PersistentString>
             <PersistentString
+               value = "downloadsProgressManager.activeSessions">
+            </PersistentString>
+            <PersistentString
                value = "url.lastPathComponent">
+            </PersistentString>
+            <PersistentString
+               value = "navigationAction.navigationType">
+            </PersistentString>
+            <PersistentString
+               value = "getTempFilename(addr)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

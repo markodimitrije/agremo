@@ -57,6 +57,7 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
     // MARK:- delegate methods
     
     func preview(sessionIdentifier: String) {
+        
         if let sessionInfo = activeSessions.first(where: { (info) -> Bool in
             info.sessionName == sessionIdentifier
         }) {
@@ -167,7 +168,7 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
                     return
             }
             
-            print("didCompleteWithError.error.statusCode = \(statusCode)")
+            print("didCompleteWithError.error.statusCode = \(statusCode), timestamp = \(Date.init(timeIntervalSinceNow: 0))")
             
             errorReceived(nil) // 404 i slicno....
             
