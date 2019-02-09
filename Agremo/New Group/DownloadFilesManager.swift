@@ -283,7 +283,7 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
         if let index = activeSessions.firstIndex(where: { (info) -> Bool in
             info.sessionName == identifier
         }) {
-            print("\(activeSessions[index].sessionName) je finished, prikazi OK btn")
+//            print("\(activeSessions[index].sessionName) je finished, prikazi OK btn")
             
             self.activeSessions.remove(at: index)
             

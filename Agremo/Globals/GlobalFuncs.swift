@@ -43,10 +43,15 @@ func isAgremoResourceDownloadUrl(response: URLResponse) -> Bool? {
 
 func getDownloadFileInfo(downloadTask: URLSessionDownloadTask) -> (fileUrl: String, filename: String)? {
     
-    guard let httpResponse = downloadTask.response as? HTTPURLResponse,
-        (200...299).contains(httpResponse.statusCode) else {
-            return nil
+    guard let httpResponse = downloadTask.response as? HTTPURLResponse else {
+        print("getDownloadFileInfo.else.response.code.nije HTTP...")
+        return nil
     }
+    print("getDownloadFileInfo.response.code. = \(httpResponse.statusCode)")
+    guard (200...299).contains(httpResponse.statusCode) else {
+        return nil
+    }
+    
     return getDownloadFileInfo(response: httpResponse)
 }
 

@@ -232,7 +232,7 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
                 if let _ = downloadsProgressManager.activeSessions.first(where: { info -> Bool in // exists
                     return info.sessionName == tempFileName
                 }) {
-                    print("postoji zaostala, proveri da li je na ekranu !")
+//                    print("postoji zaostala, proveri da li je na ekranu !")
                     if let _ = sv.subviews.first(where: { view -> Bool in
                         if let downloadView = view as? DownloadProgressView, downloadView.sessionIdentifier == tempFileName {
                             return true
@@ -240,7 +240,7 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
                             return false
                         }
                     }) {
-                        print("postoji vec na ekranu i status joj je downloading, ne diraj nista....")
+//                        print("postoji vec na ekranu i status joj je downloading, ne diraj nista....")
                     } else {
                         ServerRequest.downloadAgremoArchiveInBackground(addr: addr, delegate: downloadsProgressManager, filename: tempFileName)
                     }

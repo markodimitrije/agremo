@@ -16,7 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var backgroundCompletionHandler: (() -> Void)?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        let fileName = "Agremo\(Date()).log"
+        let logFilePath = (documentsDirectory as NSString).appendingPathComponent(fileName)
+        freopen(logFilePath.cString(using: String.Encoding.ascii)!, "a+", stderr)
         return true
     }
     // bg download
