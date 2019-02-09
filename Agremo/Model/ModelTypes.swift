@@ -103,8 +103,9 @@ struct Constants {
     struct Colors {
         static let progressBar = UIColor.init(red: 247/255, green: 147/255, blue: 29/255, alpha: 1.0)
     }
-    
-    
+    struct Download {
+        static let prepareForDownloadPercent = 2
+    }
 //    struct Colors {
 //        struct DownloadProgress {
 //            static let backgroundView = 0x003a4c

@@ -47,8 +47,9 @@ func getDownloadFileInfo(downloadTask: URLSessionDownloadTask) -> (fileUrl: Stri
         print("getDownloadFileInfo.else.response.code.nije HTTP...")
         return nil
     }
-    print("getDownloadFileInfo.response.code. = \(httpResponse.statusCode)")
+    //print("getDownloadFileInfo.response.code. = \(httpResponse.statusCode)")
     guard (200...299).contains(httpResponse.statusCode) else {
+        print("getDownloadFileInfo.response.code !!! nije ok opseg = \(httpResponse.statusCode)")
         return nil
     }
     

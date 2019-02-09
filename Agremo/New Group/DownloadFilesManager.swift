@@ -41,7 +41,9 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
                 if let progressView = (stackView.subviews as! [DownloadProgressView]).first(where: { downloadView -> Bool in
                     downloadView.sessionIdentifier == activeSessions[index].sessionName
                 }) {
-                    progressView.subviews.first?.backgroundColor = .red
+                    if activeSessions[index].progress <= Constants.Download.prepareForDownloadPercent {
+                        progressView.subviews.first?.backgroundColor = .red
+                    }
                 }
             }
         }
@@ -219,7 +221,7 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
                 
                 sSelf.activeSessions[index].progress = progress
                 
-                var statusDesc = (progress <= 2) ? DownloadingInfoText.preparing : DownloadingInfoText.downloading
+                var statusDesc = (progress <= Constants.Download.prepareForDownloadPercent) ? DownloadingInfoText.preparing : DownloadingInfoText.downloading
                 
                 let filename = getDownloadFileInfo(downloadTask: downloadTask)?.filename
                 

@@ -150,7 +150,7 @@ class DownloadProgressView: UIView {
             //percentLbl.text = info.percent != 100 ? "\(info.percent) %" : (info.filename ?? "")
             percentLbl.text = "\(info.percent) %"
             statusLbl.text = info.statusDesc
-            showBtn(enable: info.percent >= 98)
+            showBtn(enable: info.percent >= 99)
             dismissBtn.setTitle(info.dismissBtnTxt, for: .normal)
             showBtn.setTitle(info.previewFileBtnTxt, for: .normal)
             
