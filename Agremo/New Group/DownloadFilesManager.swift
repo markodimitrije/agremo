@@ -16,6 +16,8 @@ protocol AgremoWkWebViewLoadingDelegate: class {
 
 class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownloadDelegate, FilePreviewResponding {
     
+    var timer: Timer!
+    
     var activeSessions = [DownloadInfo]()
     var stackView: UIStackView
     var stackHeightCnstr: NSLayoutConstraint
@@ -25,6 +27,24 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
     init(stackView: UIStackView, stackHeightCnstr: NSLayoutConstraint) {
         self.stackView = stackView
         self.stackHeightCnstr = stackHeightCnstr
+        super.init()
+        self.timer = Timer.scheduledTimer(timeInterval: TimeInterval.init(3),
+                                   target: self,
+                                   selector: #selector(DownloadsProgressManager.checkIdleDownloads),
+                                   userInfo: nil,
+                                   repeats: true)
+    }
+    
+    @objc func checkIdleDownloads() { //print("timer counts...")
+        _ = activeSessions.enumerated().map { (index, info) in
+            if Date.init() > info.timestamp.addingTimeInterval(TimeInterval.init(10)) {
+                if let progressView = (stackView.subviews as! [DownloadProgressView]).first(where: { downloadView -> Bool in
+                    downloadView.sessionIdentifier == activeSessions[index].sessionName
+                }) {
+                    progressView.subviews.first?.backgroundColor = .red
+                }
+            }
+        }
     }
     
     func sessionStarted(session: URLSession, task: URLSessionDownloadTask) {
@@ -288,6 +308,7 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
 struct DownloadInfo {
     var sessionName: String = ""
     var progress: Int = 0
+    var timestamp = Date.init()
     
     var filename: String?
     var location: URL?
