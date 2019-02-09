@@ -66,9 +66,7 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
             
             previewFile(filename: filename, didFinishDownloadingTo: url)
             manageStateWithSession(identifier: sessionIdentifier)
-            
         }
-        
     }
     
     func hide(sessionIdentifier: String, isFinished: Bool) {
@@ -174,7 +172,6 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
             
         }
         
-        
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
@@ -213,12 +210,8 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
                 let info = ProgressViewInfo.init(session: session, statusDesc: statusDesc, percent: progress, filename: file, dismissBtnTxt: DownloadingInfoText.hide, previewFileBtnTxt: DownloadingInfoText.preview)
                 
                 sSelf.updateProgressView(forSession: session, withInfo: info, hasError: !downloadOk)
-                
-                
             }
-            
         }
-        
     }
     
     private func handleProgressViewForSessionError(session: URLSession) {

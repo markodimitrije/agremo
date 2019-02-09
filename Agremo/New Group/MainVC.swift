@@ -12,14 +12,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
     
     var myWebView: AgremoWkWebView! // WKWebView
     
-    //let sv = UIStackView.init(frame: UIScreen.main.bounds)
-    //let sv = UIView.init(frame: CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: UIScreen.main.bounds.width, height: 10)))
-    //private let sv = UIStackView.init(frame: CGRect.init(origin: CGPoint.zero,
-//                                                         size: CGSize.init(width: UIScreen.main.bounds.width, height: 10)))
-    
     @IBOutlet weak var sv: UIStackView!
     @IBOutlet weak var stackHeightCnstr: NSLayoutConstraint!
-    
     
     private lazy var downloadsProgressManager = DownloadsProgressManager(stackView: sv, stackHeightCnstr: stackHeightCnstr)
     
@@ -103,9 +97,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
             FileManager.saveToDisk(data: data,
                                    inDirectory: FileManager.applicationSupportDir,
                                    filenameWithExtension: filename)
-            
         }
-        
     }
     
     private func requestCoreLocationAuth() {
@@ -138,9 +130,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate, AgremoWkWebViewLoadin
                 }
                 
             }
-            
         }
-        
     }
     
     private func showLogoView() {
