@@ -14,33 +14,6 @@ func isAgremoResourceDownloadUrl(response: URLResponse) -> Bool? {
     
 }
 
-//func getDownloadFileInfo(response: URLResponse) -> (fileUrl: String, filename: String)? {
-//
-//    guard let response = response as? HTTPURLResponse else {
-//        //print("nisam HTTPURLResponse!")
-//        return nil
-//    }
-//
-//    guard let url = response.url?.absoluteString, url.contains("results") else {
-//        //print("nemam results!")
-//        return nil
-//    }
-//
-//    guard let contentDisposition = response.allHeaderFields["Content-Disposition"] as? String else {
-//        //print("nemam contentDisposition string")
-//        return nil
-//    }
-//
-//    guard let filename = contentDisposition.components(separatedBy: "filename=").last else {
-//        //print("nemam filename!")
-//        return nil
-//    }
-//
-//    let final = timestamped(filename: filename)
-//
-//    return (url, final)
-//}
-
 func getDownloadFileInfo(downloadTask: URLSessionDownloadTask) -> (fileUrl: String, filename: String)? {
     
     guard let httpResponse = downloadTask.response as? HTTPURLResponse else {

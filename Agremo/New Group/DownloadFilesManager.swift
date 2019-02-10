@@ -28,7 +28,7 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
         self.stackView = stackView
         self.stackHeightCnstr = stackHeightCnstr
         super.init()
-        self.timer = Timer.scheduledTimer(timeInterval: TimeInterval.init(3),
+        self.timer = Timer.scheduledTimer(timeInterval: TimeInterval.init(1),
                                    target: self,
                                    selector: #selector(DownloadsProgressManager.checkIdleDownloads),
                                    userInfo: nil,
@@ -36,13 +36,20 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
     }
     
     @objc func checkIdleDownloads() { //print("timer counts...")
-        _ = activeSessions.enumerated().map { (index, info) in
-            if Date.init() > info.timestamp.addingTimeInterval(TimeInterval.init(10)) {
+        
+        for info in activeSessions {
+            if Date.init() > info.timestamp.addingTimeInterval(Constants.Download.idlePeriod) {
+            //if Date.init() > info.timestamp.addingTimeInterval(10) { testing
                 if let progressView = (stackView.subviews as! [DownloadProgressView]).first(where: { downloadView -> Bool in
-                    downloadView.sessionIdentifier == activeSessions[index].sessionName
+                    return downloadView.sessionIdentifier == info.sessionName
                 }) {
-                    if activeSessions[index].progress <= Constants.Download.prepareForDownloadPercent {
-                        progressView.subviews.first?.backgroundColor = .red
+                    if info.progress <= Constants.Download.prepareForDownloadPercent {
+//                    if info.progress <= 100 { testing
+                        progressView.downloadFailed()
+                        
+                        manageStateWithSession(identifier: info.sessionName)// activeSessions.remove(at: index)
+                        
+                        RMessage.Agremo.showDownloadFileInternetConnectionError()
                     }
                 }
             }
@@ -93,11 +100,11 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
     
     func hide(sessionIdentifier: String, isFinished: Bool) {
         
-        manageStateWithSession(identifier: sessionIdentifier)
-        
-        if !isFinished {
+        if !isFinished && (activeSessions.map {$0.sessionName}).contains(sessionIdentifier) { // ispremestao sam ovo, necitko je ....
             RMessage.Agremo.showFileWillBeAvailableInFilesAppMessage(success: "")
         }
+        
+        manageStateWithSession(identifier: sessionIdentifier)
         
     }
     

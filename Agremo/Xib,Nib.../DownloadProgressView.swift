@@ -58,6 +58,34 @@ class DownloadProgressView: UIView {
         return lastSavedPercent >= 98 // treba 100, ostavljam za svaki slucaj (desava se da ne update na 99 ?!?)
     }
     
+    // API:
+    
+    func downloadFailed() {
+        self.subviews.first?.backgroundColor = UIColor.init(red: 231/255, green: 56/255, blue: 56/255, alpha: 1.0)
+        showBtn.isHidden = true
+        progressView.isHidden = true
+        percentLbl.text = ""
+        statusLbl.text = ""
+    }
+    
+    func update(info: ProgressViewInfo) {
+        
+        if info.percent > self.lastSavedPercent { // ne dozvoljavam da ga sync sa losim data, ili paralelnim download-om (trebao si cancel web request..)
+            
+            lastSavedPercent = info.percent
+            
+            progressView.progress = Float(info.percent) / 100 // ovaj je od 0-1 range
+            //percentLbl.text = info.percent != 100 ? "\(info.percent) %" : (info.filename ?? "")
+            percentLbl.text = "\(info.percent) %"
+            statusLbl.text = info.statusDesc
+            showBtn(enable: info.percent >= 99)
+            dismissBtn.setTitle(info.dismissBtnTxt, for: .normal)
+            showBtn.setTitle(info.previewFileBtnTxt, for: .normal)
+            
+        }
+        
+    }
+    
     func toggleColorsOnPressed(btn: UIButton) {
         let actualColor = btn.backgroundColor ?? Constants.Colors.progressBar
         btn.backgroundColor = .white
@@ -137,24 +165,6 @@ class DownloadProgressView: UIView {
             guard let sSelf = self else {return}
             sSelf.alpha = 0.0
         })
-        
-    }
-    
-    func update(info: ProgressViewInfo) {
-        
-        if info.percent > self.lastSavedPercent { // ne dozvoljavam da ga sync sa losim data, ili paralelnim download-om (trebao si cancel web request..)
-            
-            lastSavedPercent = info.percent
-            
-            progressView.progress = Float(info.percent) / 100 // ovaj je od 0-1 range
-            //percentLbl.text = info.percent != 100 ? "\(info.percent) %" : (info.filename ?? "")
-            percentLbl.text = "\(info.percent) %"
-            statusLbl.text = info.statusDesc
-            showBtn(enable: info.percent >= 99)
-            dismissBtn.setTitle(info.dismissBtnTxt, for: .normal)
-            showBtn.setTitle(info.previewFileBtnTxt, for: .normal)
-            
-        }
         
     }
     

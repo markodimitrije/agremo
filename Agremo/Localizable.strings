@@ -26,6 +26,7 @@ Strings.RMessageText.FileDownload.msg = "1 item will be downloaded. See notifica
 
 Strings.RMessageText.FileDownloadStatus.OK = "Download successfull! File's location: Files App/On My Iphone/Agremo";
 Strings.RMessageText.FileDownloadStatus.Failed = "Download failed; Try again later";
+Strings.RMessageText.FileDownloadStatus.ConnectionProblem = "There was an internet connection problem, please try again.";
 
 Strings.DownloadingView.FileStatus.preparing = "Preparing for download...";
 Strings.DownloadingView.FileStatus.downloading = "Downloading...";

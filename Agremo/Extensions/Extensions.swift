@@ -43,16 +43,18 @@ extension RMessage {
             }, at: RMessagePosition.navBarOverlay,
                canBeDismissedByUser: true)
         }
-        
         static func showFileWillBeAvailableInFilesAppMessage(success: String) {
             RMessage.showNotification(withTitle: RMessageText.fileWillBeAvailableMsg, subtitle: success, iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "OK", buttonCallback: {
                 RMessage.dismissActiveNotification()
             }, at: RMessagePosition.navBarOverlay,
                canBeDismissedByUser: true)
         }
-        
-        
-        //Strings.DownloadingView.FileWillBeAvailableInFilesApp
+        static func showDownloadFileInternetConnectionError() {
+            RMessage.showNotification(withTitle: RMessageText.internetConnProblem, subtitle: "", iconImage: #imageLiteral(resourceName: "Agremo_icon_44x44"), type: RMessageType.warning, customTypeName: nil, duration: 5.0, callback: {}, buttonTitle: "OK", buttonCallback: {
+                RMessage.dismissActiveNotification()
+            }, at: RMessagePosition.navBarOverlay,
+               canBeDismissedByUser: true)
+        }
     }
 }
 
