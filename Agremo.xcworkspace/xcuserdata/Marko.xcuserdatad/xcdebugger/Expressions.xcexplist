@@ -6,6 +6,14 @@
          contextName = "(null):(null)">
       </ContextState>
       <ContextState
+         contextName = "specialized MainVC.webView(_:decidePolicyFor:decisionHandler:):MainVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "downloadsProgressManager">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "DownloadsProgressManager.urlSession(_:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:):MainVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -151,16 +159,16 @@
                value = "downloadsProgressManager">
             </PersistentString>
             <PersistentString
-               value = "downloadsProgressManager.hasActiveSession(withName: tempFileName)">
+               value = "downloadsProgressManager.activeSessions">
             </PersistentString>
             <PersistentString
                value = "navigationAction.request.url">
             </PersistentString>
             <PersistentString
-               value = "downloadsProgressManager.activeSessions">
+               value = "url.lastPathComponent">
             </PersistentString>
             <PersistentString
-               value = "url.lastPathComponent">
+               value = "downloadsProgressManager.hasActiveSession(withName: tempFileName)">
             </PersistentString>
             <PersistentString
                value = "navigationAction.navigationType">
@@ -191,10 +199,19 @@
          contextName = "DownloadsProgressManager.urlSession(_:task:didCompleteWithError:):DownloadFilesManager.swift">
          <PersistentStrings>
             <PersistentString
+               value = "task.currentRequest">
+            </PersistentString>
+            <PersistentString
                value = "activeSessions">
             </PersistentString>
             <PersistentString
+               value = "task.response">
+            </PersistentString>
+            <PersistentString
                value = "task.response as? HTTPURLResponse)?.statusCode">
+            </PersistentString>
+            <PersistentString
+               value = "task.originalRequest">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

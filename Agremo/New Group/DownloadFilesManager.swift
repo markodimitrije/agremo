@@ -175,8 +175,15 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
         }
     }
     
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        // handle ikonicom da je error ili pitaj kako...
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) { // handle ikonicom da je error ili pitaj kako...
+        self.handleServerOrClientNetworkErrors(session: session, task: task, error: error)
+    }
+    
+    func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
+        handleServerOrClientNetworkErrors(session: session, task: nil, error: error)
+    }
+    
+    private func handleServerOrClientNetworkErrors(session: URLSession, task: URLSessionTask?, error: Error?) {
         
         func errorReceived(_ error: Error?) {
             print("error is catched for session and task!!, error = \(error?.localizedDescription ?? "unknown error")")
@@ -190,7 +197,7 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
             
         } else {
             
-            guard let statusCode = (task.response as? HTTPURLResponse)?.statusCode,
+            guard let statusCode = (task?.response as? HTTPURLResponse)?.statusCode,
                 !(200...299).contains(statusCode) else {
                     return
             }
@@ -200,7 +207,6 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
             errorReceived(nil) // 404 i slicno....
             
         }
-        
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {

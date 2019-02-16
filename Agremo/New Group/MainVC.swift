@@ -218,26 +218,6 @@ extension MainVC: WKUIDelegate, WKNavigationDelegate {
                 ServerRequest.downloadAgremoArchiveInBackground(addr: addr, delegate: downloadsProgressManager, filename: tempFileName)
                 decisionHandler(.cancel)
                 return
-            } else { // ima ali proveri da li je zaostala (100% i na ekranu)
-                if let _ = downloadsProgressManager.activeSessions.first(where: { info -> Bool in // exists
-                    return info.sessionName == tempFileName
-                }) {
-//                    print("postoji zaostala, proveri da li je na ekranu !")
-                    if let _ = sv.subviews.first(where: { view -> Bool in
-                        if let downloadView = view as? DownloadProgressView, downloadView.sessionIdentifier == tempFileName {
-                            return true
-                        } else {
-                            return false
-                        }
-                    }) {
-//                        print("postoji vec na ekranu i status joj je downloading, ne diraj nista....")
-                    } else {
-                        ServerRequest.downloadAgremoArchiveInBackground(addr: addr, delegate: downloadsProgressManager, filename: tempFileName)
-                    }
-                    
-                    decisionHandler(.cancel)
-                    return
-                }
             }
             
         }
