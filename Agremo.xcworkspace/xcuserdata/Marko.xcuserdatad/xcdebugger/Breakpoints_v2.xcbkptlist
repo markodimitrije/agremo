@@ -2,4 +2,70 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agremo/New Group/DownloadFilesManager.swift"
+            timestampString = "572984029.737031"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "urlSession(_:didBecomeInvalidWithError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agremo/New Group/DownloadFilesManager.swift"
+            timestampString = "572984029.737393"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "handleServerOrClientNetworkErrors(session:task:error:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "@objc Agremo.DownloadsProgressManager.urlSession(_: __C.NSURLSession, didBecomeInvalidWithError: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "Agremo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Marko/development/agremo/agremo_orig_bundle/Agremo/New%20Group/DownloadFilesManager.swift"
+                  timestampString = "572984029.958684"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "276">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Agremo.DownloadsProgressManager.(handleServerOrClientNetworkErrors in _C3467FF14F00A424A60D6E69916CAC34)(session: __C.NSURLSession, task: Swift.Optional&lt;__C.NSURLSessionTask&gt;, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "Agremo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Marko/development/agremo/agremo_orig_bundle/Agremo/New%20Group/DownloadFilesManager.swift"
+                  timestampString = "572984029.963155"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -176,10 +176,14 @@ class DownloadsProgressManager: NSObject, URLSessionDelegate, URLSessionDownload
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) { // handle ikonicom da je error ili pitaj kako...
-        self.handleServerOrClientNetworkErrors(session: session, task: task, error: error)
+        print("didCompleteWithError is called, error = \(error)")
+        if let error = error {
+            self.handleServerOrClientNetworkErrors(session: session, task: task, error: error)
+        }
     }
     
     func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
+        print("didBecomeInvalidWithError is called")
         handleServerOrClientNetworkErrors(session: session, task: nil, error: error)
     }
     

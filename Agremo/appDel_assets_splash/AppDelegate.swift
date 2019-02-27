@@ -25,7 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     // bg download
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
-        backgroundCompletionHandler = completionHandler // sacuvaj ovaj handler
+        print("handleEventsForBackgroundURLSession is called")
+        DispatchQueue.main.async {
+            self.backgroundCompletionHandler = completionHandler // sacuvaj ovaj handler
+            completionHandler()
+        }
     }
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
